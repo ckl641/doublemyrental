@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STR Investment Calculator — Double My Rental</title>
+<meta name="description" content="Calculate your potential short-term rental returns. See cash flow, CoC return, tax savings, and 5-year projections.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root { --gold: #E8B94A; --dark: #0a0a0f; --card-bg: #111118; --green: #4ade80; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'DM Sans',sans-serif; background:var(--dark); color:#fff; min-height:100vh; }
+.nav { position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 32px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,15,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06); }
+.nav-logo { font-family:'DM Serif Display',serif;font-size:20px;color:var(--gold);text-decoration:none; }
+.nav-link { color:rgba(255,255,255,0.6);text-decoration:none;font-size:13px; }
+
+.container { max-width:900px; margin:0 auto; padding:100px 24px 60px; }
+h1 { font-family:'DM Serif Display',serif; font-size:clamp(28px,4vw,42px); text-align:center; margin-bottom:8px; }
+h1 .accent { color:var(--gold); }
+.subtitle { text-align:center; color:rgba(255,255,255,0.5); font-size:16px; margin-bottom:48px; }
+
+.calc-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+@media(max-width:700px) { .calc-grid { grid-template-columns:1fr; } }
+
+.input-section { background:var(--card-bg); border:1px solid rgba(255,255,255,0.06); border-radius:16px; padding:32px; }
+.input-section h2 { font-size:18px; font-weight:700; margin-bottom:24px; color:var(--gold); }
+.field { margin-bottom:20px; }
+.field label { display:block; font-size:12px; font-weight:600; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:6px; }
+.field input, .field select { width:100%; padding:12px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; font-size:15px; font-family:'DM Sans',sans-serif; outline:none; }
+.field input:focus { border-color:var(--gold); }
+.field .hint { font-size:11px; color:rgba(255,255,255,0.3); margin-top:4px; }
+
+.results-section { background:var(--card-bg); border:2px solid rgba(232,185,74,0.2); border-radius:16px; padding:32px; }
+.results-section h2 { font-size:18px; font-weight:700; margin-bottom:24px; color:var(--gold); }
+.result-row { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+.result-row:last-child { border:none; }
+.result-label { font-size:14px; color:rgba(255,255,255,0.6); }
+.result-value { font-size:18px; font-weight:700; }
+.result-value.gold { color:var(--gold); }
+.result-value.green { color:var(--green); }
+
+.highlight-box { background:rgba(232,185,74,0.08); border:1px solid rgba(232,185,74,0.2); border-radius:12px; padding:20px; margin-top:20px; text-align:center; }
+.highlight-box .big { font-size:36px; font-weight:800; color:var(--gold); }
+.highlight-box .label { font-size:12px; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1.5px; margin-top:4px; }
+
+.cta-box { text-align:center; margin-top:40px; padding:32px; background:var(--card-bg); border-radius:16px; border:1px solid rgba(255,255,255,0.06); }
+.cta-box p { color:rgba(255,255,255,0.6); font-size:15px; margin-bottom:20px; }
+.btn-cta { display:inline-block; padding:16px 40px; background:var(--gold); color:#111; font-size:16px; font-weight:700; border-radius:10px; text-decoration:none; transition:all 0.25s; }
+.btn-cta:hover { background:#f0c55a; }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="a.html" class="nav-logo">Double My Rental</a>
+  <a href="a.html" class="nav-link">← Back to Home</a>
+</nav>
+
+<div class="container">
+  <h1>STR Investment <span class="accent">Calculator</span></h1>
+  <p class="subtitle">See your potential returns on a short-term rental property</p>
+
+  <div class="calc-grid">
+    <div class="input-section">
+      <h2>📊 Property Details</h2>
+      <div class="field">
+        <label>Purchase Price</label>
+        <input type="number" id="price" value="650000" oninput="calculate()">
+      </div>
+      <div class="field">
+        <label>Down Payment %</label>
+        <input type="number" id="downPct" value="10" oninput="calculate()">
+        <div class="hint">DSCR loans available at 10%</div>
+      </div>
+      <div class="field">
+        <label>Setup & Furnishing Cost</label>
+        <input type="number" id="setup" value="16000" oninput="calculate()">
+      </div>
+      <div class="field">
+        <label>Annual STR Revenue</label>
+        <input type="number" id="revenue" value="130000" oninput="calculate()">
+      </div>
+      <div class="field">
+        <label>Mortgage Rate %</label>
+        <input type="number" id="rate" value="7" step="0.1" oninput="calculate()">
+      </div>
+      <div class="field">
+        <label>Management Fee %</label>
+        <input type="number" id="mgmt" value="15" oninput="calculate()">
+      </div>
+      <div class="field">
+        <label>Annual Other Expenses</label>
+        <input type="number" id="otherExp" value="31200" oninput="calculate()">
+        <div class="hint">Cleaning, utilities, supplies, maintenance, insurance</div>
+      </div>
+      <div class="field">
+        <label>Your Tax Bracket %</label>
+        <input type="number" id="taxBracket" value="37" oninput="calculate()">
+      </div>
+      <div class="field">
+        <label>Annual Appreciation %</label>
+        <input type="number" id="appreciation" value="8" step="0.5" oninput="calculate()">
+      </div>
+    </div>
+
+    <div>
+      <div class="results-section">
+        <h2>💰 Your Returns</h2>
+        <div class="result-row"><span class="result-label">Total Cash Invested</span><span class="result-value" id="r-cashIn">$81,000</span></div>
+        <div class="result-row"><span class="result-label">Annual Revenue</span><span class="result-value gold" id="r-revenue">$130,000</span></div>
+        <div class="result-row"><span class="result-label">Annual Mortgage (PITI)</span><span class="result-value" id="r-mortgage">$36,000</span></div>
+        <div class="result-row"><span class="result-label">Management Fee</span><span class="result-value" id="r-mgmt">$19,500</span></div>
+        <div class="result-row"><span class="result-label">Other Expenses</span><span class="result-value" id="r-other">$31,200</span></div>
+        <div class="result-row"><span class="result-label">Total Expenses</span><span class="result-value" id="r-totalExp">$86,700</span></div>
+        <div class="result-row"><span class="result-label"><strong>Net Cash Flow</strong></span><span class="result-value green" id="r-net">$43,300</span></div>
+        <div class="result-row"><span class="result-label">Year 1 Tax Savings (est)</span><span class="result-value green" id="r-tax">$72,000</span></div>
+        <div class="result-row"><span class="result-label">Year 1 Appreciation</span><span class="result-value" id="r-appr">$52,000</span></div>
+
+        <div class="highlight-box">
+          <div class="big" id="r-coc">53.5%</div>
+          <div class="label">Cash-on-Cash Return</div>
+        </div>
+        <div class="highlight-box" style="margin-top:12px;background:rgba(74,222,128,0.08);border-color:rgba(74,222,128,0.2);">
+          <div class="big" style="color:var(--green);" id="r-totalReturn">$167,300</div>
+          <div class="label">Total Year 1 Return (Cash Flow + Tax + Appreciation)</div>
+        </div>
+      </div>
+
+      <div class="cta-box">
+        <p>Want us to find a property with these numbers — and guarantee 15% minimum yield?</p>
+        <a href="qualify.html" class="btn-cta">See If You Qualify →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function fmt(n) { return '$' + Math.round(n).toLocaleString(); }
+
+function calculate() {
+  const price = +document.getElementById('price').value || 0;
+  const downPct = +document.getElementById('downPct').value || 0;
+  const setup = +document.getElementById('setup').value || 0;
+  const revenue = +document.getElementById('revenue').value || 0;
+  const rate = +document.getElementById('rate').value || 0;
+  const mgmtPct = +document.getElementById('mgmt').value || 0;
+  const otherExp = +document.getElementById('otherExp').value || 0;
+  const taxBracket = +document.getElementById('taxBracket').value || 0;
+  const apprPct = +document.getElementById('appreciation').value || 0;
+
+  const downPayment = price * (downPct / 100);
+  const cashIn = downPayment + setup;
+  const loanAmt = price - downPayment;
+  
+  // Rough mortgage calc (30yr fixed)
+  const monthlyRate = (rate / 100) / 12;
+  const payments = 360;
+  const monthlyPayment = monthlyRate > 0 ? loanAmt * (monthlyRate * Math.pow(1 + monthlyRate, payments)) / (Math.pow(1 + monthlyRate, payments) - 1) : loanAmt / payments;
+  const annualMortgage = monthlyPayment * 12;
+  
+  const mgmtFee = revenue * (mgmtPct / 100);
+  const totalExpenses = annualMortgage + mgmtFee + otherExp;
+  const netCashFlow = revenue - totalExpenses;
+  
+  // Tax savings (rough: depreciation = ~80% of property value / 27.5, accelerated with cost seg)
+  const depreciable = price * 0.8;
+  const yearlyDepr = depreciable * 0.3; // Assume 30% year 1 with cost seg + bonus depreciation
+  const taxSavings = yearlyDepr * (taxBracket / 100);
+  
+  const appreciation = price * (apprPct / 100);
+  const coc = cashIn > 0 ? (netCashFlow / cashIn * 100) : 0;
+  const totalReturn = netCashFlow + taxSavings + appreciation;
+
+  document.getElementById('r-cashIn').textContent = fmt(cashIn);
+  document.getElementById('r-revenue').textContent = fmt(revenue);
+  document.getElementById('r-mortgage').textContent = fmt(annualMortgage);
+  document.getElementById('r-mgmt').textContent = fmt(mgmtFee);
+  document.getElementById('r-other').textContent = fmt(otherExp);
+  document.getElementById('r-totalExp').textContent = fmt(totalExpenses);
+  document.getElementById('r-net').textContent = fmt(netCashFlow);
+  document.getElementById('r-tax').textContent = fmt(taxSavings);
+  document.getElementById('r-appr').textContent = fmt(appreciation);
+  document.getElementById('r-coc').textContent = coc.toFixed(1) + '%';
+  document.getElementById('r-totalReturn').textContent = fmt(totalReturn);
+}
+
+calculate();
+</script>
+</body>
+</html>

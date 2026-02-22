@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Property Management — Double My Rental</title>
+<meta name="description" content="Already own a short-term rental? We help property owners earn 2-3x more with top 1% Airbnb rankings, dynamic pricing, and full-service management.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #E8B94A;
+    --dark: #0a0a0f;
+    --white: #ffffff;
+    --gray: #888;
+    --light-bg: #f8f7f4;
+    --card-bg: #111118;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; color: var(--dark); background: var(--white); }
+  .btn { display: inline-block; background: var(--gold); color: #111; font-size: 16px; font-weight: 700; padding: 16px 44px; border-radius: 6px; text-decoration: none; transition: all 0.25s ease; box-shadow: 0 4px 20px rgba(232,185,74,0.25); }
+  .btn:hover { background: #f0c55a; transform: translateY(-1px); box-shadow: 0 6px 28px rgba(232,185,74,0.35); }
+  section { padding: 100px 32px; }
+  .container { max-width: 1000px; margin: 0 auto; }
+  .section-label { font-size: 12px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 4vw, 48px); line-height: 1.2; margin-bottom: 20px; }
+  .section-desc { font-size: 18px; color: #555; line-height: 1.7; max-width: 600px; }
+  .center { text-align: center; }
+  .center .section-desc { margin: 0 auto; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  @media (max-width: 768px) {
+    .two-col { grid-template-columns: 1fr !important; }
+    .btn { width: 100%; text-align: center; }
+    section { padding: 72px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,0.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(232,185,74,0.1);">
+  <div style="max-width:1000px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;">
+    <a href="/a.html" style="font-family:'DM Serif Display',serif;font-size:18px;font-weight:700;color:var(--gold);text-decoration:none;letter-spacing:0.5px;">Double My Rental</a>
+    <div style="display:flex;align-items:center;gap:24px;">
+      <a href="/a.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-size:13px;font-weight:500;">← Investment Advisory</a>
+      <a href="https://calendly.com/chitabnb/60min" target="_blank" style="background:var(--gold);color:#111;font-size:13px;font-weight:700;padding:10px 24px;border-radius:6px;text-decoration:none;">Get Free Analysis</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section style="background:var(--dark);padding:140px 32px 100px;min-height:80vh;display:flex;align-items:center;">
+  <div class="container center">
+    <div class="section-label">Property Management</div>
+    <h1 style="font-family:'DM Serif Display',serif;font-size:clamp(36px,5vw,64px);color:#fff;line-height:1.15;margin-bottom:28px;max-width:800px;margin-left:auto;margin-right:auto;">Your Property Could Be Earning <span style="color:var(--gold);">2–3x More</span> Than It Is Right Now.</h1>
+    <p style="font-size:18px;color:rgba(255,255,255,0.7);line-height:1.7;max-width:620px;margin:0 auto 40px;">Most short-term rental owners leave serious money on the table. We don't. Our properties consistently rank in the top 1% on Airbnb — and we'll analyze yours for free to show you what's possible.</p>
+    <a href="https://calendly.com/chitabnb/60min" class="btn" target="_blank">Get a Free Property Analysis</a>
+    <div style="margin-top:64px;padding-top:40px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:center;gap:56px;flex-wrap:wrap;">
+      <div style="text-align:center;"><div style="font-size:28px;font-weight:700;color:#fff;">Top 1%</div><div style="font-size:11px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:2px;margin-top:6px;">Airbnb Ranking</div></div>
+      <div style="text-align:center;"><div style="font-size:28px;font-weight:700;color:#fff;">4.95 ★</div><div style="font-size:11px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:2px;margin-top:6px;">Guest Rating</div></div>
+      <div style="text-align:center;"><div style="font-size:28px;font-weight:700;color:#fff;">24/7/365</div><div style="font-size:11px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:2px;margin-top:6px;">Full Service</div></div>
+      <div style="text-align:center;"><div style="font-size:28px;font-weight:700;color:#fff;">$100M+</div><div style="font-size:11px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:2px;margin-top:6px;">Deployed</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE PROBLEM ===== -->
+<section style="background:var(--light-bg);">
+  <div class="container center">
+    <div class="section-label">The Problem</div>
+    <h2 class="section-title">Most Property Managers Are Costing You Money</h2>
+    <p class="section-desc" style="margin:0 auto 48px;">They fill your calendar at low rates and call it success. That's not management — that's settling.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;" class="two-col">
+      <div style="background:#fff;border-radius:12px;padding:36px 28px;border:1px solid rgba(0,0,0,0.06);">
+        <div style="font-size:28px;font-weight:700;color:#c0392b;margin-bottom:16px;">📉</div>
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:10px;">Race-to-the-Bottom Pricing</h3>
+        <p style="font-size:15px;color:#666;line-height:1.6;">Most managers use flat rates or basic tools. They fill nights at $150 when the market would pay $400. You're losing thousands every month without knowing it.</p>
+      </div>
+      <div style="background:#fff;border-radius:12px;padding:36px 28px;border:1px solid rgba(0,0,0,0.06);">
+        <div style="font-size:28px;font-weight:700;color:#c0392b;margin-bottom:16px;">📷</div>
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:10px;">Invisible Listings</h3>
+        <p style="font-size:15px;color:#666;line-height:1.6;">Bad photos, no SEO, generic descriptions. Your listing is buried on page 5 while competitors with inferior properties outrank you and steal your bookings.</p>
+      </div>
+      <div style="background:#fff;border-radius:12px;padding:36px 28px;border:1px solid rgba(0,0,0,0.06);">
+        <div style="font-size:28px;font-weight:700;color:#c0392b;margin-bottom:16px;">😤</div>
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:10px;">Average Guest Experience</h3>
+        <p style="font-size:15px;color:#666;line-height:1.6;">Slow replies, mediocre turnovers, no wow factor. Average reviews mean average pricing. You can't charge premium rates with a 4.3-star rating.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHAT WE DO DIFFERENTLY ===== -->
+<section>
+  <div class="container">
+    <div class="center">
+      <div class="section-label">Our Approach</div>
+      <h2 class="section-title">We Don't Just Manage Properties. <span style="color:var(--gold);">We Maximize Them.</span></h2>
+      <p class="section-desc" style="margin:0 auto 56px;">Every property we manage gets the full treatment — the same systems that generate $130K+/year on a single home.</p>
+    </div>
+    <div class="two-col">
+      <div>
+        <div style="display:flex;flex-direction:column;gap:28px;">
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:48px;height:48px;border-radius:12px;background:rgba(232,185,74,0.1);border:1px solid rgba(232,185,74,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;">📊</div>
+            <div>
+              <h3 style="font-size:18px;font-weight:700;margin-bottom:6px;">Strategic Dynamic Pricing</h3>
+              <p style="font-size:15px;color:#666;line-height:1.6;">We adjust rates daily — sometimes hourly — based on local demand, events, holidays, competitor pricing, and booking velocity. We don't guess. We optimize for maximum revenue per available night, not just occupancy.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:48px;height:48px;border-radius:12px;background:rgba(232,185,74,0.1);border:1px solid rgba(232,185,74,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;">🏆</div>
+            <div>
+              <h3 style="font-size:18px;font-weight:700;margin-bottom:6px;">Top 1% Airbnb Ranking</h3>
+              <p style="font-size:15px;color:#666;line-height:1.6;">Professional photography, listing SEO, keyword optimization, strategic title and description writing, and review management. We push your property to the top of search results where the bookings are.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:48px;height:48px;border-radius:12px;background:rgba(232,185,74,0.1);border:1px solid rgba(232,185,74,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;">⭐</div>
+            <div>
+              <h3 style="font-size:18px;font-weight:700;margin-bottom:6px;">5-Star Guest Experience</h3>
+              <p style="font-size:15px;color:#666;line-height:1.6;">24/7 guest communication with sub-15-minute response times. Premium amenities, spotless turnovers, and thoughtful touches that earn glowing reviews. Higher ratings = higher pricing power.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:48px;height:48px;border-radius:12px;background:rgba(232,185,74,0.1);border:1px solid rgba(232,185,74,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;">🔧</div>
+            <div>
+              <h3 style="font-size:18px;font-weight:700;margin-bottom:6px;">Full-Service Operations</h3>
+              <p style="font-size:15px;color:#666;line-height:1.6;">Cleaning coordination, preventive maintenance, supply restocking, damage claims, guest screening, calendar management — everything handled so you do nothing except collect deposits.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="background:var(--dark);border-radius:16px;padding:40px;">
+          <h3 style="font-family:'DM Serif Display',serif;font-size:24px;color:#fff;margin-bottom:28px;">Average Manager vs. Us</h3>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:15px;">
+              <span style="color:rgba(255,255,255,0.5);">Pricing Strategy</span>
+              <div style="text-align:right;"><span style="color:rgba(255,255,255,0.3);text-decoration:line-through;margin-right:12px;">Flat Rate</span><span style="color:var(--gold);font-weight:700;">Dynamic Daily</span></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:15px;">
+              <span style="color:rgba(255,255,255,0.5);">Listing Ranking</span>
+              <div style="text-align:right;"><span style="color:rgba(255,255,255,0.3);text-decoration:line-through;margin-right:12px;">Page 3-5</span><span style="color:var(--gold);font-weight:700;">Top 1%</span></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:15px;">
+              <span style="color:rgba(255,255,255,0.5);">Response Time</span>
+              <div style="text-align:right;"><span style="color:rgba(255,255,255,0.3);text-decoration:line-through;margin-right:12px;">Hours</span><span style="color:var(--gold);font-weight:700;">&lt;15 Min</span></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:15px;">
+              <span style="color:rgba(255,255,255,0.5);">Guest Rating</span>
+              <div style="text-align:right;"><span style="color:rgba(255,255,255,0.3);text-decoration:line-through;margin-right:12px;">4.2-4.5</span><span style="color:var(--gold);font-weight:700;">4.95 ★</span></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:12px 0;font-size:15px;">
+              <span style="color:rgba(255,255,255,0.5);">Your Involvement</span>
+              <div style="text-align:right;"><span style="color:rgba(255,255,255,0.3);text-decoration:line-through;margin-right:12px;">Constant</span><span style="color:var(--gold);font-weight:700;">Zero</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section style="background:var(--light-bg);">
+  <div class="container center">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">Three Steps to Higher Revenue</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:48px;" class="two-col">
+      <div style="text-align:center;">
+        <div style="display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;background:var(--dark);color:var(--gold);font-family:'DM Serif Display',serif;font-size:24px;border-radius:50%;margin-bottom:24px;">1</div>
+        <h3 style="font-size:20px;font-weight:700;margin-bottom:10px;">Free Property Analysis</h3>
+        <p style="font-size:15px;color:#666;line-height:1.6;">Book a call. We analyze your property's location, condition, competition, and current performance. We tell you exactly what it could earn under our management.</p>
+      </div>
+      <div style="text-align:center;">
+        <div style="display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;background:var(--dark);color:var(--gold);font-family:'DM Serif Display',serif;font-size:24px;border-radius:50%;margin-bottom:24px;">2</div>
+        <h3 style="font-size:20px;font-weight:700;margin-bottom:10px;">We Optimize Everything</h3>
+        <p style="font-size:15px;color:#666;line-height:1.6;">Professional photos, listing rewrite, pricing strategy, amenity upgrades if needed. We transform your listing from average to top 1% in your market.</p>
+      </div>
+      <div style="text-align:center;">
+        <div style="display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;background:var(--dark);color:var(--gold);font-family:'DM Serif Display',serif;font-size:24px;border-radius:50%;margin-bottom:24px;">3</div>
+        <h3 style="font-size:20px;font-weight:700;margin-bottom:10px;">You Collect Deposits</h3>
+        <p style="font-size:15px;color:#666;line-height:1.6;">We handle guests, cleaning, maintenance, pricing, and everything else 24/7/365. You watch your revenue climb and your deposits hit your account.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section style="background:var(--dark);color:#fff;text-align:center;padding:100px 32px;">
+  <div class="container">
+    <div class="section-label">Get Started</div>
+    <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(28px,4vw,48px);color:#fff;margin-bottom:20px;">Find Out What Your Property Is Really Worth</h2>
+    <p style="font-size:18px;color:rgba(255,255,255,0.6);max-width:600px;margin:0 auto 40px;line-height:1.7;">Book a free analysis call. We will review your property, your market, and your current numbers — and show you exactly what our management would change. No commitment required.</p>
+    <a href="https://calendly.com/chitabnb/60min" class="btn" target="_blank">Get a Free Property Analysis</a>
+  </div>
+</section>
+
+<footer style="background:var(--dark);border-top:1px solid rgba(255,255,255,0.06);padding:32px;text-align:center;color:rgba(255,255,255,0.3);font-size:13px;">
+  <div class="container">
+    © 2026 Double My Rental. All rights reserved.
+  </div>
+</footer>
+
+</body>
+</html>

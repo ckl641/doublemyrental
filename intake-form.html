@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategy Call Intake — Double My Rental</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --gold: #E8B94A; --dark: #0a0a0f; --navy: #0d1117; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #f8f8f6; color: #333; min-height: 100vh; }
+  
+  .header { background: var(--navy); padding: 32px; text-align: center; }
+  .header h1 { font-family: 'DM Serif Display', serif; color: #fff; font-size: 28px; margin-bottom: 8px; }
+  .header p { color: rgba(255,255,255,0.6); font-size: 15px; }
+  
+  .container { max-width: 640px; margin: -24px auto 60px; padding: 40px 32px; background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+  
+  .intro { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid #eee; }
+  .intro p { font-size: 15px; line-height: 1.7; color: #555; }
+  
+  .field { margin-bottom: 24px; }
+  .field label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 8px; color: var(--dark); }
+  .field .hint { font-size: 13px; color: #888; margin-bottom: 8px; }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 14px 16px; border: 1px solid #ddd; border-radius: 10px;
+    font-size: 15px; font-family: inherit; transition: border 0.2s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(232,185,74,0.15);
+  }
+  .field textarea { resize: vertical; min-height: 100px; }
+  
+  .radio-group { display: flex; flex-wrap: wrap; gap: 10px; }
+  .radio-group label {
+    display: flex; align-items: center; gap: 8px; padding: 12px 18px;
+    border: 1px solid #ddd; border-radius: 10px; cursor: pointer;
+    font-weight: 500; font-size: 14px; transition: all 0.2s;
+  }
+  .radio-group label:hover { border-color: var(--gold); }
+  .radio-group input:checked + span { color: var(--gold); }
+  .radio-group input { accent-color: var(--gold); }
+  
+  .section-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--dark); margin: 32px 0 16px; padding-top: 24px; border-top: 1px solid #eee; }
+  
+  .submit-btn {
+    width: 100%; padding: 18px; background: var(--gold); color: var(--dark);
+    font-size: 16px; font-weight: 700; border: none; border-radius: 12px;
+    cursor: pointer; margin-top: 32px; transition: all 0.2s;
+    letter-spacing: 0.5px;
+  }
+  .submit-btn:hover { background: #d4a63e; transform: translateY(-1px); }
+  
+  .privacy { text-align: center; margin-top: 16px; font-size: 13px; color: #999; }
+  
+  .success { display: none; text-align: center; padding: 60px 20px; }
+  .success h2 { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--dark); margin-bottom: 16px; }
+  .success p { font-size: 16px; color: #555; line-height: 1.7; }
+  .success .check { font-size: 64px; margin-bottom: 24px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Strategy Call Prep</h1>
+  <p>Help us make your call with Chi Ta as valuable as possible</p>
+</div>
+
+<div class="container">
+  <form id="intakeForm">
+    <div class="intro">
+      <p>Takes about 3 minutes. Your answers help Chi Ta prepare specific deal examples and tax scenarios for your situation. Everything is confidential.</p>
+    </div>
+
+    <!-- ABOUT YOU -->
+    <h3 class="section-title">About You</h3>
+    
+    <div class="field">
+      <label>Full Name *</label>
+      <input type="text" name="name" required>
+    </div>
+    
+    <div class="field">
+      <label>Email *</label>
+      <input type="email" name="email" required>
+    </div>
+    
+    <div class="field">
+      <label>Phone</label>
+      <input type="tel" name="phone" placeholder="(optional)">
+    </div>
+    
+    <div class="field">
+      <label>What do you do for work?</label>
+      <input type="text" name="occupation" placeholder="e.g. Dentist, Software Engineer, Attorney">
+    </div>
+
+    <!-- FINANCES -->
+    <h3 class="section-title">Financial Snapshot</h3>
+    
+    <div class="field">
+      <label>Annual Household Income *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="income" value="250-500k" required><span>$250K–$500K</span></label>
+        <label><input type="radio" name="income" value="500k-750k"><span>$500K–$750K</span></label>
+        <label><input type="radio" name="income" value="750k-1m"><span>$750K–$1M</span></label>
+        <label><input type="radio" name="income" value="1m+"><span>$1M+</span></label>
+      </div>
+    </div>
+    
+    <div class="field">
+      <label>Approximate Annual Tax Bill</label>
+      <div class="hint">Rough estimate is fine — we'll dial it in on the call</div>
+      <div class="radio-group">
+        <label><input type="radio" name="taxes" value="50-100k"><span>$50K–$100K</span></label>
+        <label><input type="radio" name="taxes" value="100-200k"><span>$100K–$200K</span></label>
+        <label><input type="radio" name="taxes" value="200k+"><span>$200K+</span></label>
+        <label><input type="radio" name="taxes" value="unsure"><span>Not sure</span></label>
+      </div>
+    </div>
+    
+    <div class="field">
+      <label>Capital Available for Down Payment *</label>
+      <div class="hint">Our DSCR loans require 10-15% down. Most properties are $500K–$1M.</div>
+      <div class="radio-group">
+        <label><input type="radio" name="capital" value="50-100k" required><span>$50K–$100K</span></label>
+        <label><input type="radio" name="capital" value="100-250k"><span>$100K–$250K</span></label>
+        <label><input type="radio" name="capital" value="250-500k"><span>$250K–$500K</span></label>
+        <label><input type="radio" name="capital" value="500k+"><span>$500K+</span></label>
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <h3 class="section-title">Real Estate Experience</h3>
+    
+    <div class="field">
+      <label>Do you currently own any investment properties?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="properties" value="none"><span>No</span></label>
+        <label><input type="radio" name="properties" value="1-2"><span>1–2</span></label>
+        <label><input type="radio" name="properties" value="3-5"><span>3–5</span></label>
+        <label><input type="radio" name="properties" value="5+"><span>5+</span></label>
+      </div>
+    </div>
+    
+    <div class="field">
+      <label>Any experience with short-term rentals (Airbnb/VRBO)?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="str_experience" value="none"><span>None</span></label>
+        <label><input type="radio" name="str_experience" value="researching"><span>Researching</span></label>
+        <label><input type="radio" name="str_experience" value="own-1"><span>Own 1–2 STRs</span></label>
+        <label><input type="radio" name="str_experience" value="own-3+"><span>Own 3+ STRs</span></label>
+      </div>
+    </div>
+
+    <!-- GOALS -->
+    <h3 class="section-title">Goals & Timeline</h3>
+    
+    <div class="field">
+      <label>What's most important to you? *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="goal" value="tax-savings" required><span>💰 Tax savings</span></label>
+        <label><input type="radio" name="goal" value="cashflow"><span>📈 Monthly cash flow</span></label>
+        <label><input type="radio" name="goal" value="wealth"><span>🏦 Long-term wealth</span></label>
+        <label><input type="radio" name="goal" value="all"><span>🎯 All of the above</span></label>
+      </div>
+    </div>
+    
+    <div class="field">
+      <label>When do you want to get started?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="timeline" value="asap"><span>ASAP</span></label>
+        <label><input type="radio" name="timeline" value="1-3mo"><span>1–3 months</span></label>
+        <label><input type="radio" name="timeline" value="3-6mo"><span>3–6 months</span></label>
+        <label><input type="radio" name="timeline" value="exploring"><span>Just exploring</span></label>
+      </div>
+    </div>
+    
+    <div class="field">
+      <label>Anything else you'd like Chi Ta to know?</label>
+      <textarea name="notes" placeholder="Questions, concerns, specific markets you're interested in..."></textarea>
+    </div>
+
+    <button type="submit" class="submit-btn">Submit & Prepare My Call →</button>
+    <p class="privacy">🔒 Your information is 100% confidential and only shared with Chi Ta.</p>
+  </form>
+
+  <div class="success" id="successMsg">
+    <div class="check">✅</div>
+    <h2>You're All Set</h2>
+    <p>Chi Ta will review your answers before your call so he can come prepared with specific numbers and properties that match your situation.</p>
+    <p style="margin-top: 24px; font-weight: 600;">See you on the call! 🏠</p>
+  </div>
+</div>
+
+<script>
+document.getElementById('intakeForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(this));
+  // Store locally for now — will connect to email platform later
+  console.log('Intake form submission:', data);
+  
+  // Could POST to a webhook/API endpoint here
+  // fetch('/api/intake', { method: 'POST', body: JSON.stringify(data) });
+  
+  this.style.display = 'none';
+  document.getElementById('successMsg').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+
+</body>
+</html>

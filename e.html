@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Double My Rental â€” Build Wealth Through Short Term Rentals</title>
+<meta name="description" content="We help high earners build fully managed short term rental portfolios that generate monthly cash flow and six figure tax shields.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #E8B94A;
+    --dark: #0a0a0f;
+    --white: #ffffff;
+    --gray: #888;
+    --light-bg: #f8f7f4;
+    --card-bg: #111118;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; color: var(--dark); background: var(--white); }
+
+  /* ===== HERO ===== */
+  .hero { position: relative; width: 100%; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: url('https://v3b.fal.media/files/b/0a8f203e/RmdadANdv4MCsw-BnvNcq.jpg') center/cover no-repeat; z-index: 0; }
+  .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,15,0.3) 0%, rgba(10,10,15,0.6) 50%, rgba(10,10,15,0.85) 100%); }
+  .hero-inner { position: relative; z-index: 2; width: 100%; max-width: 1000px; margin: 0 auto; padding: 80px 32px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.9); font-size: 12px; font-weight: 600; letter-spacing: 1.8px; text-transform: uppercase; padding: 10px 22px; border-radius: 100px; margin-bottom: 40px; }
+  .hero-badge .&#9733; { color: var(--gold); font-size: 14px; }
+  .hero-headline { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(40px, 5.8vw, 70px); color: #fff; line-height: 1.15; margin-bottom: 32px; max-width: 860px; }
+  .hero-headline .accent { color: var(--gold); }
+  .hero-sub { font-size: clamp(16px, 2vw, 20px); color: rgba(255,255,255,0.78); line-height: 1.7; margin-bottom: 44px; max-width: 620px; }
+  .btn { display: inline-block; background: var(--gold); color: #111; font-size: 16px; font-weight: 700; padding: 16px 44px; border-radius: 6px; text-decoration: none; transition: all 0.25s ease; box-shadow: 0 4px 20px rgba(232,185,74,0.25); }
+  .btn:hover { background: #f0c55a; transform: translateY(-1px); box-shadow: 0 6px 28px rgba(232,185,74,0.35); }
+  .btn-dark { background: var(--dark); color: #fff; box-shadow: none; }
+  .btn-dark:hover { background: #222; }
+  .hero-stats-bar { margin-top: 72px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: center; gap: 56px; flex-wrap: wrap; width: 100%; max-width: 750px; }
+  .hero-stat { text-align: center; }
+  .hero-stat-value { font-size: 28px; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+  .hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 2px; margin-top: 6px; font-weight: 500; }
+
+  /* ===== SECTIONS ===== */
+  section { padding: 100px 32px; }
+  .container { max-width: 1000px; margin: 0 auto; }
+  .section-label { font-size: 12px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 4vw, 48px); line-height: 1.2; margin-bottom: 20px; }
+  .section-desc { font-size: 18px; color: #555; line-height: 1.7; max-width: 600px; }
+  .center { text-align: center; }
+  .center .section-desc { margin: 0 auto; }
+
+  /* ===== PROBLEM ===== */
+  .problem { background: var(--light-bg); }
+  .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; }
+  .problem-card { background: #fff; border-radius: 12px; padding: 36px 28px; border: 1px solid rgba(0,0,0,0.06); }
+  .problem-icon { font-size: 32px; margin-bottom: 16px; }
+  .problem-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .problem-card p { font-size: 15px; color: #666; line-height: 1.6; }
+
+  /* ===== HOW IT WORKS ===== */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 56px; }
+  .step { text-align: center; }
+  .step-num { display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; background: var(--dark); color: var(--gold); font-family: 'DM Serif Display', serif; font-size: 24px; border-radius: 50%; margin-bottom: 24px; }
+  .step h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+  .step p { font-size: 15px; color: #666; line-height: 1.6; }
+
+  /* ===== NUMBERS ===== */
+  .numbers { background: var(--dark); color: #fff; }
+  .numbers .section-desc { color: rgba(255,255,255,0.6); }
+  .numbers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 56px; align-items: start; }
+  .numbers-left { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 40px; }
+  .numbers-left h3 { font-family: 'DM Serif Display', serif; font-size: 24px; margin-bottom: 24px; }
+  .num-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 15px; }
+  .num-row:last-child { border-bottom: none; }
+  .num-label { color: rgba(255,255,255,0.6); }
+  .num-value { font-weight: 700; color: #fff; }
+  .num-value.gold { color: var(--gold); }
+  .numbers-right { display: flex; flex-direction: column; gap: 24px; }
+  .result-card { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 32px; text-align: center; }
+  .result-card .big-num { font-family: 'DM Serif Display', serif; font-size: 48px; color: var(--gold); }
+  .result-card .big-label { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+  .result-card p { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 12px; line-height: 1.5; }
+
+  /* ===== SOCIAL PROOF ===== */
+  .proof { background: var(--light-bg); }
+  .proof-img { width: 100%; border-radius: 16px; margin-top: 40px; margin-bottom: 40px; }
+  .testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+  .testimonial { background: #fff; border-radius: 12px; padding: 32px; border: 1px solid rgba(0,0,0,0.06); }
+  .testimonial .&#9733;s { color: var(--gold); font-size: 16px; margin-bottom: 12px; }
+  .testimonial p { font-size: 15px; color: #444; line-height: 1.6; font-style: italic; margin-bottom: 16px; }
+  .testimonial .author { font-size: 13px; font-weight: 700; color: var(--dark); }
+  .testimonial .role { font-size: 12px; color: var(--gray); }
+
+  /* ===== WHO IS THIS FOR ===== */
+  .qualify-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; margin-bottom: 48px; }
+  .qualify-item { display: flex; align-items: flex-start; gap: 12px; padding: 16px 20px; background: var(--light-bg); border-radius: 8px; }
+  .qualify-check { color: var(--gold); font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .qualify-item p { font-size: 15px; color: #444; line-height: 1.5; }
+
+  /* ===== FAQ ===== */
+  .faq { background: var(--light-bg); }
+  .faq-list { max-width: 700px; margin: 48px auto 0; }
+  .faq-item { border-bottom: 1px solid rgba(0,0,0,0.08); padding: 24px 0; }
+  .faq-q { font-size: 17px; font-weight: 700; margin-bottom: 10px; cursor: pointer; }
+  .faq-a { font-size: 15px; color: #555; line-height: 1.7; }
+
+  /* ===== FINAL CTA ===== */
+  .final-cta { background: var(--dark); color: #fff; text-align: center; padding: 100px 32px; }
+  .final-cta .section-title { color: #fff; margin-bottom: 20px; }
+  .final-cta .section-desc { color: rgba(255,255,255,0.6); margin: 0 auto 40px; }
+
+  /* ===== FOOTER ===== */
+  footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); padding: 32px; text-align: center; color: rgba(255,255,255,0.3); font-size: 13px; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .problem-grid, .steps, .testimonials, .numbers-grid, .qualify-grid { grid-template-columns: 1fr; }
+    .hero-inner { padding: 60px 20px; }
+    .hero-stats-bar { gap: 32px; margin-top: 56px; padding-top: 32px; }
+    .hero-stat-value { font-size: 22px; }
+    .btn { width: 100%; text-align: center; }
+    section { padding: 72px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">&#9733; 4.95 &#9733; Rating &#8212; Trusted by Doctors, Attorneys & Executives</div>
+    <h1 class="hero-headline">We Have Deployed Over $100 Million Into Rental Properties. <span class="accent">Here Is What We Learned.</span></h1>
+    <p class="hero-sub">After 20 years and hundreds of properties, we know exactly which markets, which properties, and which designs generate the highest returns. We use proprietary technology that scans every home for sale and only the top 1% make the cut. Our clients put 10% down and start collecting cash flow from month one. We handle the rest. The property. The design. The guests. The maintenance. Everything. That is why there is a 3 month waitlist and why most clients come back for another.</p>
+    <a href="https://calendly.com/chitabnb/60min" class="btn">See If You Qualify</a>
+    <div class="hero-stats-bar">
+      <div class="hero-stat"><div class="hero-stat-value">$100M+</div><div class="hero-stat-label">Deployed</div></div>
+      <div class="hero-stat"><div class="hero-stat-value">6 Figure</div><div class="hero-stat-label">Tax Shields</div></div>
+      <div class="hero-stat"><div class="hero-stat-value">Up to 50%</div><div class="hero-stat-label">Cash on Cash</div></div>
+      <div class="hero-stat"><div class="hero-stat-value">3 Month</div><div class="hero-stat-label">Waitlist</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE PROBLEM ===== -->
+<section class="problem">
+  <div class="container center">
+    <div class="section-label">The Problem</div>
+    <h2 class="section-title">You Make Great Money. You Keep Far Less Than You Should.</h2>
+    <p class="section-desc">High earners face a unique set of problems that most financial advisors never solve.</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon" style="font-size:28px;font-weight:700;color:#c0392b;">40%+</div><h3>Taxes Are Your Biggest Expense</h3>
+        <p>You earn $500K or more. Between federal, state, and local taxes, you could be losing 40% or more of your income every single year. That is hundreds of thousands gone.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon" style="font-size:28px;font-weight:700;color:#c0392b;">~1%</div><h3>Your Cash Is Sitting Idle</h3>
+        <p>Savings accounts pay 4% while inflation runs at 3%. Your money is barely treading water. Every month it sits there, it loses purchasing power.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon" style="font-size:28px;font-weight:700;color:#c0392b;">0 hrs</div><h3>You Have No Time to Figure This Out</h3>
+        <p>You know real estate is smart money. But between your career and your life, you do not have 20 hours a week to become a landlord. You need someone to do it for you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE SOLUTION ===== -->
+<section style="background:#fff;">
+  <div class="container center">
+    <div class="section-label">The Solution</div>
+    <h2 class="section-title">A Property That Pays You Every Month and Shields Your Taxes</h2>
+    <p class="section-desc" style="margin:0 auto 56px;">Here is what happens when you own a short term rental property through us.</p>
+  </div>
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
+      <div style="background:var(--dark);border-radius:16px;padding:40px;">
+        <div style="font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">Tax Shields</div>
+        <h3 style="font-family:'DM Serif Display',serif;font-size:28px;color:#fff;margin-bottom:20px;">Cost Segregation + Bonus Depreciation</h3>
+        <p style="font-size:16px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:20px;">When you purchase a short term rental, a cost segregation study breaks down your property into components that can be depreciated on an accelerated schedule. Combined with bonus depreciation, you can write off a massive portion of the property value in year one.</p>
+        <p style="font-size:16px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:24px;">For a $650K property, that means up to $195,000 in accelerated depreciation in your first year alone. If you are in the 37% tax bracket, that is roughly $70,000 back in your pocket before you count a single dollar of rental income.</p>
+        <div style="display:flex;gap:24px;">
+          <div style="text-align:center;">
+            <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--gold);">$195K</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px;">Year 1 Write Off</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--gold);">$70K</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px;">Tax Savings</div>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--dark);border-radius:16px;padding:40px;">
+        <div style="font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">Cash Flow</div>
+        <h3 style="font-family:'DM Serif Display',serif;font-size:28px;color:#fff;margin-bottom:20px;">Monthly Income from Day One</h3>
+        <p style="font-size:16px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:20px;">Your property starts generating revenue the moment guests check in. After mortgage, management fees, cleaning, utilities, and all operating costs are covered, you keep the net cash flow deposited directly into your account every single month.</p>
+        <p style="font-size:16px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:24px;">On top of the monthly cash flow, your property appreciates in value year over year. You are building equity, generating income, and reducing your tax bill all at the same time. Three wealth building engines on a single investment.</p>
+        <div style="display:flex;gap:24px;">
+          <div style="text-align:center;">
+            <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--gold);">$40.9K</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px;">Annual Net Cash Flow</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--gold);">8%</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px;">Avg Appreciation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px;">
+      <p style="font-size:16px;color:#666;margin-bottom:24px;">Tax shields plus cash flow plus appreciation. Three wealth engines on a single investment.</p>
+      <a href="https://calendly.com/chitabnb/60min" class="btn">See If You Qualify</a>
+    </div>
+  </div>
+</section>
+<!-- ===== HOW IT WORKS ===== -->
+<section>
+  <div class="container center">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">Three Steps. We Handle All of Them.</h2>
+    <p class="section-desc">You do not need experience. You do not need to be local. You just need to show up for one call.</p>
+    <!-- Video Demo -->
+    <div style="max-width:800px;margin:48px auto 0;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.1);">
+      <div style="padding:71.26% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1166458526?h=61cbf6004c&badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="How our software finds the most profitable homes"></iframe></div>
+    </div>
+    <p style="text-align:center;font-size:14px;color:#999;margin-top:16px;margin-bottom:48px;">Watch how our proprietary software identifies the top 1% of properties every single day</p>
+    <script src="https://player.vimeo.com/api/player.js"></script>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>We Find the Property</h3>
+        <p>Our proprietary technology scans every home for sale across the best markets in the country. Out of hundreds per day, only the top 1% make the cut. We bring you properties that are already proven to perform.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>We Design and Build It</h3>
+        <p>We transform the property into a premium short term rental with resort level amenities, professional staging, and one of a kind experiences like glow in the dark game rooms that guests pay top dollar for.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>We Manage Everything</h3>
+        <p>Listing optimization, guest communication, cleaning, maintenance, supplies, pricing strategy. We manage your property 24/7/365. You collect deposits and watch your equity grow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE NUMBERS ===== -->
+<section class="numbers center">
+  <div class="container">
+    <div class="section-label">Real Numbers</div>
+    <h2 class="section-title" style="color:#fff">What a Real Deal Looks Like</h2>
+    <p class="section-desc">This is not a hypothetical. This is a real property in our portfolio.</p>
+    <div class="numbers-grid">
+      <div class="numbers-left">
+        <h3>The Investment</h3>
+        <div class="num-row"><span class="num-label">Property Price</span><span class="num-value">$650,000</span></div>
+        <div class="num-row"><span class="num-label">Down Payment (10%)</span><span class="num-value">$65,000</span></div>
+        <div class="num-row"><span class="num-label">Game Room Build</span><span class="num-value">$10,000</span></div>
+        <div class="num-row"><span class="num-label">Contractors</span><span class="num-value">$6,000</span></div>
+        <div class="num-row"><span class="num-label">Total Cash In</span><span class="num-value gold">$81,000</span></div>
+        <div style="height:24px"></div>
+        <h3>Annual Revenue</h3>
+        <div class="num-row"><span class="num-label">Gross Revenue</span><span class="num-value gold">$130,000/yr</span></div>
+        <div class="num-row"><span class="num-label">All Expenses (PITI, mgmt, cleaning, utilities, etc.)</span><span class="num-value">$89,100/yr</span></div>
+        <div class="num-row"><span class="num-label">Net Cash Flow</span><span class="num-value gold">$40,900/yr</span></div>
+      </div>
+      <div class="numbers-right">
+        <div class="result-card">
+          <div class="big-num">50.5%</div>
+          <div class="big-label">Cash on Cash Return</div>
+          <p>$40,900 net cash flow on $81,000 invested. Most investments return 7 to 10%.</p>
+        </div>
+        <div class="result-card">
+          <div class="big-num">$163K+</div>
+          <div class="big-label">Total Year One Value</div>
+          <p>Cash flow plus tax savings plus appreciation. On an $81K investment. Most clients ask for a second property before their first anniversary.</p>
+        </div>
+        <div class="result-card">
+          <div class="big-num">$955K</div>
+          <div class="big-label">Property Value at Year 5</div>
+          <p>8% average annual appreciation turns a $650K property into $955K in equity, plus $200K in cumulative cash flow.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOCIAL PROOF ===== -->
+<section class="proof">
+  <div class="container center">
+    <div class="section-label">Social Proof</div>
+    <h2 class="section-title">Over 100 Investors Showed Up to Our Last Live Event</h2>
+    <p class="section-desc">We do not run webinars. We host real events where real investors see real results.</p>
+    <img src="https://lh3.googleusercontent.com/d/1seLobaUPVyr-rv2Sv1JSJoPaLXRwIIhr" alt="Live event with 100+ investors" class="proof-img" loading="lazy">
+    <div class="testimonials">
+      <div class="testimonial">
+        <div class="&#9733;s">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>I was skeptical at first. Six months later I have two properties cash flowing and my tax bill dropped by six figures. I wish I had found them sooner.</p>
+        <div class="author">Dr. James R.</div>
+        <div class="role">Orthopedic Surgeon, California</div>
+      </div>
+      <div class="testimonial">
+        <div class="&#9733;s">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>I do not have to think about anything. They found the property, designed it, and my first guest checked in 30 days after closing. The cash flow is unreal.</p>
+        <div class="author">Michael T.</div>
+        <div class="role">VP of Engineering, Bay Area</div>
+      </div>
+      <div class="testimonial">
+        <div class="&#9733;s">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>As a dentist with zero real estate experience, the idea of buying a rental property was terrifying. They made it feel like buying a car. Now I own three.</p>
+        <div class="author">Dr. Sarah K.</div>
+        <div class="role">Endodontist, Texas</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOUNDER ===== -->
+<section>
+  <div class="container">
+    <div class="center">
+      <div class="section-label">Meet the Founder</div>
+      <h2 class="section-title">20 Years in Real Estate. $100M+ Deployed. Still Obsessed.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px;align-items:center;">
+      <div>
+        <div style="border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.1);">
+          <video autoplay muted loop playsinline style="width:100%;display:block;">
+            <source src="times-square.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p style="text-align:center;font-size:13px;color:#999;margin-top:12px;">Featured on the Times Square billboard, New York City</p>
+      </div>
+      <div>
+        <p style="font-size:18px;line-height:1.8;color:#444;margin-bottom:20px;">In 2017, I lost my reverse mortgage business overnight. I had a rental property sitting empty, so I listed it on Airbnb just to cover the mortgage. It made more in one month than the rent would have made in three.</p>
+        <p style="font-size:18px;line-height:1.8;color:#444;margin-bottom:20px;">Within 9 months, I scaled to 30 units and $2.4 million a year in revenue in the San Francisco Bay Area. My first deal was $0 down using owner financing and hard money, and it netted $2,000 a month from day one.</p>
+        <p style="font-size:18px;line-height:1.8;color:#444;margin-bottom:20px;">Today, I have guided investors into over $100 million in short term rental properties. My biggest client manages a 60 home portfolio with a $30 million budget. My best performing property made $24,000 in a single month.</p>
+        <p style="font-size:18px;line-height:1.8;color:#444;margin-bottom:20px;">I built proprietary software that scans every home for sale every single day, and out of 300 to 500 properties, only about 4 qualify. That is the level of selectivity your investment deserves.</p>
+        <p style="font-size:18px;line-height:1.8;color:#444;font-weight:600;">I do not sell courses. I do not run masterminds. I find, build, and manage properties that make money. That is it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AS SEEN ON ===== -->
+<section style="padding:60px 32px;background:var(--light-bg);">
+  <div class="container center">
+    <p style="font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#999;margin-bottom:24px;">As Featured In</p>
+    <a href="https://www.forbes.com/sites/mikeswigunski/2021/09/22/airbnb-millionaire-shares-his-rental-arbitrage-insights/" target="_blank" style="display:inline-block;margin-bottom:24px;text-decoration:none;">
+      <span style="font-family:'DM Serif Display',serif;font-size:42px;font-weight:400;color:#333;letter-spacing:1px;">Forbes</span>
+    </a>
+    <p style="font-size:15px;color:#666;max-width:500px;margin:0 auto 32px;line-height:1.6;font-style:italic;">"Airbnb Millionaire Shares His Rental Arbitrage Insights"</p>
+    <div style="display:flex;justify-content:center;align-items:center;gap:48px;flex-wrap:wrap;opacity:0.5;">
+      <span style="font-size:20px;font-weight:700;color:#333;">TSX Times Square</span>
+      <span style="font-size:20px;font-weight:700;color:#333;">Airbnb Superhost</span>
+      <span style="font-size:20px;font-weight:700;color:#333;">4.95 &#9733; Rating</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHO IS THIS FOR ===== -->
+<section>
+  <div class="container">
+    <div class="section-label">Is This for You</div>
+    <h2 class="section-title">This Is Built for a Specific Type of Person</h2>
+    <p class="section-desc">We do not work with everyone. Our service works best for people who match this profile.</p>
+    <div class="qualify-grid">
+      <div class="qualify-item"><span class="qualify-check">&#10004;</span><p>You earn $500K or more per year and you are tired of losing 40%+ to taxes</p></div>
+      <div class="qualify-item"><span class="qualify-check">&#10004;</span><p>You want real estate exposure but you have zero time to be a landlord</p></div>
+      <div class="qualify-item"><span class="qualify-check">&#10004;</span><p>You can put 10% down on a property between $400K and $1M</p></div>
+      <div class="qualify-item"><span class="qualify-check">&#10004;</span><p>You want monthly cash flow, not a 10 year wait for returns</p></div>
+      <div class="qualify-item"><span class="qualify-check">&#10004;</span><p>You value having a team handle everything so you can focus on your career</p></div>
+      <div class="qualify-item"><span class="qualify-check">&#10004;</span><p>You want to build generational wealth, not just save for retirement</p></div>
+    </div>
+    <div class="center">
+      <a href="https://calendly.com/chitabnb/60min" class="btn">See If You Qualify</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq">
+  <div class="container">
+    <div class="center">
+      <div class="section-label">Common Questions</div>
+      <h2 class="section-title">Everything You Want to Know</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">How much capital do I need to get started?</div>
+        <div class="faq-a">Most of our clients start with 10% down on a property between $400K and $800K, so $40K to $80K in initial capital. We connect you with lenders who specialize in investment properties and can get you the best rates available.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How hands off is this really?</div>
+        <div class="faq-a">Completely. We handle guest communication, cleaning, maintenance, supplies, pricing optimization, and everything in between. You will receive monthly reports and deposits. Most of our clients say they forget they own a rental until they see the deposit hit their account.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What markets do you operate in?</div>
+        <div class="faq-a">We operate in high demand short term rental markets across the United States. We specifically target areas where regulations are favorable, demand is strong, and yield potential is highest. We will walk you through the exact markets and data on our call.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What are the risks?</div>
+        <div class="faq-a">Like any investment, real estate carries risk. However, you own a physical asset that appreciates over time, generates monthly income, and provides significant tax advantages. We mitigate risk through careful market selection, premium property design, and professional management. Our track record across $100M+ in deployed capital speaks for itself.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is your fee?</div>
+        <div class="faq-a">Our setup fee is a one time investment that most clients offset entirely through bonus depreciation and cost segregation tax benefits in year one. We will break down the exact numbers on our strategy call so you can see the ROI before committing.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Why is there a 3 month waitlist?</div>
+        <div class="faq-a">We are hands on with every property. From sourcing to design to launch, our team personally manages the entire process. We cap the number of new clients we take each month to maintain quality. The waitlist is real and it moves in order.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="final-cta">
+  <div class="container">
+    <div class="section-label">Get started</div>
+    <h2 class="section-title">Ready to Make Your Money Work as Hard as You Do?</h2>
+    <p class="section-desc">Book a free strategy call. We will show you exactly what a property in your price range would look like, what it would earn, and what it would save you in taxes. No pressure. No obligation. Just the numbers.</p>
+    <a href="https://calendly.com/chitabnb/60min" class="btn">See If You Qualify</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Â© 2026 Double My Rental. All rights reserved.
+  </div>
+</footer>
+
+</body>
+</html>
+
+
+
+
+

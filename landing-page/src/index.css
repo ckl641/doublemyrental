@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@theme {
+  --color-navy-900: #0a0f1a;
+  --color-navy-800: #0f1628;
+  --color-navy-700: #151d35;
+  --color-navy-600: #1c2542;
+  --color-gold-DEFAULT: #c9a84c;
+  --color-gold: #c9a84c;
+  --color-gold-light: #dfc06e;
+  --color-gold-dark: #a88a3a;
+  --color-gold-50: #faf6eb;
+  --color-gold-100: #f0e6c8;
+  --color-gold-200: #e5d4a0;
+  --color-gold-500: #c9a84c;
+  --color-gold-600: #a88a3a;
+  --color-charcoal: #1a1a2e;
+  --color-charcoal-light: #2a2a3e;
+  --color-charcoal-dark: #0d0d1a;
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #0a0f1a;
+  color: #e8e4dc;
+  overflow-x: hidden;
+}
+
+/* Subtle grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* Gold gradient text utility */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #c9a84c, #dfc06e, #c9a84c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0f1a;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9a84c33;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c9a84c66;
+}

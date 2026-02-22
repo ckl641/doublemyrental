@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>See If You Qualify — Double My Rental</title>
+<meta name="description" content="Find out if you qualify for a fully managed short term rental property generating 15%+ returns.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --gold: #E8B94A; --dark: #0a0a0f; --card-bg: #111118; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'DM Sans',sans-serif; background:var(--dark); color:#fff; min-height:100vh; }
+
+/* Nav */
+.nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:16px 32px; display:flex; justify-content:space-between; align-items:center; background:rgba(10,10,15,0.95); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.06); }
+.nav-logo { font-family:'DM Serif Display',serif; font-size:20px; color:var(--gold); text-decoration:none; }
+.nav-right { display:flex; gap:20px; align-items:center; }
+.nav-link { color:rgba(255,255,255,0.6); text-decoration:none; font-size:13px; font-weight:500; }
+
+/* Progress */
+.progress-wrap { max-width:500px; margin:0 auto 40px; }
+.progress-bar { height:4px; background:rgba(255,255,255,0.08); border-radius:4px; overflow:hidden; }
+.progress-fill { height:100%; background:linear-gradient(90deg,var(--gold),#f0c55a); border-radius:4px; transition:width 0.5s ease; }
+.progress-text { font-size:12px; color:rgba(255,255,255,0.4); margin-top:8px; text-align:center; }
+
+/* Container */
+.qualify-wrap { max-width:600px; margin:0 auto; padding:120px 24px 60px; min-height:100vh; display:flex; flex-direction:column; justify-content:center; }
+
+/* Trust strip */
+.trust-strip { display:flex; gap:24px; justify-content:center; flex-wrap:wrap; margin-bottom:48px; }
+.trust-item { display:flex; align-items:center; gap:6px; font-size:11px; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1.5px; font-weight:600; }
+.trust-item .icon { font-size:14px; }
+
+/* Steps */
+.step { display:none; animation:fadeUp 0.4s ease; }
+.step.active { display:block; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+.step-question { font-family:'DM Serif Display',serif; font-size:clamp(24px,4vw,36px); line-height:1.3; margin-bottom:12px; }
+.step-sub { color:rgba(255,255,255,0.5); font-size:15px; margin-bottom:32px; line-height:1.6; }
+
+/* Options */
+.options { display:flex; flex-direction:column; gap:12px; }
+.option { padding:18px 24px; border:1px solid rgba(255,255,255,0.1); border-radius:12px; cursor:pointer; transition:all 0.25s; display:flex; justify-content:space-between; align-items:center; }
+.option:hover { border-color:rgba(232,185,74,0.4); background:rgba(232,185,74,0.04); }
+.option.selected { border-color:var(--gold); background:rgba(232,185,74,0.08); }
+.option-label { font-size:16px; font-weight:600; }
+.option-desc { font-size:13px; color:rgba(255,255,255,0.4); margin-top:2px; }
+.option-check { width:22px; height:22px; border-radius:50%; border:2px solid rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.25s; }
+.option.selected .option-check { border-color:var(--gold); background:var(--gold); }
+.option.selected .option-check::after { content:'✓'; color:#111; font-size:13px; font-weight:700; }
+
+/* Form inputs */
+.form-group { margin-bottom:20px; }
+.form-label { font-size:13px; font-weight:600; color:rgba(255,255,255,0.6); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px; display:block; }
+.form-input { width:100%; padding:16px 20px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:#fff; font-size:16px; font-family:'DM Sans',sans-serif; outline:none; transition:border 0.25s; }
+.form-input:focus { border-color:var(--gold); }
+.form-input::placeholder { color:rgba(255,255,255,0.25); }
+
+/* Button */
+.btn-next { width:100%; padding:18px; background:var(--gold); color:#111; font-size:16px; font-weight:700; border:none; border-radius:10px; cursor:pointer; margin-top:24px; transition:all 0.25s; font-family:'DM Sans',sans-serif; }
+.btn-next:hover { background:#f0c55a; transform:translateY(-1px); }
+.btn-next:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
+
+/* Result pages */
+.result { display:none; text-align:center; animation:fadeUp 0.5s ease; }
+.result.active { display:block; }
+.result-icon { font-size:64px; margin-bottom:24px; }
+.result-title { font-family:'DM Serif Display',serif; font-size:clamp(28px,4vw,40px); margin-bottom:16px; line-height:1.2; }
+.result-desc { color:rgba(255,255,255,0.6); font-size:17px; line-height:1.7; max-width:460px; margin:0 auto 32px; }
+.btn-cta { display:inline-block; padding:18px 48px; background:var(--gold); color:#111; font-size:16px; font-weight:700; border-radius:10px; text-decoration:none; transition:all 0.25s; }
+.btn-cta:hover { background:#f0c55a; transform:translateY(-1px); }
+
+/* Confetti */
+.confetti-wrap { position:fixed; top:0; left:0; right:0; bottom:0; pointer-events:none; z-index:999; }
+.confetti { position:absolute; width:10px; height:10px; top:-10px; animation:confettiFall 3s ease-out forwards; }
+@keyframes confettiFall { to { transform:translateY(110vh) rotate(720deg); opacity:0; } }
+
+/* Mobile */
+@media(max-width:600px) {
+  .qualify-wrap { padding:100px 16px 40px; }
+  .trust-strip { gap:12px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="a.html" class="nav-logo">Double My Rental</a>
+  <div class="nav-right">
+    <a href="a.html" class="nav-link">← Back to Home</a>
+  </div>
+</nav>
+
+<div class="qualify-wrap">
+  <div class="trust-strip">
+    <div class="trust-item"><span class="icon">📰</span> Forbes Featured</div>
+    <div class="trust-item"><span class="icon">🛡️</span> 15% Yield Guarantee</div>
+    <div class="trust-item"><span class="icon">🏠</span> $100M+ Managed</div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width:20%"></div></div>
+    <div class="progress-text" id="progress-text">Step 1 of 5</div>
+  </div>
+
+  <!-- Step 1: Income -->
+  <div class="step active" id="step1">
+    <div class="step-question">What's your annual household income?</div>
+    <div class="step-sub">This helps us understand which investment tier is right for you.</div>
+    <div class="options">
+      <div class="option" onclick="selectOption(1, 'under250k', this)">
+        <div><div class="option-label">Under $250K</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(1, '250k-500k', this)">
+        <div><div class="option-label">$250K – $500K</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(1, '500k-1m', this)">
+        <div><div class="option-label">$500K – $1M</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(1, '1m+', this)">
+        <div><div class="option-label">$1M+</div></div>
+        <div class="option-check"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2: Capital -->
+  <div class="step" id="step2">
+    <div class="step-question">How much capital do you have available?</div>
+    <div class="step-sub">Our properties range from $385K–$1M. Most clients start with 10% down plus setup costs.</div>
+    <div class="options">
+      <div class="option" onclick="selectOption(2, 'under100k', this)">
+        <div><div class="option-label">Under $100K</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(2, '100k-150k', this)">
+        <div><div class="option-label">$100K – $150K</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(2, '150k-250k', this)">
+        <div><div class="option-label">$150K – $250K</div><div class="option-desc">1 property</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(2, '250k-500k', this)">
+        <div><div class="option-label">$250K – $500K</div><div class="option-desc">1–2 properties</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(2, '500k-1m', this)">
+        <div><div class="option-label">$500K – $1M</div><div class="option-desc">2–4 properties</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(2, '1m+', this)">
+        <div><div class="option-label">$1M+</div><div class="option-desc">Portfolio builder</div></div>
+        <div class="option-check"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3: Timeline -->
+  <div class="step" id="step3">
+    <div class="step-question">What's your timeline?</div>
+    <div class="step-sub">We currently have a 3-month waitlist. Earlier timelines get priority placement.</div>
+    <div class="options">
+      <div class="option" onclick="selectOption(3, 'now', this)">
+        <div><div class="option-label">Ready now</div><div class="option-desc">I want to move immediately</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(3, '3months', this)">
+        <div><div class="option-label">Within 3 months</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(3, '3-6months', this)">
+        <div><div class="option-label">3–6 months</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(3, 'exploring', this)">
+        <div><div class="option-label">Just exploring</div><div class="option-desc">Researching my options</div></div>
+        <div class="option-check"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 4: Source -->
+  <div class="step" id="step4">
+    <div class="step-question">How did you hear about us?</div>
+    <div class="step-sub">This helps us serve you better.</div>
+    <div class="options">
+      <div class="option" onclick="selectOption(4, 'referral', this)">
+        <div><div class="option-label">Referral from a client</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(4, 'social', this)">
+        <div><div class="option-label">Social media</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(4, 'google', this)">
+        <div><div class="option-label">Google search</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(4, 'forbes', this)">
+        <div><div class="option-label">Forbes article</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(4, 'event', this)">
+        <div><div class="option-label">Event / Meetup</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(4, 'other', this)">
+        <div><div class="option-label">Other</div></div>
+        <div class="option-check"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 5: Contact Info -->
+  <div class="step" id="step5">
+    <div class="step-question">Almost there — where should we reach you?</div>
+    <div class="step-sub">Your information is 100% confidential. We'll never share or spam you.</div>
+    <div class="form-group">
+      <label class="form-label">Full Name</label>
+      <input type="text" class="form-input" id="name" placeholder="John Smith" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-input" id="email" placeholder="john@example.com" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Phone</label>
+      <input type="tel" class="form-input" id="phone" placeholder="(555) 123-4567" required>
+    </div>
+    <button class="btn-next" onclick="submitForm()">See My Results →</button>
+  </div>
+
+  <!-- Result: QUALIFIED -->
+  <div class="result" id="result-qualified">
+    <div class="result-icon">🎉</div>
+    <div class="result-title">You Qualify for a <span style="color:var(--gold)">Strategy Call</span></div>
+    <div class="result-desc">Based on your answers, you're an excellent fit for a fully managed STR property. Book your free strategy call with Chi Ta below — spots are limited.</div>
+    <a href="https://calendly.com/chitabnb/60min" class="btn-cta">Book Your Strategy Call →</a>
+    <div style="margin-top:24px;color:rgba(255,255,255,0.35);font-size:13px;">⏱ Average call: 45 min · No obligation · 100% free</div>
+  </div>
+
+  <!-- Result: WARM -->
+  <div class="result" id="result-warm">
+    <div class="result-icon">📋</div>
+    <div class="result-title">You're On the <span style="color:var(--gold)">Priority Waitlist</span></div>
+    <div class="result-desc">You're close — we want to work with you. We'll send you our best resources to help you prepare, and reach out when the timing is right.</div>
+    <a href="lead-magnet/case-study-v2.html" class="btn-cta">Get the Free Case Study →</a>
+    <div style="margin-top:24px;color:rgba(255,255,255,0.35);font-size:13px;">We'll email you investor resources to help you prepare</div>
+  </div>
+
+  <!-- Result: COLD / DOWNSELL -->
+  <div class="result" id="result-cold">
+    <div class="result-icon">🔑</div>
+    <div class="result-title">Start Building on <span style="color:var(--gold)">Your Own Terms</span></div>
+    <div class="result-desc">Our full-service program requires $150K+ in available capital. But you can still access the exact system we use to find and build profitable STR properties.</div>
+    <a href="downsell.html" class="btn-cta">Get the DIY STR Toolkit — $997 →</a>
+    <div style="margin-top:24px;color:rgba(255,255,255,0.35);font-size:13px;">The same playbook behind $100M+ in managed properties</div>
+  </div>
+</div>
+
+<div class="confetti-wrap" id="confetti-wrap"></div>
+
+<script>
+const answers = {};
+let currentStep = 1;
+const totalSteps = 5;
+
+function selectOption(step, value, el) {
+  answers['step' + step] = value;
+  el.parentElement.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  // Auto-advance after short delay
+  setTimeout(() => nextStep(), 400);
+}
+
+function nextStep() {
+  if (currentStep >= totalSteps) return;
+  document.getElementById('step' + currentStep).classList.remove('active');
+  currentStep++;
+  document.getElementById('step' + currentStep).classList.add('active');
+  document.getElementById('progress').style.width = (currentStep / totalSteps * 100) + '%';
+  document.getElementById('progress-text').textContent = 'Step ' + currentStep + ' of ' + totalSteps;
+}
+
+function submitForm() {
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  if (!name || !email || !phone) { alert('Please fill in all fields.'); return; }
+  
+  answers.name = name;
+  answers.email = email;
+  answers.phone = phone;
+
+  // Hide form
+  document.getElementById('step5').classList.remove('active');
+  document.querySelector('.progress-wrap').style.display = 'none';
+  document.querySelector('.trust-strip').style.display = 'none';
+
+  // Route based on answers
+  const income = answers.step1;
+  const capital = answers.step2;
+  const timeline = answers.step3;
+
+  const highIncome = ['500k-1m', '1m+'].includes(income);
+  const midIncome = income === '250k-500k';
+  const highCapital = ['150k-250k', '250k-500k', '500k-1m', '1m+'].includes(capital);
+  const midCapital = capital === '100k-150k';
+  const readyTimeline = ['now', '3months'].includes(timeline);
+
+  if (highIncome && highCapital && readyTimeline) {
+    // QUALIFIED
+    document.getElementById('result-qualified').classList.add('active');
+    launchConfetti();
+  } else if ((highIncome || midIncome) && (highCapital || midCapital)) {
+    // WARM
+    document.getElementById('result-warm').classList.add('active');
+  } else {
+    // COLD → downsell
+    document.getElementById('result-cold').classList.add('active');
+  }
+
+  // Log lead (you can replace this with your actual endpoint)
+  console.log('Lead captured:', answers);
+  
+  // Store in localStorage for now
+  const leads = JSON.parse(localStorage.getItem('dmr_leads') || '[]');
+  leads.push({ ...answers, timestamp: new Date().toISOString() });
+  localStorage.setItem('dmr_leads', JSON.stringify(leads));
+}
+
+function launchConfetti() {
+  const wrap = document.getElementById('confetti-wrap');
+  const colors = ['#E8B94A', '#4ade80', '#fff', '#f0c55a', '#60a5fa'];
+  for (let i = 0; i < 100; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.left = Math.random() * 100 + '%';
+    c.style.background = colors[Math.floor(Math.random() * colors.length)];
+    c.style.width = (Math.random() * 8 + 5) + 'px';
+    c.style.height = (Math.random() * 8 + 5) + 'px';
+    c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    c.style.animationDelay = (Math.random() * 1.5) + 's';
+    c.style.animationDuration = (Math.random() * 2 + 2) + 's';
+    wrap.appendChild(c);
+  }
+  setTimeout(() => wrap.innerHTML = '', 5000);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIY STR Toolkit — Double My Rental</title>
+<meta name="description" content="Get the exact system behind $100M+ in managed Airbnb properties. Build your first profitable STR on your own terms.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --gold: #E8B94A; --dark: #0a0a0f; --card-bg: #111118; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'DM Sans',sans-serif; background:var(--dark); color:#fff; }
+
+.nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:16px 32px; display:flex; justify-content:space-between; align-items:center; background:rgba(10,10,15,0.95); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.06); }
+.nav-logo { font-family:'DM Serif Display',serif; font-size:20px; color:var(--gold); text-decoration:none; }
+
+.hero { padding:140px 24px 80px; text-align:center; max-width:800px; margin:0 auto; }
+.hero-badge { display:inline-block; background:rgba(232,185,74,0.1); border:1px solid rgba(232,185,74,0.25); color:var(--gold); font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:8px 20px; border-radius:100px; margin-bottom:32px; }
+.hero h1 { font-family:'DM Serif Display',serif; font-size:clamp(32px,5vw,52px); line-height:1.15; margin-bottom:24px; }
+.hero h1 .accent { color:var(--gold); }
+.hero p { color:rgba(255,255,255,0.65); font-size:18px; line-height:1.7; max-width:600px; margin:0 auto 40px; }
+
+.price-card { background:var(--card-bg); border:2px solid rgba(232,185,74,0.3); border-radius:20px; padding:48px 40px; max-width:500px; margin:0 auto 60px; text-align:center; }
+.price-old { font-size:18px; color:rgba(255,255,255,0.4); text-decoration:line-through; margin-bottom:8px; }
+.price-new { font-size:56px; font-weight:800; color:var(--gold); margin-bottom:8px; }
+.price-label { color:rgba(255,255,255,0.5); font-size:14px; margin-bottom:32px; }
+.price-card .btn { display:block; width:100%; padding:18px; background:var(--gold); color:#111; font-size:17px; font-weight:700; border:none; border-radius:10px; cursor:pointer; text-decoration:none; transition:all 0.25s; }
+.price-card .btn:hover { background:#f0c55a; transform:translateY(-1px); }
+.guarantee { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.4); }
+.guarantee strong { color:rgba(255,255,255,0.7); }
+
+.includes { max-width:700px; margin:0 auto; padding:0 24px 80px; }
+.includes h2 { font-family:'DM Serif Display',serif; font-size:clamp(24px,3.5vw,36px); text-align:center; margin-bottom:48px; }
+.include-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
+.include-item { background:var(--card-bg); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:28px; }
+.include-item h3 { font-size:16px; font-weight:700; margin-bottom:8px; display:flex; align-items:center; gap:10px; }
+.include-item h3 .icon { font-size:20px; }
+.include-item p { color:rgba(255,255,255,0.5); font-size:14px; line-height:1.6; }
+
+.founder { max-width:700px; margin:0 auto; padding:60px 24px; text-align:center; border-top:1px solid rgba(255,255,255,0.06); }
+.founder-img { width:80px; height:80px; border-radius:50%; object-fit:cover; margin-bottom:16px; border:2px solid var(--gold); }
+.founder p { color:rgba(255,255,255,0.6); font-size:15px; line-height:1.7; font-style:italic; max-width:500px; margin:0 auto 16px; }
+.founder .name { color:#fff; font-weight:700; font-style:normal; }
+
+.bottom-cta { text-align:center; padding:60px 24px 100px; }
+.bottom-cta .btn { display:inline-block; padding:18px 48px; background:var(--gold); color:#111; font-size:17px; font-weight:700; border-radius:10px; text-decoration:none; transition:all 0.25s; }
+.bottom-cta .btn:hover { background:#f0c55a; }
+
+@media(max-width:600px) {
+  .price-card { padding:36px 24px; margin-left:16px; margin-right:16px; }
+  .include-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="a.html" class="nav-logo">Double My Rental</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Limited Availability</div>
+  <h1>Build Your First Profitable STR <span class="accent">On Your Own Terms</span></h1>
+  <p>Our full-service program requires $150K+ in available capital. But you can still access the exact system we use to find, build, and manage properties generating 15%+ returns.</p>
+</div>
+
+<div class="price-card">
+  <div class="price-old">Value: $5,000+</div>
+  <div class="price-new">$997</div>
+  <div class="price-label">One-time payment · Lifetime access</div>
+  <a href="#" class="btn" onclick="alert('Payment integration coming soon. Email ckl@fastmail.com to get early access.')">Get Instant Access →</a>
+  <div class="guarantee"><strong>30-Day Money-Back Guarantee.</strong> If you don't find it valuable, get a full refund. No questions asked.</div>
+</div>
+
+<div class="includes">
+  <h2>Everything Inside the Toolkit</h2>
+  <div class="include-grid">
+    <div class="include-item">
+      <h3><span class="icon">🔍</span> Property Finder Playbook</h3>
+      <p>The exact criteria we use to scan 300-500 homes/day and filter down to the 4 that yield 20%+. Markets, metrics, red flags.</p>
+    </div>
+    <div class="include-item">
+      <h3><span class="icon">📊</span> Deal Analysis Spreadsheet</h3>
+      <p>Our proprietary calculator with real formulas. Plug in any property and get instant CoC return, net cash flow, and tax savings projections.</p>
+    </div>
+    <div class="include-item">
+      <h3><span class="icon">🏗️</span> Design & Setup Blueprint</h3>
+      <p>Room-by-room design templates, vendor lists, contractor negotiation scripts. How we turn a $8K remodel into $120K/yr revenue.</p>
+    </div>
+    <div class="include-item">
+      <h3><span class="icon">💰</span> Financing Playbook</h3>
+      <p>DSCR loans, bank statement loans, 10% down strategies. Our loan officer contacts and exact scripts to get approved fast.</p>
+    </div>
+    <div class="include-item">
+      <h3><span class="icon">🎯</span> Pricing & Revenue Optimization</h3>
+      <p>Our pricing philosophy: max dollars during peak demand, not max occupancy. Dynamic pricing templates and seasonal strategies.</p>
+    </div>
+    <div class="include-item">
+      <h3><span class="icon">🛡️</span> Tax Shield Strategy Guide</h3>
+      <p>How our clients offset $50K-$100K+ in taxes through bonus depreciation, cost segregation, and STR loopholes. Worth the $997 alone.</p>
+    </div>
+    <div class="include-item">
+      <h3><span class="icon">📋</span> Operations Manual</h3>
+      <p>Cleaning checklists, guest communication templates, maintenance schedules, supply lists. Everything to run a 5-star operation.</p>
+    </div>
+    <div class="include-item">
+      <h3><span class="icon">🎓</span> 3 Case Study Breakdowns</h3>
+      <p>Real properties, real numbers. Step-by-step walkthroughs of deals generating $40K-$50K/yr net cash flow.</p>
+    </div>
+  </div>
+</div>
+
+<div class="founder">
+  <img src="founder.jpg" alt="Chi Ta" class="founder-img">
+  <p>"I don't sell theory. I find, build, and manage properties that make money — and I guarantee it. This toolkit is the exact system behind $100M+ in managed STR properties."</p>
+  <div class="name">Chi Ta · Forbes-Featured Airbnb Investor</div>
+</div>
+
+<div class="bottom-cta">
+  <a href="#" class="btn" onclick="alert('Payment integration coming soon. Email ckl@fastmail.com to get early access.')">Get the DIY STR Toolkit — $997 →</a>
+  <div style="margin-top:16px;color:rgba(255,255,255,0.35);font-size:13px;">30-day money-back guarantee · Instant digital access</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Guide: How High Earners Turn Their Tax Bill Into $40K/yr Cash Flow</title>
+<meta name="description" content="Download the free blueprint showing how W-2 professionals earning $500K+ are using short-term rentals to slash taxes and build passive income.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --gold: #E8B94A; --dark: #0a0a0f; --white: #ffffff; --gray: #888; --light-bg: #f8f7f4; --card-bg: #111118; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; color: var(--white); background: var(--dark); min-height: 100vh; }
+
+  .page { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 40px 20px; }
+
+  .container { max-width: 560px; width: 100%; }
+
+  /* Badge */
+  .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(232,185,74,0.08); border: 1px solid rgba(232,185,74,0.2); color: var(--gold); font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 8px 18px; border-radius: 100px; margin-bottom: 32px; }
+
+  /* Headline */
+  h1 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(28px, 5vw, 42px); line-height: 1.2; margin-bottom: 20px; text-align: center; }
+  h1 .accent { color: var(--gold); }
+
+  .subtitle { font-size: 17px; color: rgba(255,255,255,0.65); line-height: 1.7; text-align: center; margin-bottom: 40px; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+  /* What You'll Learn */
+  .learn-box { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 32px; margin-bottom: 40px; }
+  .learn-box h3 { font-family: 'DM Serif Display', serif; font-size: 20px; margin-bottom: 20px; text-align: center; }
+  .learn-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+  .learn-item:last-child { margin-bottom: 0; }
+  .learn-check { color: var(--gold); font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+  .learn-item p { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.5; }
+
+  /* Form */
+  .form-box { background: rgba(232,185,74,0.04); border: 2px solid rgba(232,185,74,0.15); border-radius: 16px; padding: 36px 32px; margin-bottom: 32px; }
+  .form-box h3 { font-family: 'DM Serif Display', serif; font-size: 22px; text-align: center; margin-bottom: 8px; }
+  .form-box .form-sub { font-size: 14px; color: rgba(255,255,255,0.45); text-align: center; margin-bottom: 24px; }
+
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.5); letter-spacing: 0.5px; margin-bottom: 6px; }
+  .field input, .field select { width: 100%; padding: 14px 16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 15px; outline: none; transition: border-color 0.2s; }
+  .field input::placeholder { color: rgba(255,255,255,0.25); }
+  .field input:focus, .field select:focus { border-color: var(--gold); }
+  .field select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%23888'%3E%3Cpath d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; }
+  .field select option { background: #1a1a2e; color: #fff; }
+
+  .btn { display: block; width: 100%; background: var(--gold); color: #111; font-size: 16px; font-weight: 700; padding: 16px; border: none; border-radius: 8px; cursor: pointer; transition: all 0.25s; font-family: 'DM Sans', sans-serif; box-shadow: 0 4px 20px rgba(232,185,74,0.25); }
+  .btn:hover { background: #f0c55a; transform: translateY(-1px); box-shadow: 0 6px 28px rgba(232,185,74,0.35); }
+  .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  .privacy { font-size: 12px; color: rgba(255,255,255,0.3); text-align: center; margin-top: 16px; }
+
+  /* Trust bar */
+  .trust { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin-top: 8px; }
+  .trust-item { font-size: 12px; color: rgba(255,255,255,0.35); display: flex; align-items: center; gap: 6px; }
+  .trust-item .icon { color: var(--gold); font-size: 14px; }
+
+  /* Success state */
+  .success-state { display: none; text-align: center; padding: 40px 0; }
+  .success-state .checkmark { font-size: 64px; margin-bottom: 20px; }
+  .success-state h2 { font-family: 'DM Serif Display', serif; font-size: 28px; margin-bottom: 12px; }
+  .success-state p { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 32px; }
+  .btn-outline { display: inline-block; background: transparent; color: var(--gold); font-size: 15px; font-weight: 700; padding: 14px 40px; border: 2px solid var(--gold); border-radius: 8px; cursor: pointer; transition: all 0.25s; text-decoration: none; font-family: 'DM Sans', sans-serif; }
+  .btn-outline:hover { background: var(--gold); color: #111; }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .form-box { padding: 28px 20px; }
+    .learn-box { padding: 24px 20px; }
+    .trust { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="container">
+
+    <!-- Form State -->
+    <div id="form-state">
+      <div style="text-align:center;">
+        <div class="badge">&#9733; Free Blueprint &#9733;</div>
+      </div>
+
+      <h1>How High Earners Turn Their Tax Bill Into <span class="accent">$40K/yr Cash Flow</span></h1>
+
+      <p class="subtitle">The exact strategy doctors, attorneys, and tech executives use to slash their taxes by six figures and build passive income through short-term rentals — without being a landlord.</p>
+
+      <!-- What's Inside -->
+      <div class="learn-box">
+        <h3>What's Inside the Blueprint</h3>
+        <div class="learn-item">
+          <span class="learn-check">✦</span>
+          <p><strong>The $650K Case Study</strong> — How $81K turned into $165K in Year 1 (real numbers, real property)</p>
+        </div>
+        <div class="learn-item">
+          <span class="learn-check">✦</span>
+          <p><strong>Cost Segregation Breakdown</strong> — How to write off $72K+ in Year 1 using bonus depreciation</p>
+        </div>
+        <div class="learn-item">
+          <span class="learn-check">✦</span>
+          <p><strong>The 10% Down Formula</strong> — Why you don't need 20-25% down like traditional real estate</p>
+        </div>
+        <div class="learn-item">
+          <span class="learn-check">✦</span>
+          <p><strong>Market Selection Criteria</strong> — The 4 filters that separate profitable markets from money pits</p>
+        </div>
+        <div class="learn-item">
+          <span class="learn-check">✦</span>
+          <p><strong>5-Year Wealth Projection</strong> — See how one property becomes $581K+ in total value</p>
+        </div>
+      </div>
+
+      <!-- Email Capture Form -->
+      <div class="form-box">
+        <h3>Get the Free Blueprint</h3>
+        <p class="form-sub">Join 2,000+ high earners who've downloaded the guide</p>
+
+        <form id="lead-form" onsubmit="handleSubmit(event)">
+          <div class="field">
+            <label>First Name</label>
+            <input type="text" name="firstName" placeholder="John" required>
+          </div>
+          <div class="field">
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="john@example.com" required>
+          </div>
+          <div class="field">
+            <label>Annual Income Range</label>
+            <select name="income" required>
+              <option value="" disabled selected>Select your range</option>
+              <option value="250-500k">$250K – $500K</option>
+              <option value="500k-1m">$500K – $1M</option>
+              <option value="1m+">$1M+</option>
+            </select>
+          </div>
+          <button type="submit" class="btn" id="submit-btn">Send Me the Blueprint →</button>
+        </form>
+
+        <p class="privacy">🔒 No spam. Unsubscribe anytime. We respect your inbox.</p>
+      </div>
+
+      <!-- Trust signals -->
+      <div class="trust">
+        <div class="trust-item"><span class="icon">★</span> 4.95 Rating</div>
+        <div class="trust-item"><span class="icon">◆</span> Forbes Featured</div>
+        <div class="trust-item"><span class="icon">◆</span> $100M+ Deployed</div>
+        <div class="trust-item"><span class="icon">◆</span> 3-Month Waitlist</div>
+      </div>
+    </div>
+
+    <!-- Success State -->
+    <div id="success-state" class="success-state">
+      <div class="checkmark">✦</div>
+      <h2>Blueprint Is on Its Way!</h2>
+      <p>Check your inbox in the next 2 minutes. While you wait, see the full breakdown of how our clients are building wealth through short-term rentals.</p>
+      <a href="a.html" class="btn-outline">See the Full Strategy →</a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+async function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = document.getElementById('submit-btn');
+  const data = {
+    firstName: form.firstName.value.trim(),
+    email: form.email.value.trim(),
+    income: form.income.value
+  };
+
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  try {
+    // Store lead — POST to your backend or use a simple storage endpoint
+    // For now, we'll use Formspree, Resend, or a webhook
+    // Replace this URL with your actual endpoint
+    const res = await fetch('https://formspree.io/f/REPLACE_ME', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name: data.firstName, email: data.email, income: data.income, source: 'lead-magnet-blueprint' })
+    });
+
+    // Redirect to thank you page
+    window.location.href = 'thank-you.html';
+
+    // Also store in localStorage as backup
+    const leads = JSON.parse(localStorage.getItem('dmr_leads') || '[]');
+    leads.push({ ...data, timestamp: new Date().toISOString() });
+    localStorage.setItem('dmr_leads', JSON.stringify(leads));
+
+  } catch (err) {
+    // Redirect to thank you page even on error
+    window.location.href = 'thank-you.html';
+    
+    const leads = JSON.parse(localStorage.getItem('dmr_leads') || '[]');
+    leads.push({ ...data, timestamp: new Date().toISOString() });
+    localStorage.setItem('dmr_leads', JSON.stringify(leads));
+  }
+}
+</script>
+
+</body>
+</html>

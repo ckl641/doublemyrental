@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DMR Mission Control — Double My Rental Conversion Funnel</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --gold: #E8B94A; --dark: #0a0a0f; --navy: #0d1117; --green: #22c55e; --red: #ef4444; --blue: #3b82f6; --orange: #f59e0b; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: #fff; min-height: 100vh; }
+
+  .topbar { background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(20px); }
+  .topbar h1 { font-family: 'DM Serif Display', serif; font-size: 20px; }
+  .topbar h1 .gold { color: var(--gold); }
+  .topbar .updated { font-size: 12px; color: rgba(255,255,255,0.4); }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px; }
+
+  /* Nav tabs */
+  .tabs { display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
+  .tab { padding: 10px 20px; border-radius: 100px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: rgba(255,255,255,0.6); transition: all 0.2s; }
+  .tab:hover { border-color: var(--gold); color: var(--gold); }
+  .tab.active { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+
+  /* Sections */
+  .section { display: none; }
+  .section.active { display: block; }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: 28px; margin-bottom: 8px; }
+  .section-sub { font-size: 15px; color: rgba(255,255,255,0.5); margin-bottom: 32px; }
+
+  /* Cards */
+  .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 28px; margin-bottom: 20px; }
+  .card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .card p { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 8px; }
+
+  /* Status badges */
+  .badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; }
+  .badge-done { background: rgba(34,197,94,0.15); color: var(--green); }
+  .badge-progress { background: rgba(245,158,11,0.15); color: var(--orange); }
+  .badge-todo { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.4); }
+  .badge-blocked { background: rgba(239,68,68,0.15); color: var(--red); }
+
+  /* Sprint tracker */
+  .sprint-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .sprint-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 20px; text-align: center; }
+  .sprint-card.current { border-color: var(--gold); box-shadow: 0 0 20px rgba(232,185,74,0.1); }
+  .sprint-card .day { font-size: 12px; color: var(--gold); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+  .sprint-card .task { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.5; }
+
+  /* Metrics */
+  .metrics-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .metric { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 24px; text-align: center; }
+  .metric .num { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--gold); }
+  .metric .label { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th { background: rgba(255,255,255,0.05); color: var(--gold); padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
+  td { padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); color: rgba(255,255,255,0.7); }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* Pipeline */
+  .pipeline { display: flex; gap: 4px; margin: 24px 0; flex-wrap: wrap; }
+  .pipeline-stage { flex: 1; min-width: 100px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 14px 10px; text-align: center; position: relative; }
+  .pipeline-stage .name { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.5); }
+  .pipeline-stage .count { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--gold); margin-top: 4px; }
+  .pipeline-stage::after { content: '→'; position: absolute; right: -12px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.15); font-size: 16px; }
+  .pipeline-stage:last-child::after { display: none; }
+
+  /* Workflow diagrams */
+  .workflow { background: rgba(255,255,255,0.02); border-radius: 12px; padding: 24px; margin: 16px 0; font-family: 'DM Sans', monospace; }
+  .workflow .step { padding: 8px 0; font-size: 14px; color: rgba(255,255,255,0.6); }
+  .workflow .step .arrow { color: var(--gold); margin-right: 8px; }
+  .workflow .step .action { color: rgba(255,255,255,0.9); font-weight: 600; }
+  .workflow .step .detail { color: rgba(255,255,255,0.4); font-size: 13px; margin-left: 24px; }
+  .workflow .step .wait { color: var(--blue); font-style: italic; }
+
+  /* Email preview */
+  .email-preview { background: #1a1a2e; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; margin: 16px 0; }
+  .email-header { background: rgba(255,255,255,0.03); padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .email-header .subject { font-weight: 700; font-size: 15px; }
+  .email-header .meta { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 4px; }
+  .email-body { padding: 24px 20px; font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.8; }
+
+  /* Checklist */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 15px; display: flex; align-items: flex-start; gap: 12px; }
+  .checklist .check { width: 22px; height: 22px; border-radius: 6px; border: 2px solid rgba(255,255,255,0.15); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+  .checklist .check.done { background: var(--green); border-color: var(--green); }
+  .checklist .check.progress { background: var(--orange); border-color: var(--orange); }
+
+  /* Links */
+  a { color: var(--gold); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Warmup section */
+  .warmup-phases { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; }
+  .warmup-phase { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 16px; }
+  .warmup-phase .week { font-size: 11px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .warmup-phase .vol { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 4px; }
+  .warmup-phase .desc { font-size: 12px; color: rgba(255,255,255,0.4); }
+
+  @media (max-width: 768px) {
+    .sprint-grid, .metrics-row, .warmup-phases { grid-template-columns: 1fr 1fr; }
+    .pipeline { flex-direction: column; }
+    .pipeline-stage::after { display: none; }
+    .container { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="topbar">
+  <h1>🏠 DMR <span class="gold">Mission Control</span></h1>
+  <span class="updated" id="lastUpdated">Last updated: Feb 19, 2026 4:45 PM PST</span>
+</div>
+
+<div class="container">
+
+<!-- Tabs -->
+<div class="tabs">
+  <div class="tab active" onclick="showSection('overview')">📊 Overview</div>
+  <div class="tab" onclick="showSection('sprint')">🏃 7-Day Sprint</div>
+  <div class="tab" onclick="showSection('ghl')">⚙️ GHL Setup</div>
+  <div class="tab" onclick="showSection('emails')">✉️ Email Sequence</div>
+  <div class="tab" onclick="showSection('warmup')">🔥 Warmup Plan</div>
+  <div class="tab" onclick="showSection('assets')">📁 Assets</div>
+</div>
+
+<!-- ===== OVERVIEW ===== -->
+<div class="section active" id="overview">
+  <h2 class="section-title">Conversion Funnel Dashboard</h2>
+  <p class="section-sub">Mission: Turn 85K contacts into booked Calendly calls → $40K clients</p>
+
+  <!-- Metrics -->
+  <div class="metrics-row">
+    <div class="metric"><div class="num">85,000</div><div class="label">Total Contacts</div></div>
+    <div class="metric"><div class="num">0</div><div class="label">Emails Sent</div></div>
+    <div class="metric"><div class="num">0</div><div class="label">Calls Booked</div></div>
+    <div class="metric"><div class="num">$0</div><div class="label">Revenue</div></div>
+  </div>
+
+  <!-- Pipeline -->
+  <div class="card">
+    <h3>📈 Pipeline</h3>
+    <div class="pipeline">
+      <div class="pipeline-stage"><div class="name">New Lead</div><div class="count">0</div></div>
+      <div class="pipeline-stage"><div class="name">Nurturing</div><div class="count">0</div></div>
+      <div class="pipeline-stage"><div class="name">Engaged</div><div class="count">0</div></div>
+      <div class="pipeline-stage"><div class="name">Call Booked</div><div class="count">0</div></div>
+      <div class="pipeline-stage"><div class="name">Call Done</div><div class="count">0</div></div>
+      <div class="pipeline-stage"><div class="name">Proposal</div><div class="count">0</div></div>
+      <div class="pipeline-stage"><div class="name">Won 🎯</div><div class="count">0</div></div>
+    </div>
+  </div>
+
+  <!-- Conversion Math -->
+  <div class="card">
+    <h3>🧮 Target Conversion Math</h3>
+    <table>
+      <tr><th>Stage</th><th>Count</th><th>Rate</th><th>Revenue</th></tr>
+      <tr><td>Contacts (verified)</td><td>~50,000</td><td>100%</td><td>—</td></tr>
+      <tr><td>Opened re-engagement</td><td>~12,500</td><td>25%</td><td>—</td></tr>
+      <tr><td>Clicked / entered nurture</td><td>~2,500</td><td>5%</td><td>—</td></tr>
+      <tr><td>Completed nurture (engaged)</td><td>~750</td><td>1.5%</td><td>—</td></tr>
+      <tr><td>Booked calls</td><td>~75</td><td>0.15%</td><td>—</td></tr>
+      <tr><td>Closed clients</td><td style="color:var(--gold);font-weight:700;">~22</td><td>30% of calls</td><td style="color:var(--gold);font-weight:700;">$880,000</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===== 7-DAY SPRINT ===== -->
+<div class="section" id="sprint">
+  <h2 class="section-title">7-Day Sprint to First Booked Call</h2>
+  <p class="section-sub">Deadline: February 26, 2026</p>
+
+  <div class="sprint-grid">
+    <div class="sprint-card current">
+      <div class="day">Day 1-2 · Feb 19-20</div>
+      <span class="badge badge-progress">In Progress</span>
+      <div class="task" style="margin-top:12px;">Lead Magnet PDF<br>Email Platform (GHL)<br>Capture Page<br>List Verification</div>
+    </div>
+    <div class="sprint-card">
+      <div class="day">Day 3-4 · Feb 21-22</div>
+      <span class="badge badge-todo">Upcoming</span>
+      <div class="task" style="margin-top:12px;">7-Email Sequence<br>Pre-Call Video Script<br>Intake Form<br>GHL Workflows</div>
+    </div>
+    <div class="sprint-card">
+      <div class="day">Day 5-6 · Feb 23-24</div>
+      <span class="badge badge-todo">Upcoming</span>
+      <div class="task" style="margin-top:12px;">Import Tier A (500)<br>Send First Emails<br>Retargeting Pixel<br>LinkedIn Outreach</div>
+    </div>
+    <div class="sprint-card">
+      <div class="day">Day 7 · Feb 25-26</div>
+      <span class="badge badge-todo">Upcoming</span>
+      <div class="task" style="margin-top:12px;">Monitor Opens/Clicks<br>Personal Follow-ups<br>FIRST CALL 🎯</div>
+    </div>
+  </div>
+
+  <!-- Checklist -->
+  <div class="card">
+    <h3>✅ Master Checklist</h3>
+    <ul class="checklist">
+      <li><span class="check done">✓</span> Landing page live (a.html)</li>
+      <li><span class="check done">✓</span> Team section (Sandra + Will)</li>
+      <li><span class="check done">✓</span> Lead Magnet PDF (Tax Shield Blueprint)</li>
+      <li><span class="check done">✓</span> Lead Capture Page (capture.html)</li>
+      <li><span class="check done">✓</span> GHL setup plan documented</li>
+      <li><span class="check done">✓</span> Email warmup strategy defined</li>
+      <li><span class="check progress">⟳</span> Verify 85K list (ZeroBounce/NeverBounce)</li>
+      <li><span class="check"></span> Set up GHL pipeline + workflows</li>
+      <li><span class="check"></span> Write 7 nurture emails</li>
+      <li><span class="check"></span> Check SPF/DKIM/DMARC on sending domain</li>
+      <li><span class="check"></span> Pre-call video script</li>
+      <li><span class="check"></span> Intake form (GHL or Tally)</li>
+      <li><span class="check"></span> Retargeting pixel (Meta + Google)</li>
+      <li><span class="check"></span> 3 retargeting ad creatives</li>
+      <li><span class="check"></span> Segment list into Tiers A/B/C</li>
+      <li><span class="check"></span> Send Batch 1 (500 Tier A contacts)</li>
+      <li><span class="check"></span> First call booked 🎯</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== GHL SETUP ===== -->
+<div class="section" id="ghl">
+  <h2 class="section-title">GoHighLevel Setup Plan</h2>
+  <p class="section-sub">Complete GHL configuration for the DMR conversion funnel</p>
+
+  <!-- Pipeline -->
+  <div class="card">
+    <h3>1️⃣ Pipeline: "DMR - High Earner Funnel"</h3>
+    <table>
+      <tr><th>Stage</th><th>Trigger</th></tr>
+      <tr><td>New Lead</td><td>Captured email via form</td></tr>
+      <tr><td>Nurturing</td><td>In email sequence (Days 1-14)</td></tr>
+      <tr><td>Engaged</td><td>Opened 3+ emails or clicked</td></tr>
+      <tr><td>Call Booked</td><td>Calendly link clicked/booked</td></tr>
+      <tr><td>Call Completed</td><td>Post-call</td></tr>
+      <tr><td>Proposal Sent</td><td>Sent personalized deal numbers</td></tr>
+      <tr><td>Closed - Won</td><td>$40K client 🎯</td></tr>
+      <tr><td>Closed - Nurture</td><td>Not now, stays in monthly drip</td></tr>
+    </table>
+  </div>
+
+  <!-- Funnel Page -->
+  <div class="card">
+    <h3>2️⃣ Form / Funnel Page</h3>
+    <p><strong>Option A (Recommended):</strong> Build capture page in GHL natively — best for tracking, everything auto-connected.</p>
+    <p><strong>Option B:</strong> Keep Vercel capture page + GHL webhook to push form submissions into CRM.</p>
+    <p>Copy for the form is ready at: <a href="https://doublemyrental.vercel.app/capture.html" target="_blank">capture.html</a></p>
+  </div>
+
+  <!-- Main Workflow -->
+  <div class="card">
+    <h3>3️⃣ Automation: "Tax Shield Blueprint Funnel"</h3>
+    <div class="workflow">
+      <div class="step"><span class="arrow">▶</span> <span class="action">TRIGGER:</span> Form submitted (capture page)</div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">Create/update contact</span></div>
+      <div class="step detail">Tags: "dmr-lead", "tax-shield-download" · Custom fields: Income Range, Goal</div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">Move to Pipeline →</span> "New Lead"</div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">Send Email #1</span> — Welcome + PDF delivery</div>
+      <div class="step"><span class="arrow">↓</span> <span class="wait">Wait 1 day</span></div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">Send Email #2</span> — The Problem</div>
+      <div class="step"><span class="arrow">↓</span> <span class="wait">Wait 2 days</span></div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">Send Email #3</span> — The Reframe</div>
+      <div class="step"><span class="arrow">↓</span> <span class="wait">Wait 2 days</span></div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">Send Email #4</span> — The Math</div>
+      <div class="step"><span class="arrow">↓</span> <span class="wait">Wait 2 days</span></div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">Send Email #5</span> — Social Proof</div>
+      <div class="step"><span class="arrow">↓</span> <span class="wait">Wait 3 days</span></div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">Send Email #6</span> — Objection Killers</div>
+      <div class="step"><span class="arrow">↓</span> <span class="wait">Wait 4 days</span></div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">Send Email #7</span> — The Close</div>
+    </div>
+  </div>
+
+  <!-- Engagement Tracking -->
+  <div class="card">
+    <h3>4️⃣ Engagement Tracking Workflow</h3>
+    <div class="workflow">
+      <div class="step"><span class="arrow">▶</span> <span class="action">TRIGGER:</span> Contact opened 3+ emails</div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">Move to Pipeline →</span> "Engaged"</div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">Add tag</span> "hot-lead"</div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">Internal notification</span> to Chi Ta</div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">Send SMS (optional):</span></div>
+      <div class="step detail">"Hey [name], saw you checking out our tax shield strategy. Any questions I can answer? — Chi Ta"</div>
+    </div>
+  </div>
+
+  <!-- Calendly Integration -->
+  <div class="card">
+    <h3>5️⃣ Calendly Integration</h3>
+    <div class="workflow">
+      <div class="step"><span class="arrow">▶</span> <span class="action">TRIGGER:</span> Calendly appointment booked</div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">Move to Pipeline →</span> "Call Booked"</div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">Add tag</span> "call-booked"</div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">Send confirmation email:</span></div>
+      <div class="step detail">Pre-call video + Intake form link + "What to have ready" checklist</div>
+      <div class="step"><span class="arrow">↓</span> <span class="wait">Wait until 1 hour before call</span></div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">SMS reminder</span></div>
+    </div>
+  </div>
+
+  <!-- Post-Call -->
+  <div class="card">
+    <h3>6️⃣ Post-Call Follow-Up</h3>
+    <div class="workflow">
+      <div class="step"><span class="arrow">▶</span> <span class="action">TRIGGER:</span> Manual → move to "Call Completed"</div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">IF closed →</span> Won pipeline 🎯</div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">IF not closed:</span></div>
+      <div class="step detail">Send personalized follow-up (their specific numbers from the call)</div>
+      <div class="step"><span class="arrow">↓</span> <span class="wait">Wait 3 days →</span> <span class="action">Follow-up #2</span></div>
+      <div class="step"><span class="arrow">↓</span> <span class="wait">Wait 7 days →</span> <span class="action">Follow-up #3</span></div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">Move to monthly nurture list</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== EMAIL SEQUENCE ===== -->
+<div class="section" id="emails">
+  <h2 class="section-title">7-Email Nurture Sequence</h2>
+  <p class="section-sub">Ready to paste into GHL workflows</p>
+
+  <!-- Re-engagement (pre-nurture) -->
+  <div class="card">
+    <h3>📨 Email 0: Re-Engagement (Warmup — sent BEFORE nurture)</h3>
+    <div class="email-preview">
+      <div class="email-header">
+        <div class="subject">The IRS doesn't want you to see this math</div>
+        <div class="meta">From: Chi Ta &lt;chi@doublemyrental.com&gt; · Send: Day 0 (warmup batch)</div>
+      </div>
+      <div class="email-body">
+        Hi [First Name],<br><br>
+        Quick question — are you still losing 37%+ of your income to taxes every year?<br><br>
+        I put together a short blueprint showing how high earners are using a legal tax strategy to save $72,000+ in Year 1 — and turn that money into a property that pays them $3,400/month.<br><br>
+        Real math. Real deal. No theory.<br><br>
+        <strong><a href="#">[Get the Tax Shield Blueprint →]</a></strong><br><br>
+        If this isn't relevant to you anymore, no worries — click here to unsubscribe and I won't bother you again.<br><br>
+        — Chi Ta<br>
+        Founder, Double My Rental<br>
+        <em>As featured in Forbes</em>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>✉️ Email 1: Welcome + PDF Delivery</h3>
+    <div class="email-preview">
+      <div class="email-header">
+        <div class="subject">Your Tax Shield Blueprint is here</div>
+        <div class="meta">Send: Immediately after form submit</div>
+      </div>
+      <div class="email-body">
+        <em>Subject line, body copy, and CTA — to be written and loaded here. Check back for updates.</em>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>✉️ Email 2: The Problem</h3>
+    <div class="email-preview">
+      <div class="email-header">
+        <div class="subject">You made $600K last year. The IRS took $240K.</div>
+        <div class="meta">Send: Day 1</div>
+      </div>
+      <div class="email-body"><em>Full copy coming — will be loaded here.</em></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>✉️ Email 3: The Reframe</h3>
+    <div class="email-preview">
+      <div class="email-header">
+        <div class="subject">What if your tax bill bought you a $650K asset?</div>
+        <div class="meta">Send: Day 3</div>
+      </div>
+      <div class="email-body"><em>Full copy coming — will be loaded here.</em></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>✉️ Email 4: The Math</h3>
+    <div class="email-preview">
+      <div class="email-header">
+        <div class="subject">$81K in. $165K back. Year 1.</div>
+        <div class="meta">Send: Day 5</div>
+      </div>
+      <div class="email-body"><em>Full copy coming — will be loaded here.</em></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>✉️ Email 5: Social Proof</h3>
+    <div class="email-preview">
+      <div class="email-header">
+        <div class="subject">Forbes, Times Square, and $100M+ in properties</div>
+        <div class="meta">Send: Day 7</div>
+      </div>
+      <div class="email-body"><em>Full copy coming — will be loaded here.</em></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>✉️ Email 6: Objection Killers</h3>
+    <div class="email-preview">
+      <div class="email-header">
+        <div class="subject">The 3 reasons smart people don't do this (and why they're wrong)</div>
+        <div class="meta">Send: Day 10</div>
+      </div>
+      <div class="email-body"><em>Full copy coming — will be loaded here.</em></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>✉️ Email 7: The Close</h3>
+    <div class="email-preview">
+      <div class="email-header">
+        <div class="subject">We take 5-10 clients per month. 3-month waitlist.</div>
+        <div class="meta">Send: Day 14</div>
+      </div>
+      <div class="email-body"><em>Full copy coming — will be loaded here.</em></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== WARMUP PLAN ===== -->
+<div class="section" id="warmup">
+  <h2 class="section-title">Email Warmup & Deliverability Plan</h2>
+  <p class="section-sub">Protect sender reputation while activating 85K contacts</p>
+
+  <div class="warmup-phases">
+    <div class="warmup-phase">
+      <div class="week">Week 1</div>
+      <div class="vol">500</div>
+      <div class="desc">Seed group · 100/day · Best contacts · Target: 40%+ open rate</div>
+    </div>
+    <div class="warmup-phase">
+      <div class="week">Week 2</div>
+      <div class="vol">2,000</div>
+      <div class="desc">Expand · 400/day · If opens &gt;30%</div>
+    </div>
+    <div class="warmup-phase">
+      <div class="week">Week 3</div>
+      <div class="vol">10,000</div>
+      <div class="desc">Accelerate · 2K/day · If opens &gt;25% &amp; spam &lt;0.1%</div>
+    </div>
+    <div class="warmup-phase">
+      <div class="week">Week 4+</div>
+      <div class="vol">25K/day</div>
+      <div class="desc">Full scale · Ramp to full list · Never blast all at once</div>
+    </div>
+  </div>
+
+  <!-- List Hygiene -->
+  <div class="card">
+    <h3>🧹 List Hygiene — DO THIS FIRST</h3>
+    <p><strong>1. Verify the 85K list</strong> — ZeroBounce, NeverBounce, or MillionVerifier (~$150-250). Removes dead emails, spam traps, catch-alls. Expect to lose 20-40%.</p>
+    <p><strong>2. Segment into tiers:</strong></p>
+    <table>
+      <tr><th>Tier</th><th>Criteria</th><th>Est. Size</th><th>Send Order</th></tr>
+      <tr><td style="color:var(--gold);font-weight:700;">A — Gold</td><td>$500K+ income, recent, verified</td><td>~2-5K</td><td>Week 1-2</td></tr>
+      <tr><td>B — Silver</td><td>$250-500K, verified</td><td>~10-15K</td><td>Week 3-4</td></tr>
+      <tr><td>C — Bronze</td><td>Everyone else verified</td><td>~20-30K</td><td>Week 5-6</td></tr>
+      <tr><td style="color:var(--red);">D — Dead</td><td>Unverified, bounced, catch-all</td><td>trash</td><td>Never send</td></tr>
+    </table>
+    <p><strong>3. Check sending domain:</strong> SPF, DKIM, DMARC all configured? Dedicated sending domain recommended: <code>mail.doublemyrental.com</code></p>
+  </div>
+
+  <!-- Health Targets -->
+  <div class="card">
+    <h3>📊 Deliverability Health Targets</h3>
+    <table>
+      <tr><th>Metric</th><th>Target</th><th>🚨 Red Flag</th></tr>
+      <tr><td>Open Rate</td><td style="color:var(--green);">&gt;30%</td><td style="color:var(--red);">&lt;20% (slow down)</td></tr>
+      <tr><td>Click Rate</td><td style="color:var(--green);">&gt;3%</td><td style="color:var(--red);">&lt;1%</td></tr>
+      <tr><td>Bounce Rate</td><td style="color:var(--green);">&lt;2%</td><td style="color:var(--red);">&gt;3% (STOP, clean list)</td></tr>
+      <tr><td>Spam Complaints</td><td style="color:var(--green);">&lt;0.05%</td><td style="color:var(--red);">&gt;0.1% (STOP immediately)</td></tr>
+      <tr><td>Unsubscribe</td><td style="color:var(--green);">&lt;1%</td><td style="color:var(--red);">&gt;2% (rewrite copy)</td></tr>
+    </table>
+  </div>
+
+  <!-- GHL Warmup Workflow -->
+  <div class="card">
+    <h3>⚙️ GHL Workflow: "List Warmup Machine"</h3>
+    <div class="workflow">
+      <div class="step"><span class="arrow">▶</span> <span class="action">TRIGGER:</span> Added to "Warmup Batch [1/2/3]"</div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">Send re-engagement email</span> (Email 0)</div>
+      <div class="step"><span class="arrow">↓</span> <span class="wait">Wait 3 days</span></div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">IF opened:</span></div>
+      <div class="step detail">→ Tag "engaged" → Move to "Tax Shield Nurture" workflow → Pipeline: "Nurturing"</div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">IF not opened:</span></div>
+      <div class="step"><span class="arrow">↓</span> <span class="wait">Wait 5 days</span></div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">Send re-engagement #2</span> (different subject line)</div>
+      <div class="step"><span class="arrow">↓</span> <span class="wait">Wait 3 days</span></div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">IF opened →</span> Tag "engaged" → Nurture workflow</div>
+      <div class="step"><span class="arrow">↓</span> <span class="action">IF still not opened →</span> Tag "cold-suppress" → Remove from future sends</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ASSETS ===== -->
+<div class="section" id="assets">
+  <h2 class="section-title">Live Assets</h2>
+  <p class="section-sub">All deployed assets for the DMR funnel</p>
+
+  <div class="card">
+    <h3>🌐 Live Pages</h3>
+    <table>
+      <tr><th>Asset</th><th>Status</th><th>URL</th></tr>
+      <tr><td>Main Landing Page</td><td><span class="badge badge-done">Live</span></td><td><a href="https://doublemyrental.vercel.app/a.html" target="_blank">doublemyrental.vercel.app/a.html</a></td></tr>
+      <tr><td>Lead Capture Page</td><td><span class="badge badge-done">Live</span></td><td><a href="https://doublemyrental.vercel.app/capture.html" target="_blank">doublemyrental.vercel.app/capture.html</a></td></tr>
+      <tr><td>Tax Shield Blueprint (PDF)</td><td><span class="badge badge-done">Live</span></td><td><a href="https://doublemyrental.vercel.app/lead-magnet/tax-shield-blueprint.html" target="_blank">tax-shield-blueprint.html</a></td></tr>
+      <tr><td>Mission Control (this page)</td><td><span class="badge badge-done">Live</span></td><td><a href="https://doublemyrental.vercel.app/mission-control.html" target="_blank">mission-control.html</a></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>🔧 Pending Assets</h3>
+    <table>
+      <tr><th>Asset</th><th>Status</th><th>ETA</th></tr>
+      <tr><td>7 Nurture Emails (full copy)</td><td><span class="badge badge-progress">Writing</span></td><td>Day 3-4</td></tr>
+      <tr><td>Pre-Call Video Script</td><td><span class="badge badge-todo">Not Started</span></td><td>Day 3-4</td></tr>
+      <tr><td>Intake Form</td><td><span class="badge badge-todo">Not Started</span></td><td>Day 3-4</td></tr>
+      <tr><td>Retargeting Ad Creatives (3x)</td><td><span class="badge badge-todo">Not Started</span></td><td>Day 5-6</td></tr>
+      <tr><td>ROI Calculator (interactive)</td><td><span class="badge badge-todo">Stretch Goal</span></td><td>Post-sprint</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>👥 Team</h3>
+    <table>
+      <tr><th>Person</th><th>Role</th><th>On Landing Page</th></tr>
+      <tr><td>Chi Ta</td><td>Founder</td><td>✅</td></tr>
+      <tr><td>Sandra Bastatas</td><td>Property Specialist</td><td>✅</td></tr>
+      <tr><td>Will Castro</td><td>Admin & Project Assistant</td><td>✅</td></tr>
+    </table>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>

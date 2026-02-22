@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STR Investment Calculator — Double My Rental</title>
+<meta name="description" content="Calculate your potential cash-on-cash return, tax savings, and total ROI on a short-term rental investment. Free Airbnb investment calculator.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --gold: #E8B94A; --dark: #0a0a0f; --light: #f8f7f4; --green: #4ade80; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'DM Sans',sans-serif; background:var(--light); color:#333; min-height:100vh; }
+.header { background:var(--dark); padding:48px 32px; text-align:center; }
+.header h1 { font-family:'DM Serif Display',serif; color:#fff; font-size:clamp(28px,4vw,40px); margin-bottom:8px; }
+.header p { color:rgba(255,255,255,0.6); font-size:15px; }
+.calc { max-width:900px; margin:-32px auto 60px; display:grid; grid-template-columns:1fr 1fr; gap:0; border-radius:16px; overflow:hidden; box-shadow:0 8px 40px rgba(0,0,0,0.1); }
+.inputs { background:#fff; padding:40px 32px; }
+.results { background:var(--dark); color:#fff; padding:40px 32px; overflow-x:auto; }
+h2 { font-family:'DM Serif Display',serif; font-size:24px; margin-bottom:24px; }
+.results h2 { color:#fff; }
+.field { margin-bottom:20px; }
+.field label { display:block; font-size:13px; font-weight:600; color:#555; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px; }
+.field input, .field select { width:100%; padding:12px 16px; border:1px solid #ddd; border-radius:8px; font-size:16px; font-family:inherit; }
+.field input:focus, .field select:focus { outline:none; border-color:var(--gold); box-shadow:0 0 0 3px rgba(232,185,74,0.15); }
+.field .hint { font-size:12px; color:#999; margin-top:4px; }
+.result-row { display:flex; justify-content:space-between; align-items:baseline; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.08); gap:12px; overflow:hidden; }
+.result-row:last-child { border:none; }
+.result-label { color:rgba(255,255,255,0.6); font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.result-value { font-weight:700; font-size:16px; white-space:nowrap; flex-shrink:0; }
+.result-value.gold { color:var(--gold); }
+.result-value.green { color:var(--green); }
+.big-result { text-align:center; margin:32px 0 24px; padding:24px; background:rgba(232,185,74,0.08); border:1px solid rgba(232,185,74,0.2); border-radius:12px; }
+.big-result .number { font-family:'DM Serif Display',serif; font-size:48px; color:var(--gold); }
+.big-result .sublabel { font-size:12px; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1.5px; margin-top:4px; }
+.cta-box { margin-top:24px; text-align:center; }
+.cta-box a { display:inline-block; background:var(--gold); color:#111; font-weight:700; padding:14px 32px; border-radius:8px; text-decoration:none; font-size:15px; }
+.disclaimer { text-align:center; max-width:900px; margin:0 auto 40px; padding:0 32px; font-size:12px; color:#999; line-height:1.6; }
+@media(max-width:768px) {
+  .calc { grid-template-columns:1fr; }
+  .inputs, .results { padding:32px 20px; }
+  .result-row { gap:8px; }
+  .result-label { font-size:13px; flex-shrink:0; max-width:55%; }
+  .result-value { font-size:14px; text-align:right; word-break:break-all; }
+  .big-result .number { font-size:36px; }
+  table { font-size:12px !important; }
+  table th, table td { padding:8px 4px !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>STR Investment Calculator</h1>
+  <p>See your potential returns, cash flow, and tax savings</p>
+</div>
+
+<div class="calc">
+  <div class="inputs">
+    <h2>Property Details</h2>
+    <div class="field">
+      <label>Purchase Price</label>
+      <input type="number" id="price" value="650000" step="10000">
+    </div>
+    <div class="field">
+      <label>Down Payment %</label>
+      <input type="number" id="downPct" value="10" min="5" max="100" step="5">
+      <div class="hint">DSCR loans typically require 10-15%</div>
+    </div>
+    <div class="field">
+      <label>Yield %</label>
+      <input type="number" id="yield" value="20" step="1" min="5" max="60">
+      <div class="hint" id="yieldHint">20% yield on $650,000 = $10,833/mo ($130,000/yr)</div>
+    </div>
+    <div class="field">
+      <label>Mortgage Rate %</label>
+      <input type="number" id="rate" value="7.0" step="0.25" min="3" max="12">
+    </div>
+    <div class="field">
+      <label>Management Fee %</label>
+      <input type="number" id="mgmt" value="15" step="1">
+    </div>
+    <div class="field">
+      <label>Utilities & Cleaning %</label>
+      <input type="number" id="utilClean" value="20" step="1" min="5" max="40">
+      <div class="hint">Percentage of gross revenue for utilities, cleaning, supplies</div>
+    </div>
+    <div class="field">
+      <label>Your Tax Bracket %</label>
+      <input type="number" id="taxBracket" value="40" step="5" min="10" max="50">
+    </div>
+    <div class="field">
+      <label>Annual Appreciation %</label>
+      <input type="number" id="appreciation" value="5" step="1" min="0" max="20">
+      <div class="hint">National average ~3-5%. Hot markets 6-10%+</div>
+    </div>
+    <div class="field">
+      <label>Cost Seg Depreciation % of Purchase</label>
+      <input type="number" id="costSeg" value="30" step="5" min="0" max="50">
+      <div class="hint">Typically 20-40% of purchase price accelerated to Year 1</div>
+    </div>
+  </div>
+
+  <div class="results" id="results">
+    <h2>Your Projected Returns</h2>
+    <div id="resultContent"></div>
+  </div>
+</div>
+
+<p class="disclaimer">This calculator provides estimates only. Actual returns depend on property location, management quality, occupancy rates, and market conditions. Consult a CPA for tax advice. Double My Rental guarantees a minimum 15% yield on managed properties.</p>
+
+<script>
+function fmt(n) { return '$' + Math.round(n).toLocaleString(); }
+function pct(n) { return n.toFixed(1) + '%'; }
+
+function calculate() {
+  const price = +document.getElementById('price').value;
+  const downPct = +document.getElementById('downPct').value / 100;
+  const yieldPct = +document.getElementById('yield').value / 100;
+  const rate = +document.getElementById('rate').value / 100;
+  const mgmtPct = +document.getElementById('mgmt').value / 100;
+  const utilCleanPct = +document.getElementById('utilClean').value / 100;
+  const taxBracket = +document.getElementById('taxBracket').value / 100;
+  const costSegPct = +document.getElementById('costSeg').value / 100;
+  const appPct = +document.getElementById('appreciation').value / 100;
+
+  const downPayment = price * downPct;
+  const totalCashIn = downPayment;
+  const loanAmount = price - downPayment;
+  const annualRevenue = price * yieldPct;
+  const monthlyRevenue = annualRevenue / 12;
+  
+  // Update yield hint
+  document.getElementById('yieldHint').textContent = 
+    `${(yieldPct*100).toFixed(0)}% yield on ${fmt(price)} = ${fmt(monthlyRevenue)}/mo (${fmt(annualRevenue)}/yr)`;
+  
+  // Monthly mortgage (30yr fixed)
+  const monthlyRate = rate / 12;
+  const months = 360;
+  const monthlyMortgage = loanAmount * (monthlyRate * Math.pow(1+monthlyRate, months)) / (Math.pow(1+monthlyRate, months) - 1);
+  const annualMortgage = monthlyMortgage * 12;
+  
+  // Expenses
+  const mgmtFee = annualRevenue * mgmtPct;
+  const utilClean = annualRevenue * utilCleanPct;
+  const totalExpenses = annualMortgage + mgmtFee + utilClean;
+  
+  const netCashFlow = annualRevenue - totalExpenses;
+  const coc = (netCashFlow / totalCashIn) * 100;
+  
+  // Tax savings
+  const acceleratedDepr = price * costSegPct;
+  const taxSavings = acceleratedDepr * taxBracket;
+  
+  // Appreciation
+  const yr1Appreciation = price * appPct;
+  
+  // Total Year 1 ROI
+  const totalReturn = netCashFlow + taxSavings + yr1Appreciation;
+  const totalROI = (totalReturn / totalCashIn) * 100;
+
+  // Wealth forecast at years 3, 5, 7, 10
+  function wealthAt(years) {
+    const propertyValue = price * Math.pow(1 + appPct, years);
+    const equityGain = propertyValue - price;
+    const cumulativeCashFlow = netCashFlow * years;
+    // Loan paydown (simplified — principal portion of mortgage grows over time)
+    const monthlyRateCalc = rate / 12;
+    let loanBalance = loanAmount;
+    for (let m = 0; m < years * 12; m++) {
+      const interest = loanBalance * monthlyRateCalc;
+      const principal = monthlyMortgage - interest;
+      loanBalance -= principal;
+    }
+    const loanPaydown = loanAmount - loanBalance;
+    const totalWealth = equityGain + cumulativeCashFlow + taxSavings + loanPaydown;
+    return { propertyValue, equityGain, cumulativeCashFlow, loanPaydown, totalWealth };
+  }
+
+  const w3 = wealthAt(3);
+  const w5 = wealthAt(5);
+  const w7 = wealthAt(7);
+  const w10 = wealthAt(10);
+
+  document.getElementById('resultContent').innerHTML = `
+    <div class="result-row"><span class="result-label">Down Payment</span><span class="result-value">${fmt(downPayment)}</span></div>
+    <div class="result-row"><span class="result-label">Total Cash In</span><span class="result-value gold">${fmt(totalCashIn)}</span></div>
+    <div class="result-row"><span class="result-label">Annual Revenue (${(yieldPct*100).toFixed(0)}% yield)</span><span class="result-value">${fmt(annualRevenue)}</span></div>
+    <div class="result-row"><span class="result-label">Monthly Revenue</span><span class="result-value">${fmt(monthlyRevenue)}/mo</span></div>
+    <div class="result-row"><span class="result-label">Annual Mortgage</span><span class="result-value">-${fmt(annualMortgage)}</span></div>
+    <div class="result-row"><span class="result-label">Management (${(mgmtPct*100)}%)</span><span class="result-value">-${fmt(mgmtFee)}</span></div>
+    <div class="result-row"><span class="result-label">Utilities & Cleaning (${(utilCleanPct*100)}%)</span><span class="result-value">-${fmt(utilClean)}</span></div>
+    <div class="result-row"><span class="result-label">Net Cash Flow</span><span class="result-value green">${fmt(netCashFlow)}/yr</span></div>
+    <div class="result-row"><span class="result-label">Cash-on-Cash Return</span><span class="result-value green">${pct(coc)}</span></div>
+    
+    <div style="border-top:1px solid rgba(255,255,255,0.1);margin:16px 0;"></div>
+    <div class="result-row"><span class="result-label">Accelerated Depreciation</span><span class="result-value">${fmt(acceleratedDepr)}</span></div>
+    <div class="result-row"><span class="result-label">Year 1 Tax Savings</span><span class="result-value gold">${fmt(taxSavings)}</span></div>
+    <div class="result-row"><span class="result-label">Year 1 Appreciation (${(appPct*100).toFixed(0)}%)</span><span class="result-value">${fmt(yr1Appreciation)}</span></div>
+    
+    <div class="big-result">
+      <div class="number">${pct(totalROI)}</div>
+      <div class="sublabel">Total Year 1 ROI</div>
+    </div>
+    
+    <div style="text-align:center;font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:24px;">
+      ${fmt(totalReturn)} total return on ${fmt(totalCashIn)} invested
+    </div>
+    
+    <div style="border-top:1px solid rgba(255,255,255,0.1);margin:0 0 16px;"></div>
+    <h3 style="font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:16px;color:var(--gold);">Total Wealth Created</h3>
+    
+    <table style="width:100%;border-collapse:collapse;font-size:14px;">
+      <thead>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.15);">
+          <th style="text-align:left;padding:10px 8px;color:rgba(255,255,255,0.5);font-size:11px;text-transform:uppercase;letter-spacing:1px;"></th>
+          <th style="text-align:right;padding:10px 8px;color:rgba(255,255,255,0.5);font-size:11px;text-transform:uppercase;letter-spacing:1px;">3 Yr</th>
+          <th style="text-align:right;padding:10px 8px;color:rgba(255,255,255,0.5);font-size:11px;text-transform:uppercase;letter-spacing:1px;">5 Yr</th>
+          <th style="text-align:right;padding:10px 8px;color:rgba(255,255,255,0.5);font-size:11px;text-transform:uppercase;letter-spacing:1px;">7 Yr</th>
+          <th style="text-align:right;padding:10px 8px;color:rgba(255,255,255,0.5);font-size:11px;text-transform:uppercase;letter-spacing:1px;">10 Yr</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+          <td style="padding:10px 8px;color:rgba(255,255,255,0.6);">Property Value</td>
+          <td style="padding:10px 8px;text-align:right;">${fmt(w3.propertyValue)}</td>
+          <td style="padding:10px 8px;text-align:right;">${fmt(w5.propertyValue)}</td>
+          <td style="padding:10px 8px;text-align:right;">${fmt(w7.propertyValue)}</td>
+          <td style="padding:10px 8px;text-align:right;">${fmt(w10.propertyValue)}</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+          <td style="padding:10px 8px;color:rgba(255,255,255,0.6);">Equity Gain</td>
+          <td style="padding:10px 8px;text-align:right;">${fmt(w3.equityGain)}</td>
+          <td style="padding:10px 8px;text-align:right;">${fmt(w5.equityGain)}</td>
+          <td style="padding:10px 8px;text-align:right;">${fmt(w7.equityGain)}</td>
+          <td style="padding:10px 8px;text-align:right;">${fmt(w10.equityGain)}</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+          <td style="padding:10px 8px;color:rgba(255,255,255,0.6);">Cash Flow</td>
+          <td style="padding:10px 8px;text-align:right;">${fmt(w3.cumulativeCashFlow)}</td>
+          <td style="padding:10px 8px;text-align:right;">${fmt(w5.cumulativeCashFlow)}</td>
+          <td style="padding:10px 8px;text-align:right;">${fmt(w7.cumulativeCashFlow)}</td>
+          <td style="padding:10px 8px;text-align:right;">${fmt(w10.cumulativeCashFlow)}</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+          <td style="padding:10px 8px;color:rgba(255,255,255,0.6);">Loan Paydown</td>
+          <td style="padding:10px 8px;text-align:right;">${fmt(w3.loanPaydown)}</td>
+          <td style="padding:10px 8px;text-align:right;">${fmt(w5.loanPaydown)}</td>
+          <td style="padding:10px 8px;text-align:right;">${fmt(w7.loanPaydown)}</td>
+          <td style="padding:10px 8px;text-align:right;">${fmt(w10.loanPaydown)}</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+          <td style="padding:10px 8px;color:rgba(255,255,255,0.6);">Tax Savings (Y1)</td>
+          <td style="padding:10px 8px;text-align:right;color:var(--gold);">${fmt(taxSavings)}</td>
+          <td style="padding:10px 8px;text-align:right;color:var(--gold);">${fmt(taxSavings)}</td>
+          <td style="padding:10px 8px;text-align:right;color:var(--gold);">${fmt(taxSavings)}</td>
+          <td style="padding:10px 8px;text-align:right;color:var(--gold);">${fmt(taxSavings)}</td>
+        </tr>
+        <tr style="border-top:2px solid var(--gold);">
+          <td style="padding:12px 8px;font-weight:700;color:var(--gold);">Total Wealth</td>
+          <td style="padding:12px 8px;text-align:right;font-weight:700;color:var(--gold);font-size:15px;">${fmt(w3.totalWealth)}</td>
+          <td style="padding:12px 8px;text-align:right;font-weight:700;color:var(--gold);font-size:15px;">${fmt(w5.totalWealth)}</td>
+          <td style="padding:12px 8px;text-align:right;font-weight:700;color:var(--gold);font-size:15px;">${fmt(w7.totalWealth)}</td>
+          <td style="padding:12px 8px;text-align:right;font-weight:700;color:var(--gold);font-size:15px;">${fmt(w10.totalWealth)}</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <p style="font-size:12px;color:rgba(255,255,255,0.3);margin-top:12px;text-align:center;">Based on ${(appPct*100).toFixed(0)}% annual appreciation, constant cash flow, and Year 1 cost segregation tax savings</p>
+    
+    <div class="cta-box">
+      <a href="qualify.html">Get a Real Deal Analysis →</a>
+      <p style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:8px;">We'll run these numbers on actual properties in your target market</p>
+    </div>
+  `;
+}
+
+// Calculate on every input change
+document.querySelectorAll('input').forEach(el => el.addEventListener('input', calculate));
+calculate(); // Initial calc
+</script>
+
+</body>
+</html>

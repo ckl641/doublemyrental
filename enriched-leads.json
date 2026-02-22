@@ -1,0 +1,120 @@
+[
+  {
+    "name": "Dr. Michael Hannon",
+    "specialty": "Orthopedic Surgery",
+    "location": "Beverly Hills, CA",
+    "email": "",
+    "source": "drhannon.com",
+    "notes": "Private practice, Beverly Hills. Need to find email from website."
+  },
+  {
+    "name": "Dr. Marc Samson",
+    "specialty": "Orthopedic Surgery",
+    "location": "Los Angeles, CA",
+    "source": "Healthgrades",
+    "score": 80,
+    "profile_url": "https://www.healthgrades.com/physician/dr-marc-samson-xccrs",
+    "email": "",
+    "phone": "",
+    "emailSource": "not_found"
+  },
+  {
+    "name": "Dr. Steven Lin",
+    "specialty": "Orthopedic Surgery",
+    "location": "Los Angeles, CA",
+    "source": "Healthgrades",
+    "score": 80,
+    "profile_url": "https://www.healthgrades.com/physician/dr-steven-lin-xl9ql",
+    "email": "",
+    "phone": "",
+    "emailSource": "not_found"
+  },
+  {
+    "name": "Dr. Vahan Cepkinian",
+    "specialty": "Orthopedic Surgery",
+    "location": "Los Angeles, CA",
+    "source": "Healthgrades",
+    "score": 80,
+    "profile_url": "https://www.healthgrades.com/physician/dr-vahan-cepkinian-2rjlq",
+    "email": "",
+    "phone": "",
+    "emailSource": "not_found"
+  },
+  {
+    "name": "Dr. Eric Millstein",
+    "specialty": "Orthopedic Surgery",
+    "location": "Los Angeles, CA",
+    "source": "Healthgrades",
+    "score": 80,
+    "profile_url": "https://www.healthgrades.com/physician/dr-eric-millstein-3b2ny",
+    "email": "",
+    "phone": "",
+    "emailSource": "not_found"
+  },
+  {
+    "name": "Dr. Nick Ghazarian",
+    "specialty": "Orthopedic Surgery",
+    "location": "Los Angeles, CA",
+    "source": "Healthgrades",
+    "score": 80,
+    "profile_url": "https://www.healthgrades.com/physician/dr-nick-ghazarian-bvuvz",
+    "email": "",
+    "phone": "",
+    "emailSource": "not_found"
+  },
+  {
+    "name": "Dr. Tae Shin",
+    "specialty": "Orthopedic Surgery",
+    "location": "Los Angeles, CA",
+    "source": "Healthgrades",
+    "score": 80,
+    "profile_url": "https://www.healthgrades.com/physician/dr-tae-shin-yg28v",
+    "email": "",
+    "phone": "",
+    "emailSource": "not_found"
+  },
+  {
+    "name": "Dr. Jared Niska",
+    "specialty": "Orthopedic Surgery",
+    "location": "Los Angeles, CA",
+    "source": "Healthgrades",
+    "score": 80,
+    "profile_url": "https://www.healthgrades.com/physician/dr-jared-niska-gcw5w",
+    "email": "",
+    "phone": "",
+    "emailSource": "not_found"
+  },
+  {
+    "name": "Dr. Philip Merritt",
+    "specialty": "Orthopedic Surgery",
+    "location": "Los Angeles, CA",
+    "source": "Healthgrades",
+    "score": 80,
+    "profile_url": "https://www.healthgrades.com/physician/dr-philip-merritt-y2myd",
+    "email": "",
+    "phone": "",
+    "emailSource": "not_found"
+  },
+  {
+    "name": "Dr. Alexandre Rasouli",
+    "specialty": "Orthopedic Surgery",
+    "location": "Los Angeles, CA",
+    "source": "Healthgrades",
+    "score": 80,
+    "profile_url": "https://www.healthgrades.com/physician/dr-alexandre-rasouli-x6h39",
+    "email": "",
+    "phone": "",
+    "emailSource": "not_found"
+  },
+  {
+    "name": "Dr. Todd Dietrick",
+    "specialty": "Orthopedic Surgery",
+    "location": "Los Angeles, CA",
+    "source": "Healthgrades",
+    "score": 80,
+    "profile_url": "https://www.healthgrades.com/physician/dr-todd-dietrick-xpplg",
+    "email": "",
+    "phone": "",
+    "emailSource": "not_found"
+  }
+]

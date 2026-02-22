@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The High-Earner's Tax Shield Blueprint — Double My Rental</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @media print { @page { margin: 0.5in; size: letter; } .no-print { display: none !important; } }
+  :root { --gold: #E8B94A; --dark: #0a0a0f; --navy: #0d1117; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; color: #333; background: #fff; line-height: 1.7; }
+
+  /* Cover */
+  .cover { min-height: 100vh; background: linear-gradient(135deg, var(--navy) 0%, #1a1a2e 100%); display: flex; align-items: center; justify-content: center; text-align: center; padding: 60px 32px; page-break-after: always; }
+  .cover h1 { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 5vw, 56px); color: #fff; line-height: 1.2; margin-bottom: 24px; }
+  .cover h1 .gold { color: var(--gold); }
+  .cover .subtitle { font-size: 20px; color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 40px; }
+  .cover .author { display: flex; align-items: center; gap: 16px; justify-content: center; margin-top: 40px; }
+  .cover .author img { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--gold); }
+  .cover .author-info { text-align: left; color: rgba(255,255,255,0.8); }
+  .cover .author-name { font-weight: 700; font-size: 16px; color: #fff; }
+  .cover .author-title { font-size: 13px; color: var(--gold); }
+  .cover .badges { display: flex; gap: 12px; justify-content: center; margin-top: 32px; flex-wrap: wrap; }
+  .cover .badge { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 100px; font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 1px; text-transform: uppercase; }
+
+  /* Page sections */
+  .page { max-width: 720px; margin: 0 auto; padding: 60px 32px; page-break-before: always; }
+  .page:first-of-type { page-break-before: avoid; }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--dark); margin-bottom: 24px; line-height: 1.25; }
+  h3 { font-size: 20px; font-weight: 700; margin: 32px 0 12px; color: var(--dark); }
+  p { margin-bottom: 16px; font-size: 16px; }
+  .highlight { background: linear-gradient(135deg, #fdf6e3, #fff8e7); border-left: 4px solid var(--gold); padding: 24px 28px; border-radius: 0 12px 12px 0; margin: 24px 0; }
+  .highlight p { margin: 0; font-weight: 600; }
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+  .stat-card { background: var(--navy); color: #fff; padding: 24px; border-radius: 12px; text-align: center; }
+  .stat-card .num { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--gold); }
+  .stat-card .label { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 4px; }
+  table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
+  th { background: var(--navy); color: #fff; padding: 12px 16px; text-align: left; font-weight: 600; }
+  td { padding: 12px 16px; border-bottom: 1px solid #eee; }
+  tr:nth-child(even) td { background: #f9f9f9; }
+  .gold-text { color: var(--gold); font-weight: 700; }
+  .cta-box { background: linear-gradient(135deg, var(--navy), #1a1a2e); color: #fff; padding: 48px 40px; border-radius: 16px; text-align: center; margin: 40px 0; }
+  .cta-box h2 { color: #fff; }
+  .cta-box p { color: rgba(255,255,255,0.7); }
+  .cta-btn { display: inline-block; background: var(--gold); color: var(--dark); font-weight: 700; font-size: 16px; padding: 16px 40px; border-radius: 100px; text-decoration: none; margin-top: 20px; transition: transform 0.2s; }
+  .cta-btn:hover { transform: scale(1.05); }
+  .proof-strip { display: flex; gap: 24px; align-items: center; justify-content: center; flex-wrap: wrap; padding: 20px 0; opacity: 0.6; }
+  .proof-strip span { font-size: 14px; font-weight: 600; color: #666; }
+  ul { margin: 12px 0 20px 24px; }
+  li { margin-bottom: 8px; font-size: 16px; }
+  .page-num { text-align: center; font-size: 12px; color: #aaa; margin-top: 40px; }
+  @media (max-width: 600px) { .stat-row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ===== COVER ===== -->
+<div class="cover">
+  <div>
+    <div style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:32px;">Free Guide for High Earners</div>
+    <h1>The High-Earner's<br><span class="gold">Tax Shield Blueprint</span></h1>
+    <p class="subtitle">How to turn your biggest tax bill into a wealth-building asset that pays you $3,400/month — while the IRS subsidizes your down payment.</p>
+    <div class="author">
+      <img src="../founder.jpg" alt="Chi Ta">
+      <div class="author-info">
+        <div class="author-name">Chi Ta</div>
+        <div class="author-title">Founder, Double My Rental · Forbes Featured · $100M+ Deployed</div>
+      </div>
+    </div>
+    <div class="badges">
+      <span class="badge">As Seen in Forbes</span>
+      <span class="badge">20+ Years in Real Estate</span>
+      <span class="badge">4.95 ★ Superhost</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE 1: THE PROBLEM ===== -->
+<div class="page">
+  <h2>The Problem: You're Earning More and Keeping Less</h2>
+  <p>If you earn $500,000 or more per year, here is your reality:</p>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="num">37-40%</div>
+      <div class="label">Effective Tax Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">$200K+</div>
+      <div class="label">Annual Tax Bill</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">$0</div>
+      <div class="label">Assets Built From Taxes</div>
+    </div>
+  </div>
+
+  <p>Every year, you write a check to the IRS that could have bought you a cash-flowing property. Your CPA tells you to max out your 401(k), contribute to a backdoor Roth, maybe do some charitable giving. They're not wrong — they're just thinking small.</p>
+
+  <p>What they don't tell you is that the tax code has a specific provision designed for real estate investors that can <strong>eliminate $72,000+ in taxes in Year 1 alone</strong> — and convert that money into a tangible asset that generates monthly income.</p>
+
+  <div class="highlight">
+    <p>The average high-earner we work with was paying $180,000-$300,000 per year in federal taxes before we restructured their portfolio. After? They own properties that pay them — and their tax bill funded the whole thing.</p>
+  </div>
+
+  <p class="page-num">1</p>
+</div>
+
+<!-- ===== PAGE 2: THE TAX SHIELD ===== -->
+<div class="page">
+  <h2>The Tax Shield: Cost Segregation Explained</h2>
+  <p>Cost segregation is a tax strategy that accelerates depreciation on a property, allowing you to write off a massive portion of the purchase price in <strong>Year 1</strong> — not spread across 27.5 years like standard depreciation.</p>
+
+  <h3>How It Works</h3>
+  <p>When you purchase a property, a cost segregation study reclassifies components of the building (carpeting, appliances, landscaping, certain fixtures) into shorter depreciation schedules — 5, 7, or 15 years instead of 27.5.</p>
+
+  <p>Combined with <strong>bonus depreciation</strong> (currently allowing accelerated write-offs), this means a significant percentage of the property's value becomes a tax deduction in the first year.</p>
+
+  <h3>The Math on a Real Deal</h3>
+  <table>
+    <tr><th colspan="2">Cost Segregation Breakdown — $650,000 Property</th></tr>
+    <tr><td>Purchase Price</td><td class="gold-text">$650,000</td></tr>
+    <tr><td>Eligible Basis (≈30% of property value)</td><td class="gold-text">$195,000</td></tr>
+    <tr><td>Your Tax Bracket</td><td>37%</td></tr>
+    <tr><td><strong>Year 1 Tax Savings</strong></td><td class="gold-text"><strong>$72,150</strong></td></tr>
+  </table>
+
+  <div class="highlight">
+    <p>$72,150 in tax savings in Year 1. That is not a projection. That is the math on a real property our clients have purchased.</p>
+  </div>
+
+  <p>To put this in perspective: if you were going to owe the IRS $200,000 this year, you now owe $127,850 — and you own an asset that generates $3,400 per month in cash flow.</p>
+
+  <p class="page-num">2</p>
+</div>
+
+<!-- ===== PAGE 3: THE REAL DEAL ===== -->
+<div class="page">
+  <h2>A Real Deal, Real Numbers</h2>
+  <p>This is not a hypothetical. This is a property we sourced, set up, and currently manage for a client.</p>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="num">$650K</div>
+      <div class="label">Purchase Price</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">$81K</div>
+      <div class="label">Total Cash In</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">$130K/yr</div>
+      <div class="label">Gross Revenue</div>
+    </div>
+  </div>
+
+  <table>
+    <tr><th>Line Item</th><th>Annual</th></tr>
+    <tr><td>Gross Revenue</td><td class="gold-text">$130,000</td></tr>
+    <tr><td>Mortgage (PITI)</td><td>-$36,000</td></tr>
+    <tr><td>Property Management (15%)</td><td>-$19,500</td></tr>
+    <tr><td>Cleaning</td><td>-$18,000</td></tr>
+    <tr><td>Utilities</td><td>-$9,600</td></tr>
+    <tr><td>Pool + Landscaping + Supplies + Maintenance</td><td>-$6,000</td></tr>
+    <tr><td><strong>Net Cash Flow</strong></td><td class="gold-text"><strong>$40,900/year ($3,408/mo)</strong></td></tr>
+  </table>
+
+  <h3>Total Year 1 Return</h3>
+  <table>
+    <tr><th>Return Component</th><th>Amount</th></tr>
+    <tr><td>Net Cash Flow</td><td>$40,900</td></tr>
+    <tr><td>Tax Savings (Cost Segregation)</td><td>$72,150</td></tr>
+    <tr><td>Appreciation (8%)</td><td>$52,000</td></tr>
+    <tr><td><strong>Total Year 1 Return</strong></td><td class="gold-text"><strong>$165,050</strong></td></tr>
+    <tr><td><strong>Return on $81K Invested</strong></td><td class="gold-text"><strong>203%</strong></td></tr>
+  </table>
+
+  <div class="highlight">
+    <p>$81,000 in → $165,050 back in Year 1. That is a 203% return — and you still own the property.</p>
+  </div>
+
+  <p class="page-num">3</p>
+</div>
+
+<!-- ===== PAGE 4: 5-YEAR FORECAST ===== -->
+<div class="page">
+  <h2>The 5-Year Wealth Forecast</h2>
+  <p>Here's what one $650K property looks like over 5 years, assuming 8% annual appreciation and stable cash flow:</p>
+
+  <table>
+    <tr><th>Year</th><th>Cash Flow</th><th>Tax Savings</th><th>Property Value</th><th>Equity</th></tr>
+    <tr><td>1</td><td>$40,900</td><td>$72,150</td><td>$702,000</td><td>$117,000</td></tr>
+    <tr><td>2</td><td>$40,900</td><td>$12,000</td><td>$758,160</td><td>$189,660</td></tr>
+    <tr><td>3</td><td>$40,900</td><td>$12,000</td><td>$818,813</td><td>$267,813</td></tr>
+    <tr><td>4</td><td>$40,900</td><td>$8,000</td><td>$884,318</td><td>$351,318</td></tr>
+    <tr><td>5</td><td>$40,900</td><td>$8,000</td><td>$955,063</td><td>$440,063</td></tr>
+    <tr><td><strong>Total</strong></td><td class="gold-text"><strong>$204,500</strong></td><td class="gold-text"><strong>$112,150</strong></td><td></td><td class="gold-text"><strong>$440,063</strong></td></tr>
+  </table>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="num">$756K</div>
+      <div class="label">Total 5-Year Return</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">9.3x</div>
+      <div class="label">Return on $81K Invested</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">$955K</div>
+      <div class="label">Property Value at Year 5</div>
+    </div>
+  </div>
+
+  <p>And this is <strong>one property</strong>. Most of our clients acquire 2-5 properties in their first 18 months. Our biggest client manages a 60-home portfolio with a $30 million budget.</p>
+
+  <p class="page-num">4</p>
+</div>
+
+<!-- ===== PAGE 5: HOW IT WORKS ===== -->
+<div class="page">
+  <h2>How Double My Rental Works</h2>
+  <p>We built this to be completely hands-off for you. Here is exactly what happens when you become a client:</p>
+
+  <h3>Step 1: Strategy Call</h3>
+  <p>We analyze your income, tax situation, and investment goals. We run your numbers through our proprietary software that scans every home for sale — out of 300-500 properties per day, typically only 4 qualify for our yield standards (20%+ cash-on-cash return).</p>
+
+  <h3>Step 2: Property Acquisition</h3>
+  <p>We identify the right property, negotiate the price, connect you with our loan officer (10% down), and handle all due diligence. You approve the numbers — we handle everything else.</p>
+
+  <h3>Step 3: Design & Build-Out</h3>
+  <p>Our team designs and transforms the property into a premium short-term rental. Think glow-in-the-dark game rooms, resort-style amenities, and one-of-a-kind experiences that command $3,000-$4,000 per night during peak demand.</p>
+
+  <h3>Step 4: Launch & Manage — Forever</h3>
+  <p>We manage the property 24/7/365. Guest communication, maintenance, cleaning, supplies, insurance claims — all handled. You check your monthly deposit and annual tax documents. That's it.</p>
+
+  <div class="highlight">
+    <p>Our service fee is $40,000. Your Year 1 cost segregation savings alone is $72,150. The fee pays for itself — and then some.</p>
+  </div>
+
+  <p class="page-num">5</p>
+</div>
+
+<!-- ===== PAGE 6: WHO THIS IS FOR ===== -->
+<div class="page">
+  <h2>Is This Right for You?</h2>
+  <p>We do not work with everyone. Our service is built for a specific type of investor:</p>
+
+  <ul>
+    <li><strong>You earn $500K+ per year</strong> — doctors, lawyers, dentists, engineers, tech executives</li>
+    <li><strong>You're tired of losing 37-40% to taxes</strong> with no tangible asset to show for it</li>
+    <li><strong>You can put 10% down</strong> on a property between $400K and $1M</li>
+    <li><strong>You want monthly cash flow</strong>, not a 10-year wait for returns</li>
+    <li><strong>You value a team handling everything</strong> so you can focus on your career</li>
+    <li><strong>You want to build generational wealth</strong>, not just save for retirement</li>
+  </ul>
+
+  <p>If that sounds like you, the next step is a 60-minute strategy call. No pitch, no pressure. We run your specific numbers and show you exactly what your first property could look like.</p>
+
+  <h3>What Happens on the Call</h3>
+  <ul>
+    <li>We analyze your income and tax situation</li>
+    <li>We show you properties that match your criteria — with real projected returns</li>
+    <li>We walk through the cost segregation math using YOUR numbers</li>
+    <li>You leave with a clear picture — whether you work with us or not</li>
+  </ul>
+
+  <div class="cta-box">
+    <h2>Ready to Stop Paying Taxes and Start Building Wealth?</h2>
+    <p>Book your free 60-minute strategy call. We'll run your numbers and show you exactly what's possible.</p>
+    <a href="https://calendly.com/chitabnb/60min" class="cta-btn">Book Your Strategy Call →</a>
+    <div style="margin-top:20px;font-size:13px;color:rgba(255,255,255,0.4);">Limited to 5-10 new clients per month · 3-month waitlist</div>
+  </div>
+
+  <div class="proof-strip">
+    <span>Forbes Featured</span>
+    <span>·</span>
+    <span>$100M+ Deployed</span>
+    <span>·</span>
+    <span>4.95 ★ Superhost</span>
+    <span>·</span>
+    <span>20+ Years Experience</span>
+  </div>
+
+  <p style="text-align:center;font-size:13px;color:#999;margin-top:40px;">© 2026 Double My Rental · doublemyrental.com</p>
+</div>
+
+</body>
+</html>
