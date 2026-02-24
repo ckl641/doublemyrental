@@ -4,31 +4,36 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>You're In — Double My Rental</title>
-<meta name="description" content="Your blueprint is on the way. Here's what happens next.">
+<meta name="description" content="Your strategy call is confirmed. Watch this before your session.">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root { --gold: #E8B94A; --dark: #0a0a0f; --white: #ffffff; --gray: #888; --card-bg: #111118; }
+  :root { --gold: #E8B94A; --dark: #0a0a0f; --white: #ffffff; --gray: #888; --card-bg: #111118; --green: #4ae878; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'DM Sans', sans-serif; color: var(--white); background: var(--dark); min-height: 100vh; }
 
   .page { max-width: 640px; margin: 0 auto; padding: 80px 24px 60px; }
 
-  /* Badge */
-  .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(232,185,74,0.08); border: 1px solid rgba(232,185,74,0.25); color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; padding: 10px 22px; border-radius: 100px; margin-bottom: 36px; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(74,232,120,0.08); border: 1px solid rgba(74,232,120,0.25); color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; padding: 10px 22px; border-radius: 100px; margin-bottom: 36px; }
 
   h1 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(32px, 5vw, 46px); line-height: 1.2; margin-bottom: 16px; }
   h1 .accent { color: var(--gold); }
+  h2 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 24px; margin-bottom: 20px; }
 
-  .subtitle { font-size: 17px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 56px; }
+  .subtitle { font-size: 17px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 48px; }
+
+  /* Video */
+  .video-wrapper { margin: 0 auto 16px; max-width: 560px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(232,185,74,0.2); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+  .video-wrapper video { width: 100%; display: block; background: #000; }
+  .video-caption { text-align: center; font-size: 13px; color: rgba(255,255,255,0.35); margin-bottom: 48px; }
 
   /* Steps */
   .steps-header { font-family: 'DM Serif Display', serif; font-size: 24px; margin-bottom: 32px; }
-
   .step { display: flex; gap: 20px; margin-bottom: 36px; position: relative; }
   .step:last-of-type { margin-bottom: 0; }
   .step-line { position: absolute; left: 23px; top: 52px; bottom: -36px; width: 1px; background: linear-gradient(180deg, rgba(232,185,74,0.4) 0%, rgba(232,185,74,0.05) 100%); }
   .step:last-of-type .step-line { display: none; }
   .step-num { flex-shrink: 0; width: 48px; height: 48px; background: rgba(232,185,74,0.08); border: 1px solid rgba(232,185,74,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--gold); }
+  .step-done { background: rgba(74,232,120,0.1); border-color: rgba(74,232,120,0.3); color: var(--green); }
   .step-content h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; color: #fff; }
   .step-content p { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.6; }
 
@@ -40,28 +45,43 @@
   .prep-diamond { color: var(--gold); font-size: 12px; flex-shrink: 0; margin-top: 4px; }
   .prep-item p { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.5; }
 
-  /* Exclusivity section */
-  .exclusive { text-align: center; margin: 56px 0; padding: 48px 0; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
-  .exclusive h3 { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 16px; }
-  .exclusive p { font-size: 15px; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 480px; margin: 0 auto 32px; }
-  .stats-row { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
-  .stat-card { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 16px 20px; text-align: center; min-width: 120px; }
-  .stat-card .val { font-size: 18px; font-weight: 700; color: var(--gold); }
-  .stat-card .label { font-size: 11px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; }
+  /* Meet Chi Ta */
+  .meet-section { margin: 56px 0; padding: 48px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+  .meet-card { display: flex; gap: 24px; align-items: flex-start; }
+  .meet-photo { width: 80px; height: 80px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid rgba(232,185,74,0.3); }
+  .meet-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .meet-info h3 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+  .meet-info .title { font-size: 13px; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
+  .meet-info p { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+  .meet-stats { display: flex; gap: 24px; margin-top: 16px; }
+  .meet-stat { font-size: 13px; color: rgba(255,255,255,0.4); }
+  .meet-stat strong { color: var(--gold); font-size: 15px; display: block; margin-bottom: 2px; }
+
+  /* FAQ */
+  .faq-section { margin: 56px 0; padding-top: 48px; border-top: 1px solid rgba(255,255,255,0.06); }
+  .faq-item { margin-bottom: 28px; }
+  .faq-q { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: #fff; }
+  .faq-a { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.7; }
 
   /* Testimonial */
-  .testimonial { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 40px 32px; text-align: center; margin: 56px 0; }
-  .testimonial .quote-mark { font-family: 'DM Serif Display', serif; font-size: 48px; color: rgba(232,185,74,0.2); line-height: 1; margin-bottom: 12px; }
-  .testimonial blockquote { font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.7; font-style: italic; margin-bottom: 20px; }
-  .testimonial .author { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1.5px; }
+  .testimonial { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 36px 28px; margin: 56px 0; }
+  .testimonial blockquote { font-size: 16px; color: rgba(255,255,255,0.75); line-height: 1.7; font-style: italic; margin-bottom: 16px; position: relative; padding-left: 20px; border-left: 2px solid var(--gold); }
+  .testimonial .author { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1.5px; padding-left: 20px; }
 
-  /* CTA */
-  .cta-section { text-align: center; margin-top: 56px; }
-  .cta-section p { font-size: 15px; color: rgba(255,255,255,0.45); margin-bottom: 24px; }
-  .btn { display: inline-block; background: var(--gold); color: #111; font-size: 16px; font-weight: 700; padding: 16px 44px; border-radius: 6px; text-decoration: none; transition: all 0.25s; box-shadow: 0 4px 20px rgba(232,185,74,0.25); }
-  .btn:hover { background: #f0c55a; transform: translateY(-1px); box-shadow: 0 6px 28px rgba(232,185,74,0.35); }
-  .btn-ghost { display: inline-block; background: transparent; color: var(--gold); font-size: 14px; font-weight: 600; padding: 12px 32px; border: 1px solid rgba(232,185,74,0.3); border-radius: 6px; text-decoration: none; transition: all 0.25s; margin-top: 12px; }
-  .btn-ghost:hover { background: rgba(232,185,74,0.08); border-color: var(--gold); }
+  /* Referral */
+  .referral { background: linear-gradient(135deg, rgba(232,185,74,0.08) 0%, rgba(232,185,74,0.02) 100%); border: 1px solid rgba(232,185,74,0.15); border-radius: 16px; padding: 36px 32px; margin: 56px 0; text-align: center; }
+  .referral h3 { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 12px; }
+  .referral p { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 24px; }
+  .share-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .share-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
+  .share-btn:hover { transform: translateY(-1px); }
+  .share-copy { background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.15); }
+  .share-copy:hover { background: rgba(255,255,255,0.12); }
+  .share-sms { background: rgba(74,232,120,0.12); color: var(--green); }
+  .share-sms:hover { background: rgba(74,232,120,0.18); }
+  .share-email { background: rgba(232,185,74,0.12); color: var(--gold); }
+  .share-email:hover { background: rgba(232,185,74,0.18); }
+  .copied-toast { display: none; font-size: 13px; color: var(--green); margin-top: 12px; }
 
   /* Footer */
   .footer { text-align: center; margin-top: 64px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.04); }
@@ -70,9 +90,10 @@
 
   @media (max-width: 600px) {
     .page { padding: 60px 20px 40px; }
-    .prep-box { padding: 28px 20px; }
-    .stats-row { gap: 8px; }
-    .stat-card { min-width: 100px; padding: 12px 14px; }
+    .prep-box, .referral { padding: 28px 20px; }
+    .meet-card { flex-direction: column; align-items: center; text-align: center; }
+    .meet-stats { justify-content: center; }
+    .share-buttons { flex-direction: column; align-items: center; }
   }
 </style>
 </head>
@@ -80,32 +101,31 @@
 
 <div class="page">
 
+  <!-- Hero -->
   <div style="text-align:center;">
     <div class="badge">✅ Call Confirmed</div>
-  </div>
-
-  <div style="text-align:center;">
     <h1>You're <span class="accent">Confirmed</span></h1>
-    <p class="subtitle">Your strategy session with Chi Ta is booked. Before your call, watch this 3-minute video — it'll help you get the most out of your session.</p>
+    <p class="subtitle">Your strategy session with Chi Ta is booked. Watch this 3-minute video before your call — clients who watch it close 2x faster.</p>
   </div>
 
   <!-- Pre-Call Video -->
-  <div style="margin: 0 auto 48px; max-width: 560px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(232,185,74,0.2); box-shadow: 0 8px 32px rgba(0,0,0,0.4);">
-    <video controls playsinline preload="metadata" style="width:100%; display:block; background:#000;" poster="">
+  <div class="video-wrapper">
+    <video controls playsinline preload="metadata" style="width:100%; display:block; background:#000;">
       <source src="post-booking-video.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>
+  <p class="video-caption">🎬 3 min · What to expect on your strategy call</p>
 
   <!-- What Happens Next -->
-  <h3 class="steps-header">What Happens Next</h3>
+  <h3 class="steps-header">Your Path to Cash Flow</h3>
 
   <div class="step">
     <div class="step-line"></div>
-    <div class="step-num" style="background:rgba(74,232,120,0.1);border-color:rgba(74,232,120,0.3);color:#4ae878;">✓</div>
+    <div class="step-num step-done">✓</div>
     <div class="step-content">
       <h3>Strategy Call Booked</h3>
-      <p>You're confirmed. Check your email for the calendar invite and meeting link.</p>
+      <p>Check your email for the calendar invite and video meeting link.</p>
     </div>
   </div>
 
@@ -114,7 +134,7 @@
     <div class="step-num">2</div>
     <div class="step-content">
       <h3>Watch the Video Above</h3>
-      <p>Chi Ta breaks down exactly how the process works, what to expect on your call, and how clients are offsetting $100K+ in taxes per year.</p>
+      <p>Chi Ta breaks down exactly how the process works and how clients are offsetting $100K+ in taxes per year.</p>
     </div>
   </div>
 
@@ -122,74 +142,121 @@
     <div class="step-line"></div>
     <div class="step-num">3</div>
     <div class="step-content">
-      <h3>Come Prepared</h3>
-      <p>Know your income, tax bracket, and available capital. The more prepared you are, the faster we can build your personalized plan.</p>
+      <h3>Your Custom Plan</h3>
+      <p>On the call, Chi Ta will analyze your tax situation and build a personalized acquisition strategy.</p>
     </div>
   </div>
 
   <div class="step">
     <div class="step-num">4</div>
     <div class="step-content">
-      <h3>We Build Your Portfolio</h3>
-      <p>If we're a mutual fit, we'll reserve your spot and start sourcing your first property immediately.</p>
+      <h3>First Property in 90 Days</h3>
+      <p>Once approved, we source, negotiate, design, and manage your property. Most clients see their first booking within 2 weeks of completion.</p>
     </div>
   </div>
 
-  <!-- What to Prepare -->
+  <!-- Come Prepared -->
   <div class="prep-box">
-    <h3>Come Prepared</h3>
+    <h3>📋 Have These Ready for Your Call</h3>
     <div class="prep-item">
       <span class="prep-diamond">◆</span>
-      <p>Your current annual income and tax bracket</p>
+      <p><strong>Your W-2 or tax bracket</strong> — so we can show your exact savings</p>
     </div>
     <div class="prep-item">
       <span class="prep-diamond">◆</span>
-      <p>Investment capital available (minimum $65K recommended)</p>
+      <p><strong>Available capital</strong> — $65K minimum for 10% down on a $650K property</p>
     </div>
     <div class="prep-item">
       <span class="prep-diamond">◆</span>
-      <p>Target markets you're interested in (or let us recommend)</p>
+      <p><strong>Markets of interest</strong> — or let us recommend based on yield data</p>
     </div>
     <div class="prep-item">
       <span class="prep-diamond">◆</span>
-      <p>Your timeline for first acquisition</p>
+      <p><strong>Your timeline</strong> — when do you want your first property cash-flowing?</p>
     </div>
   </div>
 
-  <!-- Why We Limit -->
-  <div class="exclusive">
-    <h3>Why We Limit to <span style="color:var(--gold);">10 Investors</span> Per Month</h3>
-    <p>Every property we source gets our full attention — site visits, contractor vetting, design planning, and ongoing management. We'd rather turn away clients than deliver anything less than exceptional results.</p>
-    <div class="stats-row">
-      <div class="stat-card"><div class="val">4.95★</div><div class="label">Rating</div></div>
-      <div class="stat-card"><div class="val">20+ Yrs</div><div class="label">Experience</div></div>
-      <div class="stat-card"><div class="val">$100M+</div><div class="label">Deployed</div></div>
-      <div class="stat-card"><div class="val">Forbes</div><div class="label">Featured</div></div>
-    </div>
-  </div>
-
-  <!-- Testimonial -->
+  <!-- Testimonial (social proof for reducing no-shows) -->
   <div class="testimonial">
-    <div class="quote-mark">"</div>
     <blockquote>I was paying $280K a year in taxes. Chi Ta's team helped me offset $120K in year one with one property. Six months later I bought my second. I wish I had found them sooner.</blockquote>
-    <div class="author">— Dr. Kevin P. · Orthopedic Surgeon, Los Angeles CA</div>
+    <div class="author">— Dr. Kevin P. · Orthopedic Surgeon, Los Angeles</div>
   </div>
 
-  <!-- CTA -->
-  <div class="cta-section">
-    <p>Ready to skip the line? Book your strategy call now.</p>
-    <a href="https://calendly.com/chitabnb/60min" class="btn" target="_blank">Book Your Strategy Call</a>
-    <br>
-    <a href="a.html" class="btn-ghost">Read the Full Breakdown →</a>
+  <!-- Meet Chi Ta -->
+  <div class="meet-section">
+    <h2>Who You'll Be Speaking With</h2>
+    <div class="meet-card">
+      <div class="meet-photo">
+        <img src="founder.jpg" alt="Chi Ta">
+      </div>
+      <div class="meet-info">
+        <h3>Chi Ta</h3>
+        <div class="title">Founder, Double My Rental</div>
+        <p>Former Airbnb arbitrage pioneer who built a 30-unit portfolio generating $2.4M/year in under 9 months. Featured in Forbes, he now helps high-earning professionals build tax-advantaged STR portfolios across 16 states.</p>
+        <div class="meet-stats">
+          <div class="meet-stat"><strong>$100M+</strong>Managed</div>
+          <div class="meet-stat"><strong>4.95★</strong>Rating</div>
+          <div class="meet-stat"><strong>16</strong>States</div>
+          <div class="meet-stat"><strong>20+ Yrs</strong>Experience</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ: What happens on the call -->
+  <div class="faq-section">
+    <h2>What Happens on the Call?</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">Is this a sales pitch?</div>
+      <div class="faq-a">No. It's a strategy session. Chi Ta will review your financial situation and show you exactly what a property would look like — the numbers, the tax offset, the cash flow. If it makes sense for both sides, he'll walk you through next steps. If not, you'll still leave with a clear picture of real estate investing.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What will Chi Ta cover?</div>
+      <div class="faq-a">Your tax bracket and how much you can offset in Year 1. Target markets with 20%+ yields. Deal math on a real property (down payment, revenue, expenses, net cash flow). The DSCR loan process with only 10% down. Your personalized timeline from call to first booking.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How long is the call?</div>
+      <div class="faq-a">60 minutes. Come with your questions — Chi Ta doesn't rush. Clients who come prepared with their income and capital info get the most value.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What if I need to reschedule?</div>
+      <div class="faq-a">Check your calendar invite email — there's a reschedule link. We ask for 24 hours notice. Spots are limited to 5 per week, so if you cancel last-minute your slot may not be available again for weeks.</div>
+    </div>
+  </div>
+
+  <!-- Referral -->
+  <div class="referral">
+    <h3>Know Someone Who'd Benefit?</h3>
+    <p>If you know a fellow physician, attorney, or high earner paying too much in taxes — share this with them. We accept referrals by invitation only.</p>
+    <div class="share-buttons">
+      <button class="share-btn share-copy" onclick="copyLink()">📋 Copy Link</button>
+      <a class="share-btn share-sms" href="sms:?body=I just booked a strategy call with Chi Ta at Double My Rental — they help high earners build Airbnb portfolios that offset $100K%2B in taxes. Worth looking into: https://doublemyrental.com/apply.html">💬 Text a Friend</a>
+      <a class="share-btn share-email" href="mailto:?subject=Check out Double My Rental&body=I just booked a strategy call with Chi Ta — they help high earners build Airbnb portfolios that offset %24100K%2B in taxes per year. Thought of you. Here's the link: https://doublemyrental.com/apply.html">✉️ Email</a>
+    </div>
+    <div class="copied-toast" id="copiedToast">✅ Link copied!</div>
   </div>
 
   <!-- Footer -->
   <div class="footer">
-    <p>Questions? Email <a href="mailto:invest@doublemyrental.com">invest@doublemyrental.com</a></p>
+    <p>Questions? Email <a href="mailto:chi@doublemyrental.com">chi@doublemyrental.com</a></p>
     <p style="margin-top:8px;">© 2026 Double My Rental. By invitation only.</p>
   </div>
 
 </div>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText('https://doublemyrental.com/apply.html').then(function() {
+    var toast = document.getElementById('copiedToast');
+    toast.style.display = 'block';
+    setTimeout(function() { toast.style.display = 'none'; }, 2000);
+  });
+}
+</script>
 
 </body>
 </html>
