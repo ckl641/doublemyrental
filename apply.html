@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reserve Your Strategy Session — Double My Rental</title>
+<meta name="description" content="Apply for a free strategy call with Chi Ta. We help high earners build fully managed Airbnb portfolios with 15%+ guaranteed yields.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --gold: #E8B94A; --dark: #0a0a0f; --white: #ffffff; --green: #22c55e; --red: #ef4444; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: var(--white); min-height: 100vh; }
+
+  /* Layout: centered two columns on desktop */
+  .layout { display: grid; grid-template-columns: minmax(0, 640px) 360px; min-height: 100vh; max-width: 1100px; margin: 0 auto; }
+  /* Mobile proof cards (shown inline on mobile only) */
+  .mobile-proof { display: none; margin-top: 20px; }
+
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; max-width: 640px; }
+    .sidebar { display: none !important; }
+    .trust-bar { justify-content: center; text-align: center; }
+    .mobile-proof { display: block; }
+  }
+
+  /* Main column */
+  .main { padding: 40px 48px 80px; }
+  @media (max-width: 600px) { .main { padding: 24px 20px 60px; } }
+
+  /* Header */
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 36px; }
+  .logo { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--gold); text-decoration: none; }
+  .back-link { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; }
+  .back-link:hover { color: var(--gold); }
+
+  /* Trust bar */
+  .trust-bar { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 32px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .trust-item { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+  .trust-item .icon { font-size: 16px; }
+
+  /* Progress */
+  .progress { display: flex; gap: 6px; margin-bottom: 12px; }
+  .progress-step { flex: 1; height: 4px; border-radius: 4px; background: rgba(255,255,255,0.08); transition: background 0.4s; }
+  .progress-step.active { background: var(--gold); }
+  .progress-step.done { background: var(--green); }
+  .step-counter { font-size: 13px; color: rgba(255,255,255,0.35); margin-bottom: 32px; }
+
+  /* Step content */
+  .step { display: none; }
+  .step.active { display: block; }
+  .step-title { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.25; margin-bottom: 10px; }
+  .step-sub { font-size: 15px; color: rgba(255,255,255,0.5); margin-bottom: 32px; line-height: 1.6; }
+
+  /* Option cards */
+  .options { display: grid; gap: 12px; }
+  .option {
+    display: flex; align-items: center; gap: 16px;
+    padding: 20px 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.02); cursor: pointer; transition: all 0.2s;
+    font-size: 16px; font-weight: 500;
+  }
+  .option:hover { border-color: rgba(232,185,74,0.4); background: rgba(232,185,74,0.04); }
+  .option.selected { border-color: var(--gold); background: rgba(232,185,74,0.08); }
+  .option input { display: none; }
+  .option .radio { width: 22px; height: 22px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s; margin-left: auto; }
+  .option.selected .radio { border-color: var(--gold); }
+  .option.selected .radio::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); }
+
+  /* Inline proof below options */
+  .inline-proof { display: flex; align-items: center; gap: 12px; margin-top: 24px; padding: 16px 20px; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); }
+  .inline-proof-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), #c4973a); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .inline-proof-text { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.5; font-style: italic; }
+  .inline-proof-name { font-size: 12px; color: var(--gold); font-weight: 600; margin-top: 2px; font-style: normal; }
+
+  /* Form elements */
+  .field { margin-bottom: 22px; }
+  .field label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; color: rgba(255,255,255,0.85); }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 14px 18px; border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.05);
+    color: #fff; font-size: 16px; font-family: 'DM Sans', sans-serif; transition: border-color 0.2s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,0.07); }
+  .field select option { background: #1a1a2e; color: #fff; }
+  .field textarea { min-height: 90px; resize: vertical; }
+  .field .hint { font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 6px; }
+  .fields-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 500px) { .fields-row { grid-template-columns: 1fr; } }
+
+  /* Buttons */
+  .btn-row { display: flex; gap: 12px; margin-top: 32px; }
+  .btn-next {
+    flex: 1; padding: 16px 32px; border: none; border-radius: 10px;
+    background: var(--gold); color: #111; font-size: 16px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .btn-next:hover { background: #f0c55a; transform: translateY(-1px); }
+  .btn-next:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+  .btn-back {
+    padding: 16px 20px; border: 1px solid rgba(255,255,255,0.12); border-radius: 10px;
+    background: transparent; color: rgba(255,255,255,0.5); font-size: 15px;
+    cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+  }
+  .btn-back:hover { border-color: rgba(255,255,255,0.3); color: #fff; }
+
+  /* Sidebar */
+  .sidebar {
+    background: rgba(255,255,255,0.02); border-left: 1px solid rgba(255,255,255,0.06);
+    padding: 48px 32px; display: flex; flex-direction: column; justify-content: center;
+    position: sticky; top: 0; height: 100vh;
+  }
+  .sidebar-card { margin-bottom: 28px; }
+  .sidebar-card.active { display: block; }
+
+  .proof-card {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px; padding: 24px; margin-bottom: 20px;
+  }
+  .proof-card .quote { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.7; font-style: italic; margin-bottom: 16px; }
+  .proof-card .author { font-size: 13px; font-weight: 600; color: var(--gold); }
+  .proof-card .role { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+  .stat-card {
+    background: rgba(232,185,74,0.06); border: 1px solid rgba(232,185,74,0.15);
+    border-radius: 16px; padding: 24px; text-align: center; margin-bottom: 20px;
+  }
+  .stat-card .stat-value { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--gold); margin-bottom: 4px; }
+  .stat-card .stat-label { font-size: 13px; color: rgba(255,255,255,0.5); }
+
+  .guarantee-card {
+    background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.15);
+    border-radius: 16px; padding: 24px; text-align: center;
+  }
+  .guarantee-card .shield { font-size: 32px; margin-bottom: 12px; }
+  .guarantee-card .g-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .guarantee-card .g-text { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+  .sidebar-logos { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 24px; }
+  .sidebar-logos span { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.15); letter-spacing: 1px; }
+
+  /* Live activity ticker */
+  .ticker { margin-bottom: 24px; padding: 12px 16px; border-radius: 10px; background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.1); }
+  .ticker-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--green); margin-right: 8px; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .ticker-text { font-size: 13px; color: rgba(255,255,255,0.5); }
+  .ticker-text strong { color: var(--green); font-weight: 600; }
+
+  /* Success */
+  .success-icon { font-size: 56px; margin-bottom: 20px; }
+  .success-title { font-family: 'DM Serif Display', serif; font-size: 30px; margin-bottom: 12px; }
+  .success-sub { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 28px; }
+  .checklist { margin-bottom: 32px; }
+  .checklist-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 15px; color: rgba(255,255,255,0.7); }
+  .checklist-item .check { color: var(--green); font-size: 18px; }
+  .cal-btn { display: inline-block; padding: 18px 48px; background: var(--gold); color: #111; font-size: 17px; font-weight: 700; border-radius: 10px; text-decoration: none; transition: all 0.2s; }
+  .cal-btn:hover { background: #f0c55a; transform: translateY(-1px); }
+</style>
+</head>
+<body>
+
+<div class="layout">
+  <div class="main">
+    <div class="header">
+      <a href="a.html" class="logo">Double My Rental</a>
+      <a href="a.html" class="back-link">← Back to Home</a>
+    </div>
+
+    <div class="trust-bar">
+      <div class="trust-item"><span class="icon">📰</span> Forbes Featured</div>
+      <div class="trust-item"><span class="icon">🛡️</span> 15% Yield Guarantee</div>
+      <div class="trust-item"><span class="icon">🏢</span> $100M+ Managed</div>
+    </div>
+
+    <div class="progress">
+      <div class="progress-step active" id="prog-1"></div>
+      <div class="progress-step" id="prog-2"></div>
+      <div class="progress-step" id="prog-3"></div>
+      <div class="progress-step" id="prog-4"></div>
+      <div class="progress-step" id="prog-5"></div>
+    </div>
+    <div class="step-counter" id="step-counter">Step 1 of 5</div>
+
+    <!-- STEP 1: Income -->
+    <div class="step active" id="step-1" data-proof="1">
+      <div class="step-title">What is your annual household income?</div>
+      <div class="step-sub">This helps us understand which investment tier is right for you.</div>
+      <div class="options">
+        <label class="option" onclick="selectOption(this,'income')"><input type="radio" name="income" value="under-250k">Under $250K<span class="radio"></span></label>
+        <label class="option" onclick="selectOption(this,'income')"><input type="radio" name="income" value="250k-500k">$250K – $500K<span class="radio"></span></label>
+        <label class="option" onclick="selectOption(this,'income')"><input type="radio" name="income" value="500k-1m">$500K – $1M<span class="radio"></span></label>
+        <label class="option" onclick="selectOption(this,'income')"><input type="radio" name="income" value="1m+">$1M+<span class="radio"></span></label>
+      </div>
+      <div class="inline-proof">
+        <div class="inline-proof-avatar">👨‍⚕️</div>
+        <div>
+          <div class="inline-proof-text">"I was paying $280K in taxes. Chi Ta showed me how to offset $120K of that in year one with one property."</div>
+          <div class="inline-proof-name">— Dr. Kevin P., Orthopedic Surgeon, Los Angeles</div>
+        </div>
+      </div>
+      <div class="mobile-proof">
+        <div class="ticker" style="margin-bottom:12px;"><span class="ticker-dot"></span><span class="ticker-text"><strong>3 people</strong> applied this week</span></div>
+        <div class="stat-card" style="margin-bottom:0;"><div class="stat-value" style="font-size:28px;">149%</div><div class="stat-label">True Year 1 ROI (Cash Flow + Tax Savings + Appreciation)</div></div>
+      </div>
+    </div>
+
+    <!-- STEP 2: Capital -->
+    <div class="step" id="step-2" data-proof="2">
+      <div class="step-title">How much capital do you have available?</div>
+      <div class="step-sub">Most clients start with 10% down on properties between $500K–$1M. Our loan officers handle the rest with DSCR loans at 90% LTV.</div>
+      <div class="options">
+        <label class="option" onclick="selectOption(this,'capital')"><input type="radio" name="capital" value="under-50k">Under $50K<span class="radio"></span></label>
+        <label class="option" onclick="selectOption(this,'capital')"><input type="radio" name="capital" value="50k-100k">$50K – $100K<span class="radio"></span></label>
+        <label class="option" onclick="selectOption(this,'capital')"><input type="radio" name="capital" value="100k-250k">$100K – $250K<span class="radio"></span></label>
+        <label class="option" onclick="selectOption(this,'capital')"><input type="radio" name="capital" value="250k+">$250K+<span class="radio"></span></label>
+      </div>
+      <div class="inline-proof">
+        <div class="inline-proof-avatar">💰</div>
+        <div>
+          <div class="inline-proof-text">"We put $81K in and we're getting $40,900 a year back in cash flow. That doesn't even count the tax savings."</div>
+          <div class="inline-proof-name">— Marcus & Jennifer C., Engineers, Denver CO</div>
+        </div>
+      </div>
+      <div class="mobile-proof">
+        <div class="stat-card" style="margin-bottom:0;"><div class="stat-value" style="font-size:28px;">$130K/yr</div><div class="stat-label">Revenue on a $650K Property — $81K Total Cash In</div></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-back" onclick="goStep(1)">← Back</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Timeline -->
+    <div class="step" id="step-3" data-proof="3">
+      <div class="step-title">When are you looking to invest?</div>
+      <div class="step-sub">We have a 3-month waitlist and take 5–10 new clients per month. The sooner you start, the sooner your property generates income.</div>
+      <div class="options">
+        <label class="option" onclick="selectOption(this,'timeline')"><input type="radio" name="timeline" value="asap">As soon as possible<span class="radio"></span></label>
+        <label class="option" onclick="selectOption(this,'timeline')"><input type="radio" name="timeline" value="1-3mo">Within 1–3 months<span class="radio"></span></label>
+        <label class="option" onclick="selectOption(this,'timeline')"><input type="radio" name="timeline" value="3-6mo">3–6 months<span class="radio"></span></label>
+        <label class="option" onclick="selectOption(this,'timeline')"><input type="radio" name="timeline" value="exploring">Just exploring options<span class="radio"></span></label>
+      </div>
+      <div class="inline-proof">
+        <div class="inline-proof-avatar">⚡</div>
+        <div>
+          <div class="inline-proof-text">"From our first call to having paying guests in the property — two weeks. I've never seen a team move that fast."</div>
+          <div class="inline-proof-name">— Sarah M., Corporate Law Partner, Nashville TN</div>
+        </div>
+      </div>
+      <div class="mobile-proof">
+        <div class="stat-card" style="margin-bottom:0;"><div class="stat-value" style="font-size:28px;">14 Days</div><div class="stat-label">From Strategy Call to First Guest Booking</div></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-back" onclick="goStep(2)">← Back</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Goals -->
+    <div class="step" id="step-4" data-proof="4">
+      <div class="step-title">What matters most to you?</div>
+      <div class="step-sub">This helps Chi Ta tailor the deal math to your specific situation on the call.</div>
+      <div class="options">
+        <label class="option" onclick="selectOption(this,'goal')"><input type="radio" name="goal" value="tax-savings">🏛️ Reducing my tax bill<span class="radio"></span></label>
+        <label class="option" onclick="selectOption(this,'goal')"><input type="radio" name="goal" value="cashflow">💵 Monthly passive cash flow<span class="radio"></span></label>
+        <label class="option" onclick="selectOption(this,'goal')"><input type="radio" name="goal" value="wealth">📈 Building long-term wealth<span class="radio"></span></label>
+        <label class="option" onclick="selectOption(this,'goal')"><input type="radio" name="goal" value="all">🎯 All of the above<span class="radio"></span></label>
+      </div>
+      <div class="inline-proof">
+        <div class="inline-proof-avatar">🏠</div>
+        <div>
+          <div class="inline-proof-text">"We closed on our first property and within 60 days asked Chi Ta to find us another one. The returns are that good."</div>
+          <div class="inline-proof-name">— Dr. Amanda R., Pediatric Dentist, Orlando FL</div>
+        </div>
+      </div>
+      <div class="mobile-proof">
+        <div class="stat-card" style="margin-bottom:0;"><div class="stat-value" style="font-size:28px;">$72K</div><div class="stat-label">Year 1 Tax Savings via Bonus Depreciation</div></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-back" onclick="goStep(3)">← Back</button>
+      </div>
+    </div>
+
+    <!-- STEP 5: Contact -->
+    <div class="step" id="step-5" data-proof="5">
+      <div class="step-title">You're a great fit. Reserve your strategy session.</div>
+      <div class="step-sub">Chi Ta will personally walk you through a deal breakdown tailored to your income and goals.</div>
+      <div class="field">
+        <label>First Name</label>
+        <input type="text" id="fname" placeholder="John" required>
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="john@example.com" required>
+      </div>
+      <div class="field">
+        <label>Phone</label>
+        <input type="tel" id="phone" placeholder="(555) 123-4567" required>
+        <div class="hint">For appointment reminders only.</div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-back" onclick="goStep(4)">← Back</button>
+        <button class="btn-next" id="btn-submit" onclick="submitApplication()">Reserve My Session →</button>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="step" id="step-success" style="text-align:center;">
+      <div style="font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">Your Profile Has Been Reviewed</div>
+      <div class="success-title">You've Been Accepted.</div>
+      <div class="success-sub" style="max-width:460px;margin:0 auto 12px;">Based on your answers, you qualify for a private strategy session with Chi Ta. These sessions are limited to <strong style="color:#fff;">5 per week</strong> and are not available to the public.</div>
+      <div style="font-size:14px;color:rgba(255,255,255,0.35);margin-bottom:28px;">Select a time below before your spot is released.</div>
+
+      <div style="border-radius:16px;overflow:hidden;">
+        <iframe src="https://calendly.com/chitabnb/60min?hide_gdpr_banner=1&background_color=0a0a0f&text_color=ffffff&primary_color=E8B94A" width="100%" height="700" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR: Social proof that rotates per step -->
+  <div class="sidebar">
+    <div class="ticker">
+      <span class="ticker-dot"></span>
+      <span class="ticker-text"><strong>3 people</strong> applied this week</span>
+    </div>
+
+    <div id="sidebar-proof">
+      <!-- Proof set 1 (Step 1) -->
+      <div class="sidebar-set active" data-for="1">
+        <div class="stat-card">
+          <div class="stat-value">149%</div>
+          <div class="stat-label">True Year 1 ROI (Cash Flow + Tax Savings + Appreciation)</div>
+        </div>
+        <div class="proof-card">
+          <div class="quote">"I was writing a $310K check to the IRS every year. Chi Ta's team helped me offset $140K of that in year one — and I'm cash-flowing $3,400 a month on top of it."</div>
+          <div class="author">Dr. Michael T.</div>
+          <div class="role">Cardiologist, San Diego CA</div>
+        </div>
+      </div>
+
+      <!-- Proof set 2 (Step 2) -->
+      <div class="sidebar-set" data-for="2" style="display:none;">
+        <div class="stat-card">
+          <div class="stat-value">$130K/yr</div>
+          <div class="stat-label">Revenue on a $650K Property — $81K Total Cash In</div>
+        </div>
+        <div class="proof-card">
+          <div class="quote">"Put down $65K, spent $16K on setup. Now I'm netting $40K a year in cash flow plus $70K in depreciation write-offs. I bought my second property 4 months later."</div>
+          <div class="author">David & Lauren N.</div>
+          <div class="role">Attorney & Dentist, Irvine CA</div>
+        </div>
+      </div>
+
+      <!-- Proof set 3 (Step 3) -->
+      <div class="sidebar-set" data-for="3" style="display:none;">
+        <div class="stat-card">
+          <div class="stat-value">14 Days</div>
+          <div class="stat-label">From Strategy Call to First Guest Booking</div>
+        </div>
+        <div class="proof-card">
+          <div class="quote">"They found the property, handled the loan, designed everything, and had guests booked within two weeks. I didn't have to do a single thing."</div>
+          <div class="author">Rachel S.</div>
+          <div class="role">Corporate Attorney, Nashville TN</div>
+        </div>
+      </div>
+
+      <!-- Proof set 4 (Step 4) -->
+      <div class="sidebar-set" data-for="4" style="display:none;">
+        <div class="stat-card">
+          <div class="stat-value">$72K</div>
+          <div class="stat-label">Year 1 Tax Savings via Bonus Depreciation</div>
+        </div>
+        <div class="proof-card">
+          <div class="quote">"The tax savings alone more than paid for Chi Ta's entire fee. The monthly cash flow and property appreciation are basically free money at that point."</div>
+          <div class="author">Dr. Priya K.</div>
+          <div class="role">Anesthesiologist, Houston TX</div>
+        </div>
+      </div>
+
+      <!-- Proof set 5 (Step 5) -->
+      <div class="sidebar-set" data-for="5" style="display:none;">
+        <div class="guarantee-card">
+          <div class="shield">🛡️</div>
+          <div class="g-title">15% Yield Guarantee</div>
+          <div class="g-text">If your property does not hit 15% yield, we waive our entire management fee. We manage your home for free until it does. No other STR company makes this guarantee.</div>
+        </div>
+        <div class="proof-card" style="margin-top:20px;">
+          <div class="quote">"We started with one property. Within a year we had three. The returns are unlike anything else in real estate right now."</div>
+          <div class="author">James & Monica E.</div>
+          <div class="role">Tech Executive & Physician, Austin TX</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-logos">
+      <span>Forbes</span>
+      <span>ABC</span>
+      <span>NBC</span>
+      <span>CBS</span>
+    </div>
+  </div>
+</div>
+
+<script>
+const data = {};
+
+function selectOption(el, field) {
+  el.closest('.options').querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  data[field] = el.querySelector('input').value;
+  const step = parseInt(el.closest('.step').id.split('-')[1]);
+  // Auto-advance after brief delay for visual feedback
+  if (step < 5) {
+    setTimeout(() => goStep(step + 1), 350);
+  }
+}
+
+function goStep(n) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step-' + n).classList.add('active');
+  document.getElementById('step-counter').textContent = 'Step ' + n + ' of 5';
+  for (let i = 1; i <= 5; i++) {
+    const p = document.getElementById('prog-' + i);
+    p.classList.remove('active', 'done');
+    if (i < n) p.classList.add('done');
+    if (i === n) p.classList.add('active');
+  }
+  // Swap sidebar proof
+  document.querySelectorAll('.sidebar-set').forEach(s => s.style.display = 'none');
+  const target = document.querySelector('.sidebar-set[data-for="'+n+'"]');
+  if (target) target.style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+async function submitApplication() {
+  const btn = document.getElementById('btn-submit');
+  const fname = document.getElementById('fname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+
+  if (!fname || !email || !phone) {
+    alert('Please fill in all fields.');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+
+  data.fname = fname;
+  data.email = email;
+  data.phone = phone;
+  data.submitted_at = new Date().toISOString();
+
+  try {
+    await fetch('https://api.convertkit.com/v3/tags/16406438/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        api_key: 'OoB49IeOkHbM2pZYpDKrYg',
+        email: data.email,
+        first_name: data.fname,
+        fields: {
+          phone: data.phone,
+          income: data.income || '',
+          capital: data.capital || '',
+          timeline: data.timeline || '',
+          goal: data.goal || ''
+        }
+      })
+    });
+    // Also tag high-earner
+    await fetch('https://api.convertkit.com/v3/tags/16406441/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ api_key: 'OoB49IeOkHbM2pZYpDKrYg', email: data.email })
+    });
+  } catch(e) { console.log('CK error', e); }
+
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step-success').classList.add('active');
+  document.querySelectorAll('.progress-step').forEach(p => p.classList.add('done'));
+  document.getElementById('step-counter').textContent = 'Complete';
+  // Show guarantee in sidebar
+  document.querySelectorAll('.sidebar-set').forEach(s => s.style.display = 'none');
+  document.querySelector('.sidebar-set[data-for="5"]').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+<!-- Calendly redirect after booking -->
+<script>
+window.addEventListener('message', function(e) {
+  if (e.origin === 'https://calendly.com' && e.data && e.data.event === 'calendly.event_scheduled') {
+    setTimeout(function() {
+      window.location.href = 'thank-you.html';
+    }, 2000); // 2 second delay so they see the confirmation first
+  }
+});
+</script>
+</body>
+</html>
