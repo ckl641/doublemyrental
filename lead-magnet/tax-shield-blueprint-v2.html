@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The High-Earner's Tax Shield Blueprint — Double My Rental</title>
+<style>
+  @media print { @page { margin: 0.5in; size: letter; } .no-print { display: none !important; } body { background: #fff !important; } .cover { min-height: auto !important; padding: 80px 32px !important; } }
+  :root { --gold: #C9A84C; --gold-light: #E8D48B; --dark: #0A1628; --navy: #0F1D32; --charcoal: #141E30; --card-bg: #162036; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Georgia, 'Times New Roman', serif; color: #E8E8E8; background: var(--dark); line-height: 1.8; }
+  .sans { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
+
+  /* Cover */
+  .cover { min-height: 100vh; background: linear-gradient(160deg, #070E1A 0%, var(--dark) 40%, #0F1D32 100%); display: flex; align-items: center; justify-content: center; text-align: center; padding: 60px 32px; position: relative; overflow: hidden; }
+  .cover::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('../photos/desert1.jpg') center/cover no-repeat; opacity: 0.08; }
+  .cover::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(ellipse at 30% 20%, rgba(201,168,76,0.08) 0%, transparent 50%); }
+  .cover-inner { position: relative; z-index: 1; max-width: 680px; }
+  .cover .eyebrow { font-family: -apple-system, sans-serif; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 40px; font-weight: 600; }
+  .cover h1 { font-size: clamp(32px, 5vw, 52px); color: #fff; line-height: 1.15; margin-bottom: 28px; font-weight: 700; }
+  .cover h1 .gold { color: var(--gold); }
+  .cover .subtitle { font-size: 18px; color: rgba(255,255,255,0.6); max-width: 560px; margin: 0 auto 48px; line-height: 1.7; font-family: -apple-system, sans-serif; }
+  .cover .author { display: flex; align-items: center; gap: 16px; justify-content: center; margin-top: 40px; }
+  .cover .author-info { text-align: left; }
+  .cover .author-name { font-weight: 700; font-size: 15px; color: #fff; font-family: -apple-system, sans-serif; }
+  .cover .author-title { font-size: 12px; color: var(--gold); font-family: -apple-system, sans-serif; }
+  .cover .author-avatar { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; }
+  .badges { display: flex; gap: 10px; justify-content: center; margin-top: 36px; flex-wrap: wrap; }
+  .badge { background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.2); padding: 7px 16px; border-radius: 100px; font-size: 11px; color: var(--gold-light); letter-spacing: 1.5px; text-transform: uppercase; font-family: -apple-system, sans-serif; font-weight: 500; }
+  .press-strip { display: flex; gap: 40px; align-items: center; justify-content: center; margin-top: 48px; flex-wrap: wrap; }
+  .press-strip svg { height: 22px; width: auto; opacity: 0.5; }
+  .press-strip .press-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.15); }
+
+  /* Property image banner */
+  .property-banner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin: 32px 0; border-radius: 12px; overflow: hidden; }
+  .property-banner img { width: 100%; height: 160px; object-fit: cover; }
+  @media (max-width: 700px) { .property-banner { grid-template-columns: 1fr 1fr; } .property-banner img { height: 120px; } }
+
+  /* Content sections */
+  .section { max-width: 740px; margin: 0 auto; padding: 72px 36px; }
+  .section-dark { background: var(--charcoal); }
+  .section-navy { background: var(--navy); }
+  h2 { font-size: clamp(26px, 3.5vw, 36px); color: #fff; margin-bottom: 24px; line-height: 1.25; font-weight: 700; }
+  h2 .gold { color: var(--gold); }
+  h3 { font-size: 20px; font-weight: 700; margin: 36px 0 12px; color: #fff; font-family: -apple-system, sans-serif; }
+  p { margin-bottom: 18px; font-size: 16.5px; color: rgba(255,255,255,0.75); }
+  strong { color: #fff; }
+
+  /* Callout box */
+  .callout { background: rgba(201,168,76,0.06); border-left: 3px solid var(--gold); padding: 24px 28px; border-radius: 0 10px 10px 0; margin: 28px 0; }
+  .callout p { margin: 0; font-weight: 500; color: rgba(255,255,255,0.85); font-style: italic; font-size: 17px; }
+  .callout .attr { font-style: normal; font-size: 13px; color: var(--gold); margin-top: 12px; display: block; font-family: -apple-system, sans-serif; font-weight: 600; }
+
+  /* Stats row */
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 28px 0; }
+  .stat-card { background: var(--card-bg); border: 1px solid rgba(201,168,76,0.12); padding: 28px 20px; border-radius: 12px; text-align: center; }
+  .stat-card .num { font-size: 34px; color: var(--gold); font-weight: 700; line-height: 1.1; }
+  .stat-card .label { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 6px; font-family: -apple-system, sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* Client win cards */
+  .client-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
+  .client-card { background: var(--card-bg); border: 1px solid rgba(201,168,76,0.1); padding: 28px; border-radius: 12px; }
+  .client-card .name { font-family: -apple-system, sans-serif; font-weight: 700; font-size: 15px; color: var(--gold); margin-bottom: 4px; }
+  .client-card .role { font-family: -apple-system, sans-serif; font-size: 12px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
+  .client-card .result { font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .client-card .detail { font-size: 14px; color: rgba(255,255,255,0.6); font-family: -apple-system, sans-serif; line-height: 1.6; }
+  .client-card-wide { grid-column: 1 / -1; background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(201,168,76,0.02)); border: 1px solid rgba(201,168,76,0.2); }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-family: -apple-system, sans-serif; }
+  th { background: rgba(201,168,76,0.1); color: var(--gold); padding: 14px 18px; text-align: left; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(201,168,76,0.2); }
+  td { padding: 13px 18px; border-bottom: 1px solid rgba(255,255,255,0.06); color: rgba(255,255,255,0.75); }
+  td.gold { color: var(--gold); font-weight: 700; }
+  tr:last-child td { border-bottom: 2px solid rgba(201,168,76,0.3); font-weight: 700; color: #fff; }
+
+  /* Deal comparison */
+  .deal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 28px 0; }
+  .deal-card { background: var(--card-bg); border: 1px solid rgba(201,168,76,0.1); border-radius: 14px; padding: 32px 28px; }
+  .deal-card.featured { border-color: var(--gold); background: linear-gradient(160deg, rgba(201,168,76,0.08), var(--card-bg)); }
+  .deal-card .deal-label { font-family: -apple-system, sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 12px; font-weight: 600; }
+  .deal-card .deal-price { font-size: 32px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .deal-card .deal-sub { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 20px; font-family: -apple-system, sans-serif; }
+  .deal-card .deal-stat { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-family: -apple-system, sans-serif; font-size: 14px; }
+  .deal-card .deal-stat:last-child { border-bottom: none; }
+  .deal-card .deal-stat .dl { color: rgba(255,255,255,0.55); }
+  .deal-card .deal-stat .dv { color: #fff; font-weight: 600; }
+  .deal-card .deal-stat .dv.gold { color: var(--gold); }
+
+  /* Steps */
+  .step { display: flex; gap: 20px; margin-bottom: 32px; }
+  .step-num { width: 44px; height: 44px; min-width: 44px; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: -apple-system, sans-serif; font-weight: 700; color: var(--gold); font-size: 16px; margin-top: 2px; }
+  .step-content h3 { margin-top: 0; margin-bottom: 8px; font-size: 18px; }
+  .step-content p { font-size: 15px; margin-bottom: 0; }
+
+  /* FAQ */
+  .faq-item { border-bottom: 1px solid rgba(255,255,255,0.08); padding: 28px 0; }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q { font-family: -apple-system, sans-serif; font-weight: 700; font-size: 17px; color: #fff; margin-bottom: 12px; }
+  .faq-a { font-size: 15.5px; color: rgba(255,255,255,0.7); }
+  .faq-a strong { color: var(--gold); }
+
+  /* Qualifier lists */
+  .qual-list { list-style: none; margin: 20px 0; padding: 0; }
+  .qual-list li { font-family: -apple-system, sans-serif; font-size: 15px; padding: 10px 0; color: rgba(255,255,255,0.8); display: flex; gap: 12px; align-items: flex-start; }
+  .qual-list li .icon { font-size: 18px; min-width: 24px; }
+  .qual-list.no li .icon { color: #e74c3c; }
+  .qual-list.yes li .icon { color: #2ecc71; }
+
+  /* CTA */
+  .cta-section { background: linear-gradient(160deg, #0F1D32, #1a2a44); text-align: center; padding: 80px 36px; }
+  .cta-section h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 16px; }
+  .cta-section p { max-width: 520px; margin: 0 auto 32px; font-size: 17px; }
+  .cta-btn { display: inline-block; background: var(--gold); color: var(--dark); font-family: -apple-system, sans-serif; font-weight: 700; font-size: 16px; padding: 18px 48px; border-radius: 100px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; letter-spacing: 0.5px; }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.3); }
+  .cta-note { font-family: -apple-system, sans-serif; font-size: 13px; color: rgba(255,255,255,0.35); margin-top: 20px; }
+
+  /* Footer */
+  .footer { text-align: center; padding: 40px 36px; font-family: -apple-system, sans-serif; font-size: 12px; color: rgba(255,255,255,0.25); }
+
+  /* Divider */
+  .divider { width: 60px; height: 2px; background: var(--gold); margin: 0 auto 32px; opacity: 0.4; }
+
+  @media (max-width: 700px) {
+    .stat-row { grid-template-columns: 1fr; }
+    .client-grid { grid-template-columns: 1fr; }
+    .deal-grid { grid-template-columns: 1fr; }
+    .section { padding: 48px 24px; }
+    .cover { padding: 48px 24px; }
+    .press-strip { gap: 16px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== COVER ===== -->
+<div class="cover">
+  <div class="cover-inner">
+    <div class="eyebrow">Free Guide for High Earners</div>
+    <h1>The High-Earner's<br><span class="gold">Tax Shield Blueprint</span></h1>
+    <p class="subtitle">How smart professionals are converting their tax bill into cash-flowing properties that pay them $3,400/month — while the IRS subsidizes the whole thing.</p>
+    <div class="author">
+      <img class="author-avatar" src="../founder.jpg" alt="Chi Ta">
+      <div class="author-info">
+        <div class="author-name">Chi Ta</div>
+        <div class="author-title">Founder, Double My Rental · Forbes Featured · $100M+ Managed</div>
+      </div>
+    </div>
+    <div class="badges">
+      <span class="badge">Several Hundred Clients Since 2021</span>
+      <span class="badge">16 States</span>
+      <span class="badge">4.95 ★ Superhost</span>
+    </div>
+    <div style="font-family:-apple-system,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:40px;margin-bottom:12px;">As Featured In</div>
+    <div class="press-strip">
+      <!-- Forbes -->
+      <svg viewBox="0 0 200 54" fill="white" xmlns="http://www.w3.org/2000/svg"><text x="0" y="42" font-family="Georgia,serif" font-size="48" font-weight="400" font-style="italic" letter-spacing="-1">Forbes</text></svg>
+      <div class="press-divider"></div>
+      <!-- ABC -->
+      <svg viewBox="0 0 100 32" fill="white" xmlns="http://www.w3.org/2000/svg"><text x="0" y="26" font-family="-apple-system,sans-serif" font-size="28" font-weight="800" letter-spacing="3">ABC</text></svg>
+      <div class="press-divider"></div>
+      <!-- NBC -->
+      <svg viewBox="0 0 100 32" fill="white" xmlns="http://www.w3.org/2000/svg"><text x="0" y="26" font-family="-apple-system,sans-serif" font-size="28" font-weight="800" letter-spacing="3">NBC</text></svg>
+      <div class="press-divider"></div>
+      <!-- CBS -->
+      <svg viewBox="0 0 90 32" fill="white" xmlns="http://www.w3.org/2000/svg"><text x="0" y="26" font-family="-apple-system,sans-serif" font-size="28" font-weight="800" letter-spacing="3">CBS</text></svg>
+    </div>
+  </div>
+</div>
+
+<!-- Property Banner -->
+<div style="max-width:900px;margin:0 auto;">
+  <div class="property-banner">
+    <img src="../photos/desert1.jpg" alt="Desert Retreat Property">
+    <img src="../photos/neon1.jpg" alt="Neon Paradise Game Room">
+    <img src="../photos/oasis1.jpg" alt="Luxury Oasis Property">
+    <img src="../photos/family1.jpg" alt="Family Estate Property">
+  </div>
+</div>
+
+<!-- ===== SECTION 1: THE PROBLEM ===== -->
+<div class="section">
+  <h2>You're Earning More.<br>You're <span class="gold">Keeping Less.</span></h2>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="num">37-40%</div>
+      <div class="label">Effective Tax Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">$200K+</div>
+      <div class="label">Annual Tax Bill</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">$0</div>
+      <div class="label">Assets Built From It</div>
+    </div>
+  </div>
+
+  <p>Every year, you write a check to the IRS that could have bought you a cash-flowing property. Instead, that money vanishes. Gone. No asset. No equity. No income stream. Just a receipt.</p>
+
+  <div class="callout">
+    <p>"You could've kept that entire $200K check — in the form of equity. You could've used it to buy a house instead of paying the IRS. Either way the money won't be cash. But as equity, you keep the money. And the home you own pays you instead."</p>
+    <span class="attr">— Chi Ta</span>
+  </div>
+
+  <p>Your CPA tells you to max out your 401(k), do a backdoor Roth, maybe some charitable giving. They're not wrong — they're just thinking small.</p>
+
+  <p>Here's the uncomfortable truth: <strong>most CPAs don't understand the short-term rental tax strategy.</strong> It's relatively new. They don't get paid for recommending it. They can't execute it. They don't have the background knowledge. If they truly understood how much it saves, it would be their #1 recommendation — every single time.</p>
+
+  <p>Meanwhile, you're leaving money in savings accounts and CDs earning 4% while inflation eats it alive. Or worse — handing it straight to the IRS when there's a legal, proven way to keep it <em>and</em> build wealth.</p>
+</div>
+
+<!-- ===== SECTION 2: THE SOLUTION ===== -->
+<div class="section section-dark">
+  <h2>The Tax Shield: <span class="gold">Cost Segregation</span></h2>
+
+  <p>Cost segregation is a tax strategy that accelerates depreciation on a property, letting you write off a massive portion of the purchase price in <strong>Year 1</strong> — not spread across 27.5 years.</p>
+
+  <h3>How It Works</h3>
+  <p>A cost segregation study reclassifies components of your property (appliances, carpeting, landscaping, fixtures) into shorter depreciation schedules — 5, 7, or 15 years instead of 27.5. Combined with <strong>bonus depreciation</strong> (now permanent under the One Big Beautiful Bill Act), roughly 30% of the property's value becomes a Year 1 tax deduction.</p>
+
+  <h3>The STR Loophole</h3>
+  <p>Here's where it gets powerful: with <strong>material participation</strong> in a short-term rental, these losses can offset your W-2 income. This is the part most CPAs miss entirely. A traditional rental can't do this. An STR with material participation? The losses flow directly against your active income.</p>
+
+  <p>The result:</p>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="num">~30%</div>
+      <div class="label">Property Value Offset in Year 1</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">$50-325K</div>
+      <div class="label">Typical Tax Savings</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">100%</div>
+      <div class="label">Bonus Depreciation (Permanent)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 3: CLIENT WINS ===== -->
+<div class="section">
+  <h2>Real Clients. <span class="gold">Real Results.</span></h2>
+  <p>These aren't hypotheticals. These are people we work with right now.</p>
+
+  <div class="client-grid">
+    <div class="client-card">
+      <div class="name">Thomas M.</div>
+      <div class="role">Plastic Surgeon · $1.5M/yr Income</div>
+      <div class="result">$325,000</div>
+      <div class="detail">Saved in taxes. Bought 2 homes ($1.5M each) via 1031 exchange. Cost segregation offset nearly $900K in income.</div>
+    </div>
+    <div class="client-card">
+      <div class="name">Mackenzie W.</div>
+      <div class="role">Dermatologist · $1M/yr Income</div>
+      <div class="result">$100,000+</div>
+      <div class="detail">Minimum tax savings from 1 property. Offset roughly $300K in income with cost segregation.</div>
+    </div>
+    <div class="client-card">
+      <div class="name">Deepak S.</div>
+      <div class="role">Project Manager · $750K/yr Income</div>
+      <div class="result">$225,000</div>
+      <div class="detail">Income offset from 1 property at $750K. Significant tax reduction while building equity.</div>
+    </div>
+    <div class="client-card">
+      <div class="name">A.S.</div>
+      <div class="role">Portfolio Investor</div>
+      <div class="result">1 → 60 Properties</div>
+      <div class="detail">Started with a single property. Now owns a 60-home portfolio worth over $80 million.</div>
+    </div>
+    <!-- Times Square credibility -->
+    <div class="client-card client-card-wide" style="padding:0;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:200px;">
+      <img src="../times-square-1.jpg" alt="Chi Ta on Times Square billboard" style="width:100%;height:100%;object-fit:cover;">
+      <div style="padding:28px;display:flex;flex-direction:column;justify-content:center;">
+        <div style="font-family:-apple-system,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:8px;">Times Square, NYC</div>
+        <div style="font-size:20px;font-weight:700;color:#fff;margin-bottom:8px;">Featured on the TSX Billboard</div>
+        <div style="font-size:14px;color:rgba(255,255,255,0.6);font-family:-apple-system,sans-serif;line-height:1.6;">Chi Ta's track record has been featured on the biggest stage — from Forbes to Times Square.</div>
+      </div>
+    </div>
+    <div class="client-card client-card-wide">
+      <div style="text-align:center;">
+        <div style="font-size:48px;font-weight:700;color:var(--gold);margin-bottom:4px;">75%</div>
+        <div style="font-size:15px;color:rgba(255,255,255,0.7);font-family:-apple-system,sans-serif;">of our clients buy a second property when they have the financial means.<br>Not because we're good salesmen — because <strong style="color:#fff;">the numbers speak for themselves.</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 4: THE MATH ===== -->
+<div class="section section-dark">
+  <h2>The Math: <span class="gold">Two Real Deals</span></h2>
+  <p>Not projections. Not "best case." These are actual properties we've sourced and managed.</p>
+
+  <div class="deal-grid">
+    <div class="deal-card">
+      <div class="deal-label">Flagship Deal</div>
+      <div class="deal-price">$650K</div>
+      <div class="deal-sub">Purchase Price</div>
+      <div class="deal-stat"><span class="dl">Down Payment (10%)</span><span class="dv">$65,000</span></div>
+      <div class="deal-stat"><span class="dl">Game Room + Contractors</span><span class="dv">$16,000</span></div>
+      <div class="deal-stat"><span class="dl">Total Cash In</span><span class="dv gold">$81,000</span></div>
+      <div class="deal-stat"><span class="dl">Annual Revenue</span><span class="dv gold">$130,000</span></div>
+      <div class="deal-stat"><span class="dl">Net Cash Flow</span><span class="dv">$40,900/yr</span></div>
+      <div class="deal-stat"><span class="dl">Year 1 Tax Savings</span><span class="dv">$72,150</span></div>
+      <div class="deal-stat"><span class="dl">Cash-on-Cash Return</span><span class="dv gold">50.5%</span></div>
+    </div>
+    <div class="deal-card featured">
+      <div class="deal-label">⭐ Best Performing Deal</div>
+      <div class="deal-price">$35K</div>
+      <div class="deal-sub">Down Payment</div>
+      <div class="deal-stat"><span class="dl">Annual Revenue</span><span class="dv gold">$120,000</span></div>
+      <div class="deal-stat"><span class="dl">Cash-on-Cash Return</span><span class="dv gold">75%</span></div>
+      <div class="deal-stat" style="border-bottom:none;padding-top:20px;"><span class="dl" style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.5;">$35K invested. $120K/year in revenue. This is what happens when our proprietary software finds the right property.</span></div>
+    </div>
+  </div>
+
+  <h3>Flagship Deal — Full Expense Breakdown</h3>
+  <table>
+    <tr><th>Line Item</th><th>Annual</th></tr>
+    <tr><td>Gross Revenue</td><td class="gold">$130,000</td></tr>
+    <tr><td>Mortgage (PITI)</td><td>-$36,000</td></tr>
+    <tr><td>Property Management (15%)</td><td>-$19,500</td></tr>
+    <tr><td>Cleaning</td><td>-$18,000</td></tr>
+    <tr><td>Utilities</td><td>-$9,600</td></tr>
+    <tr><td>Pool + Landscaping</td><td>-$3,600</td></tr>
+    <tr><td>Supplies + Maintenance</td><td>-$2,400</td></tr>
+    <tr><td><strong>Net Cash Flow</strong></td><td class="gold"><strong>$40,900 ($3,408/mo)</strong></td></tr>
+  </table>
+
+  <h3>Total Year 1 Return — Flagship Deal</h3>
+  <table>
+    <tr><th>Return Component</th><th>Amount</th></tr>
+    <tr><td>Net Cash Flow</td><td>$40,900</td></tr>
+    <tr><td>Tax Savings (Cost Segregation)</td><td>$72,150</td></tr>
+    <tr><td>Appreciation (8%)</td><td>$52,000</td></tr>
+    <tr><td><strong>Total Year 1 Return</strong></td><td class="gold"><strong>$165,050 on $81K = 203%</strong></td></tr>
+  </table>
+</div>
+
+<!-- ===== SECTION 5: 5-YEAR FORECAST ===== -->
+<div class="section">
+  <h2>5-Year <span class="gold">Wealth Forecast</span></h2>
+  <p>One $650K property. 8% annual appreciation. Stable cash flow. Here's what it builds:</p>
+
+  <table>
+    <tr><th>Year</th><th>Cash Flow</th><th>Tax Savings</th><th>Property Value</th><th>Total Equity</th></tr>
+    <tr><td>1</td><td>$40,900</td><td>$72,150</td><td>$702,000</td><td>$117,000</td></tr>
+    <tr><td>2</td><td>$40,900</td><td>$12,000</td><td>$758,160</td><td>$189,660</td></tr>
+    <tr><td>3</td><td>$40,900</td><td>$12,000</td><td>$818,813</td><td>$267,813</td></tr>
+    <tr><td>4</td><td>$40,900</td><td>$8,000</td><td>$884,318</td><td>$351,318</td></tr>
+    <tr><td>5</td><td>$40,900</td><td>$8,000</td><td>$955,063</td><td>$440,063</td></tr>
+  </table>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="num">$756K+</div>
+      <div class="label">Total 5-Year Return</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">9.3x</div>
+      <div class="label">Return on $81K Invested</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">$955K</div>
+      <div class="label">Property Value at Year 5</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p>This is one property. Most of our clients acquire 2-5 properties in their first 18 months. Our largest client started with 1 and now manages 60 — a portfolio worth $80 million.</p>
+  </div>
+</div>
+
+<!-- ===== SECTION 6: OBJECTION KILLERS ===== -->
+<div class="section section-dark">
+  <h2>Questions You're <span class="gold">Already Asking</span></h2>
+
+  <div class="faq-item">
+    <div class="faq-q">"What if the market crashes?"</div>
+    <div class="faq-a">The ultimate market crash already happened — COVID-19. Travel was banned entirely. There is no scenario worse than that. And during COVID, Airbnb actually <strong>performed better</strong> because travelers avoided hotels. Banks issued loan modifications that postponed all payments from property owners. We didn't just survive — we thrived. There is no realistic scenario we haven't already weathered.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">"I don't have time to manage a rental."</div>
+    <div class="faq-a">You don't manage anything. We handle <strong>all guest communication, maintenance, scheduled cleanings, supplies, and insurance claims</strong> — 24/7, 365 days a year. Our clients don't lift a finger. You check your monthly deposit and your annual tax documents. That's the extent of your involvement.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">"Isn't Airbnb oversaturated?"</div>
+    <div class="faq-a">Airbnb hit <strong>$11.1 billion in revenue in 2024 — up 12% year over year.</strong> That's $82 billion in gross bookings and 491 million nights booked. The platform is growing, not shrinking.<br><br>Saturation only matters if you don't have a competitive advantage. Our proprietary software scans all <strong>400,000 homes listed for sale in the US</strong> and selects only the most profitable. Then we get your property ranked as a <strong>top 1% home on Airbnb</strong> — and Airbnb promotes their top 1% before everyone else. Higher rates + higher occupancy. That's the golden formula.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">"Your service fee seems expensive."</div>
+    <div class="faq-a">Our fee is $40,000. Your Year 1 cost segregation savings alone is typically <strong>$50,000 to $150,000+</strong>. The service literally pays for itself — and then some. For comparison: our main competitor charges $200,000 and doesn't even source the home. We charge a fraction of that and handle everything end-to-end.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">"I don't have enough for a down payment."</div>
+    <div class="faq-a">We work with DSCR loan officers who offer <strong>10% down at approximately 7.5% rates</strong>. For a $650K property, that's $65,000. Many clients also use 1031 exchanges from existing investment properties — like Thomas M., who moved $3 million from one property type into two high-performing STRs.</div>
+  </div>
+</div>
+
+<!-- Property showcase -->
+<div style="max-width:900px;margin:0 auto;">
+  <div class="property-banner">
+    <img src="../photos/neon2.jpg" alt="Glow-in-the-dark game room">
+    <img src="../photos/desert2.jpg" alt="Resort-style pool">
+    <img src="../photos/oasis2.jpg" alt="Premium interior design">
+    <img src="../photos/neon3.jpg" alt="Unique property experiences">
+  </div>
+</div>
+
+<!-- ===== SECTION 7: THE EDGE ===== -->
+<div class="section">
+  <h2>Our <span class="gold">Proprietary Edge</span></h2>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <h3>The Software</h3>
+      <p>Our proprietary app scans all 400,000 homes listed for sale in the United States — every single one. It analyzes yield, location, and revenue potential. On the West Coast, out of 300-500 homes scanned daily, typically only 4 qualify for our 20%+ return threshold. You get access to deals nobody else sees.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <h3>Top 1% Ranking</h3>
+      <p>Every property we manage gets ranked as a top 1% performer on Airbnb. This means Airbnb actively promotes your listing above competitors. Higher visibility = higher rates + higher occupancy. More charge, more occupied — that's the golden formula.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <h3>Experience Design</h3>
+      <p>We don't rent rooms. We sell experiences. Glow-in-the-dark game rooms. Resort-style pools. One-of-a-kind properties that command $3,000-$4,000 per night during peak demand. When your property is the only one of its kind, you set the price. Everyone else races to the bottom — we race to the top.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-content">
+      <h3>Full-Service, Forever</h3>
+      <p>We find the property, negotiate the deal, handle the loan, design it, build it, furnish it, and manage it 24/7/365. Several hundred clients since 2021. $100M+ managed across 16 states. Forbes featured. 4.95-star Superhost rating. And a 90-day waitlist because we only take 5-10 new clients per month.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 8: HOW IT WORKS ===== -->
+<div class="section section-navy">
+  <h2>How It <span class="gold">Works</span></h2>
+  <p>Four steps. Completely hands-off for you.</p>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <h3>Strategy Call</h3>
+      <p>We learn your income, tax situation, investment goals, and timeline. We run your specific numbers — not hypotheticals — and show you exactly what your first property could look like. If it's not a fit, we'll tell you.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <h3>Property Acquisition</h3>
+      <p>Our software identifies the highest-yield properties in the country. We negotiate the price, connect you with our DSCR loan officer (10% down), and handle all due diligence. You approve the numbers — we handle everything else.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <h3>Design & Build-Out</h3>
+      <p>Our team transforms the property into a premium short-term rental. Game rooms, resort amenities, glow-in-the-dark features — one-of-a-kind experiences that justify premium pricing and earn top 1% status.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-content">
+      <h3>Launch & Manage Forever</h3>
+      <p>We manage everything — guest communication, maintenance, cleaning, supplies, claims — 24/7, 365. You collect monthly deposits and annual tax documents. Timeline from signup to first booking: approximately 120-150 days (including our 90-day waitlist).</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 9: QUALIFIER ===== -->
+<div class="section">
+  <h2>Is This <span class="gold">Right for You?</span></h2>
+
+  <h3>This is for you if:</h3>
+  <ul class="qual-list yes">
+    <li><span class="icon">✅</span>You earn $500K+ per year (doctors, lawyers, dentists, engineers, executives)</li>
+    <li><span class="icon">✅</span>You're paying $100K+ in taxes annually and it makes you sick</li>
+    <li><span class="icon">✅</span>You have $65K+ available for a down payment — or equity to 1031 exchange</li>
+    <li><span class="icon">✅</span>You want passive income without the hassle of being a landlord</li>
+    <li><span class="icon">✅</span>You're tired of your money disappearing to the IRS with nothing to show for it</li>
+    <li><span class="icon">✅</span>You want to build generational wealth, not just save for retirement</li>
+  </ul>
+
+  <h3>This is NOT for you if:</h3>
+  <ul class="qual-list no">
+    <li><span class="icon">❌</span>You earn under $250K (the tax benefits won't be significant enough)</li>
+    <li><span class="icon">❌</span>You want to self-manage the property (we're full service only)</li>
+    <li><span class="icon">❌</span>You need returns tomorrow (our process takes 120-150 days to first booking)</li>
+  </ul>
+</div>
+
+<!-- ===== CTA ===== -->
+<div class="cta-section">
+  <div style="max-width:640px;margin:0 auto;">
+    <div class="divider"></div>
+    <h2>Ready to Stop Paying Taxes and <span class="gold">Start Building Wealth?</span></h2>
+    <p>Book your free 60-minute strategy call. We'll run your numbers and show you exactly what's possible — whether you work with us or not.</p>
+    <a href="https://calendly.com/chitabnb/60min" class="cta-btn">Book Your Strategy Call →</a>
+    <div class="cta-note">Limited to 5-10 new clients per month · Current waitlist: 90 days</div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  <p>© 2026 Double My Rental · doublemyrental.com</p>
+  <p style="margin-top:8px;">Forbes Featured · $100M+ Managed · 16 States · 4.95 ★ Superhost</p>
+</div>
+
+</body>
+</html>
