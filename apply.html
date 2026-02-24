@@ -13,7 +13,7 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '218561482382793');
 fbq('track', 'PageView');
-fbq('track', 'ViewContent', {content_name: 'Apply Page'});
+fbq('trackCustom', 'DMR_Apply_Start');
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=218561482382793&ev=PageView&noscript=1"/></noscript>
@@ -506,7 +506,7 @@ async function submitApplication() {
 window.addEventListener('message', function(e) {
   if (e.origin === 'https://calendly.com' && e.data && e.data.event === 'calendly.event_scheduled') {
     setTimeout(function() {
-      fbq('track', 'Schedule');
+      fbq('trackCustom', 'DMR_Call_Booked');
       window.location.href = 'thank-you.html';
     }, 2000); // 2 second delay so they see the confirmation first
   }
